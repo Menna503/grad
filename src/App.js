@@ -23,7 +23,7 @@ const App = () => {
 
     <BrowserRouter>
        
-       <Sidebar>
+       {/* <Sidebar> */}
        <Header/>
      
         <Routes>
