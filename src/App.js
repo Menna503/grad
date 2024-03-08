@@ -24,7 +24,7 @@ const App = () => {
     <BrowserRouter>
        
        <Sidebar>
-       {/* <Header/> */}
+       <Header/>
      
         <Routes>
           {/* <Route  exact path="/" element={<Dashboard />} /> */}
