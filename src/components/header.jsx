@@ -42,3 +42,25 @@ const Header = () => {
 };
 
 export default Header;
+// import React from 'react';
+// import { useLocation } from 'react-router-dom';
+// import * as GoIcons from 'react-icons/go';
+// import * as RiIcons from 'react-icons/ri';
+
+
+
+// const Header = () => {
+//     const location = useLocation();
+//     const currentPage = location.pathname.substring(1);
+
+//     return (
+//         <div className='header'> {/* Use className instead of id */}
+//             <h1 className="title">{currentPage}</h1> {/* Use className instead of id */}
+//             <div className="icons-container"> {/* Use className instead of id */}
+//                 <button className='header-icon'><GoIcons.GoMoon/></button> {/* Use className instead of id */}
+//                 <button className='header-icon'><RiIcons.RiGlobalLine/></button> {/* Use className instead of id */}
+//             </div>
+//         </div>
+//     );
+// };
+// export default Header;

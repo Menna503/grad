@@ -3,7 +3,7 @@ import Header from'../components/header';
 const Requests = () => {
   return (
     <div>
-      <Header/>
+      {/* <Header/> */}
     </div>
   )
 }

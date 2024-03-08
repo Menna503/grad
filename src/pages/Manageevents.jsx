@@ -4,7 +4,7 @@ import Header from'../components/header';
 const Manageevents = () => {
   return (
     <div>
-      <Header/>
+      {/* <Header/> */}
     </div>
   )
 }

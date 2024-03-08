@@ -4,7 +4,7 @@ import Header from'../components/header';
 const Dashboard = () => {
   return (
     <div>
-     <Header/>
+     {/* <Header/> */}
      <h2>k</h2>
      <h2>mmmmmmmm</h2>
     </div>

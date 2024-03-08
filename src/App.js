@@ -12,7 +12,7 @@ import Help from './pages/Help.jsx';
 import Requests from './pages/Requests.jsx';
 import Logout from './pages/logout.jsx';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-
+import Header from './components/header.jsx';
 
 
 
@@ -22,7 +22,9 @@ const App = () => {
    
 
     <BrowserRouter>
-      <Sidebar>
+       
+       <Sidebar>
+       <Header/>
      
         <Routes>
           {/* <Route  exact path="/" element={<Dashboard />} /> */}

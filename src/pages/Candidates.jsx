@@ -4,7 +4,7 @@ import Header from'../components/header';
 const Candidates = () => {
   return (
     <div>
-    <Header/>
+    {/* <Header/> */}
     <h1> mmmmmmmm</h1>
    </div>
    )

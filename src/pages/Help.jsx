@@ -3,7 +3,7 @@ import Header from'../components/header';
 const Help = () => {
   return (
     <div>
-     <Header/>
+     {/* <Header/> */}
     </div>
   )
 }
