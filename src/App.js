@@ -23,8 +23,8 @@ const App = () => {
 
     <BrowserRouter>
        
-       {/* <Sidebar> */}
-       <Header/>
+       <Sidebar>
+       {/* <Header/> */}
      
         <Routes>
           {/* <Route  exact path="/" element={<Dashboard />} /> */}
