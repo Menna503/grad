@@ -25,6 +25,23 @@
      gap: 13px;
 
 }
+/*overlay candidate*/
+.overlay_delete_candidate{
+    width: 411px;
+    height: 221px;
+    border-radius: 10px;
+    border-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    /* align-items: center; */
+}
+.Overlayer_close_candidate_icon{
+    width: 54px;
+    height: 54px;
+    color: #055b60;
+}
+/*end of overlay candidate*/
 .edit{
     display: flex;
     margin: 0 auto;
@@ -43,6 +60,8 @@
     font-family: "Inter-Bold", Helvetica;
     font-size: 24px;
     font-weight: 700;
+    text-transform: capitalize;
+
 
 }
 .img_edit_pop{
@@ -76,6 +95,8 @@
     color: #4b4949;
     text-transform: capitalize;
     margin-bottom: 1px;
+    /* padding: 20px; */
+    padding-left: 20px;
 }
 .edit_buuton{
     background-color: #055b60;
@@ -88,5 +109,7 @@
     font-weight: 400;
     line-height: normal;
     margin-top: 48px;
+    text-transform: capitalize;
+
     
 }

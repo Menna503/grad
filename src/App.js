@@ -22,9 +22,10 @@ const App = () => {
    
 
     <BrowserRouter>
-       
        <Sidebar>
        <Header/>
+
+      
      
         <Routes>
           {/* <Route  exact path="/" element={<Dashboard />} /> */}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { IoMdAdd } from "react-icons/io";
 import {
   FaRegEdit
@@ -6,88 +6,65 @@ import {
 }from "react-icons/fa";
 import { RiDeleteBinLine } from "react-icons/ri";
 import Model from '../model/model';
-
-
 const Admin = () => {
+  const [showModel,setShowModel]=useState(false)
+  const [addModel,setAddModel]=useState(false)
+  const menue_table=[
+    {
+    name:"mohmed",
+    id:'9872626266262'
+
+  },
+  {
+    name:"ali",
+    id:'9872626266262'
+
+  },
+  {
+    name:"menna",
+    id:'9872626266262'
+
+  },
+  
+]
   return (
     
-    <div>
-      <Model/>
+    <>
+      <Model show={showModel} show2={addModel} close_model={() => { setShowModel(false); setAddModel(false); } }/>
       <div className='top'>
-          
-      {/* <Header/> */}
     <div className='continer_table'>
       <table>
-      <tbody>
-      <tr >
-       <td ><div><img src="/admin_picture.png"/></div></td>
-        <td>bbbb </td>
-        <td>bbbbbbb</td>
-        <td >  
-        <div>
-        <button className='edit_icon delete_edit_ic'><FaRegEdit/></button>
+      
+     {
+       menue_table.map((item) => (
+        <tbody>
+        <tr >
+        <td ><div><img src="/admin_picture.svg"/></div></td>
+         <td>{item.name} </td>
+         <td>{item.id}</td>
+         <td >  
+         <div>
+         <button className='edit_icon delete_edit_ic' onClick={()=>setShowModel(true)}><FaRegEdit/></button>
+         
+          <button className='delete_icon  delete_edit_ic'><RiDeleteBinLine /></button>
+          </div>
+         </td>
+       </tr>
+           
+       
+       
+       </tbody>
         
-         <button className='delete_icon  delete_edit_ic'><RiDeleteBinLine /></button>
-         </div>
-        </td>
-      </tr>
-          
-      <tr>
-      <td><div><img src="/admin_picture.png"/></div></td>
-        <td>bbbb</td>
-        <td>bbbbbbb</td>
-        <td >  
-        <button className='edit_icon delete_edit_ic'><FaRegEdit/></button>
-         <button className='delete_icon  delete_edit_ic'><RiDeleteBinLine /></button></td>
-      </tr>
-      <tr>
-      <td><div><img src="/admin_picture.png"/></div></td>
-        <td>bbbb</td>
-        <td>bbbbbbb</td>
-        <td >  
-        <button className='edit_icon delete_edit_ic'><FaRegEdit/></button>
-         <button className='delete_icon  delete_edit_ic'><RiDeleteBinLine /></button></td>
-      </tr>
-      <tr>
-      <td><div><img src="/admin_picture.png"/></div></td>
-        <td>bbbb</td>
-        <td>bbbbbbb</td>
-        <td >  
-        <button className='edit_icon delete_edit_ic'><FaRegEdit/></button>
-         <button className='delete_icon  delete_edit_ic'><RiDeleteBinLine /></button></td>
-      </tr>
-      <tr>
-      <td><div><img src="/admin_picture.png"/></div></td>
-        <td>bbbb</td>
-        <td>bbbbbbb</td>
-        <td>  
-        <button className='edit_icon delete_edit_ic'><FaRegEdit/></button>
-         <button className='delete_icon  delete_edit_ic'><RiDeleteBinLine /></button></td>
-      </tr>
-      <tr>
-      <td><div><img src="/admin_picture.png"/></div></td>
-        <td>bbbb</td>
-        <td>bbbbbbb</td>
-        <td >  
-        <button className='edit_icon delete_edit_ic'><FaRegEdit/></button>
-         <button className='delete_icon  delete_edit_ic'><RiDeleteBinLine /></button></td>
-      </tr>
-      <tr>
-      <td><div><img src="/admin_picture.png"/></div></td>
-        <td>bbbb</td>
-        <td>bbbbbbb</td>
-        <td >  
-        <button className='edit_icon delete_edit_ic'><FaRegEdit/></button>
-         <button className='delete_icon  delete_edit_ic'><RiDeleteBinLine /></button></td>
-      </tr>
-      </tbody>
+    ))
+     }
+     
      
       </table>
-      <button className='add'> <IoMdAdd/></button>
+      <button className='add'onClick={()=>setAddModel(true)}> <IoMdAdd/></button>
     </div>
         
       </div>
-   </div>
+   </>
   )
 }
 
