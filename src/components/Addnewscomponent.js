@@ -3,12 +3,13 @@ import Axios from 'axios';
 import * as IoIcons from "react-icons/io";
 import * as FaIcons from "react-icons/fa";
 
-function Realprof() {
+function Addnewscomponent() {
 
 const url =""
 const [data, setData] = useState({
-  oldpassword:"",
-  newpassword:"",
+  titleOfNews:"",
+  imageOfNews:"",
+  news:""
 //   name:"",
 //   date:"",
 //   iduser:""
@@ -18,8 +19,9 @@ const [data, setData] = useState({
 function Submit(e){
   e.preventDefault();
   Axios.post(url,{
-     oldpassword: data.oldpassword,
-     newpassword: data.newpassword
+    titleOfNews: data.titleOfNews,
+    imageOfNews: data.imageOfNews,
+    news: data.news
     //  name: data.name,
     //  date: data.date,
     //  iduser: parseInt(data.iduser)
@@ -40,25 +42,22 @@ function handle(e){
     <div>
       <form onSubmit={(e)=> Submit(e)}>
 
-         <div className='profilec'>
+         <div className='Addnewslec'>
 
-        <p className='p3_of_profile'>change password</p>
-        <div className='bigboxofprofile' >
-        <p className='p1_of_profile'>old password</p>
-        {/* <div className='box_of_profile'> */}
-        <input onChange={(e)=>handle(e)} id="oldpassword" value={data.oldpassword}  type='password'  className='box_of_profile'></input>
-          {/* </div> */}
-       </div>
-         
-
-       <div className='bigboxofprofile' >
-        <p className='p1_of_profile'>new password</p>
-        {/* <div className='box_of_profile'> */}
-         <input onChange={(e)=>handle(e)} id="newpassword" value={data.newpassword}  type='password'  className='box_of_profile'></input>
-          {/* </div> */}
+        <div className='bigboxofAddnews' >
+        <input onChange={(e)=>handle(e)} id="titleOfNews" value={data.titleOfNews} placeholder='Add Title Of The News' type='text'  className='box_of_Addnews'></input>
        </div>
 
-       <button className='submit_button'>update</button> 
+          <div className='bigboxofAddnewsupload' >
+        <input onChange={(e)=>handle(e)} id="imageOfNews" value={data.imageOfNews}  placeholder='Add Image Of The News' type='file'  className='box_of_upload'></input>
+       </div>
+
+       <div className='bigboxofAddnewarea' >
+        <textarea onChange={(e)=>handle(e)}  id="news" value={data.news} placeholder='News......' type='text'  className='box_of_Addnewsarea'></textarea>
+       </div> 
+    
+
+       <button className='add_button'>Add</button> 
        </div>
 
         {/* <input onChange={(e)=>handle(e)} id="name" value={data.name} placeholder='name' type='text'></input>
@@ -72,4 +71,4 @@ function handle(e){
 
 
 
-export default Realprof;
+export default Addnewscomponent;
