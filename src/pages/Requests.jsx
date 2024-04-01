@@ -1,9 +1,25 @@
-import React from 'react'
+import React ,{useEffect, useState} from 'react';
+import axios from 'axios';
 import Header from'../components/header';
-const Requests = () => {
+
+
+function Requests() {
+    
+    const [data , setData] = useState([])
+  useEffect(()=>{
+     axios.get('https://reqres.in/api/users?page=2')
+     .then(res => res.data.data)
+     .catch(err => console.log(err));
+
+
+
+  }, [])
+
+
   return (
     <div>
-      {/* <Header/> */}
+      <h1>helllojnnnb</h1>
+    
     </div>
   )
 }
