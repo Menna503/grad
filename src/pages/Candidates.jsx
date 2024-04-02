@@ -27,7 +27,7 @@ const Candidates = () => {
 ]
   return (
     <>
-    <Model show3={deltecandidateModel}  close_model={() => { setDeleteCandidateModel(false);  } }/>
+    <Model delete_model={deltecandidateModel}  close_model={() => { setDeleteCandidateModel(false);  } }/>
      <div className='top'>
     <div className='continer_table'>
       <table>

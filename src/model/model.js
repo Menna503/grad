@@ -10,7 +10,7 @@ const BackDrop=()=>{
 const Overlayer_edit=({close})=>{
   return (
   <div className="overlay">
-  <button className='close_pop'onClick={close}><img src='/close_pop.svg'/></button>  
+   <button className='close_pop'onClick={close}><IoIosClose/></button>  
     <div className='edit'>
         <BsPersonGear className='edit_i_pop'/>
         <h1 className='edit_h_pop'>Edit Admin</h1>
@@ -26,7 +26,7 @@ const Overlayer_edit=({close})=>{
 const Overlayer_add_admin=({close})=>{
   return (
     <div className="overlay">
-    <button className='close_pop'onClick={close}><img src='/close_pop.svg'/></button>  
+    <button className='close_pop'onClick={close}><IoIosClose/></button>   
       <div className='edit'>
           <BsPersonGear className='edit_i_pop'/>
           <h1 className='edit_h_pop'>add admin</h1>
@@ -42,27 +42,27 @@ const Overlayer_add_admin=({close})=>{
 }
 const Overlayer_delete_candidate=({close})=>{
   return(
-    <div className='overlay overlay_delete_candidate'>
+    <div className='overlay overlay_delete'>
        <button className='close_pop'onClick={close}><IoIosClose/></button> 
-      <BsPersonX className='Overlayer_close_candidate_icon'/>
-   <p> are you sure you want to delete?</p>
-    <button>yes</button>
+      <BsPersonX className='Overlayer_delete_icon'/>
+   <p className='p_delete'> are you sure you want to delete?</p>
+    <button className='yes_button'>yes</button>
     </div>
   
   );
 }
-function Model({show,show2,show3,close_model}) {
+function Model({edit_model,add_model,delete_model,close_model}) {
   return (
-   (show||show2||show3)&& (
+   (edit_model||add_model||delete_model)&& (
     <>
     {createPortal(
     < >
            <BackDrop/>
            
-          {  show&&<  Overlayer_edit close={close_model}/>}
-          {  show3&&<  Overlayer_delete_candidate close={close_model}/>}
+          {  edit_model&&<  Overlayer_edit close={close_model}/>}
+          {  delete_model&&<  Overlayer_delete_candidate close={close_model}/>}
            
-         { show2&& < Overlayer_add_admin close={close_model}/>}
+         { add_model&& < Overlayer_add_admin close={close_model}/>}
         
           
     </>,document.getElementById('model')

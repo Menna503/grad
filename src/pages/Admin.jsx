@@ -7,8 +7,9 @@ import {
 import { RiDeleteBinLine } from "react-icons/ri";
 import Model from '../model/model';
 const Admin = () => {
-  const [showModel,setShowModel]=useState(false)
+  const [editModel,setEditModel]=useState(false)
   const [addModel,setAddModel]=useState(false)
+  const [deltecandidateModel,setDeleteCandidateModel]=useState(false)
   const menue_table=[
     {
     name:"mohmed",
@@ -30,7 +31,7 @@ const Admin = () => {
   return (
     
     <>
-      <Model show={showModel} show2={addModel} close_model={() => { setShowModel(false); setAddModel(false); } }/>
+      <Model edit_model={editModel} add_model={addModel} delete_model={deltecandidateModel} close_model={() => { setEditModel(false); setAddModel(false);setDeleteCandidateModel(false) } }/>
       <div className='top'>
     <div className='continer_table'>
       <table>
@@ -44,9 +45,9 @@ const Admin = () => {
          <td>{item.id}</td>
          <td >  
          <div>
-         <button className='edit_icon delete_edit_ic' onClick={()=>setShowModel(true)}><FaRegEdit/></button>
+         <button className='edit_icon delete_edit_ic' onClick={()=>setEditModel(true)}><FaRegEdit/></button>
          
-          <button className='delete_icon  delete_edit_ic'><RiDeleteBinLine /></button>
+          <button className='delete_icon  delete_edit_ic' onClick={()=>setDeleteCandidateModel(true)}><RiDeleteBinLine /></button>
           </div>
          </td>
        </tr>
