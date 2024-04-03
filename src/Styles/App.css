@@ -294,4 +294,8 @@ padding:5%;
     /* padding: 10px ; */
 }
 
-/*  */
+/* request */
+.btn_show {
+    margin-left: 0px !important;
+}
+/*end request*/
