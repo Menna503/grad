@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { IoMdAdd } from "react-icons/io";
-import {
-  FaRegEdit
- 
-}from "react-icons/fa";
+import {FaRegEdit}from "react-icons/fa";
 import { RiDeleteBinLine } from "react-icons/ri";
 import Model from '../model/model';
+
+
+
 const Admin = () => {
   const [editModel,setEditModel]=useState(false)
   const [addModel,setAddModel]=useState(false)
