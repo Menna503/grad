@@ -82,7 +82,7 @@ function AddEvents({ close, addEvent, eventToEdit, updateEvent }) {
                                 <p className='PofmanageEvents'>End</p>
                                 <input onChange={handle} id="end" placeholder='' type='date' className='box_of_Addevents' value={data.end}></input>
                             </div>
-                            
+
                         </div>
                         <button className='addd_button' type="submit">{eventToEdit ? "Edit" : "Add"}</button>
                     </div>
