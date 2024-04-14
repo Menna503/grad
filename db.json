@@ -1,0 +1,17 @@
+{
+  "events": [
+    {
+      "id": "8b9a",
+      "titleOfEvent": "hello",
+      "start": "2024-04-24",
+      "end": "2024-04-18"
+    },
+    {
+      "id": "9f8b",
+      "titleOfEvent": "nomination",
+      "start": "2024-04-24",
+      "end": "2024-04-26"
+    }
+  ],
+  "news": []
+}
