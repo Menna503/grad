@@ -86,11 +86,6 @@
 // export default Admin;
 import React, { useEffect, useState } from 'react';
 import { IoMdAdd } from "react-icons/io";
-import {
-  FaRegEdit
-}from "react-icons/fa";
-import { RiDeleteBinLine } from "react-icons/ri";
-import Model from '../model/model';
 import axios from 'axios';
 import {FaRegEdit}from "react-icons/fa";
 import { RiDeleteBinLine } from "react-icons/ri";
