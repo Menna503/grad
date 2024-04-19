@@ -90,7 +90,8 @@ import axios from 'axios';
 import {FaRegEdit}from "react-icons/fa";
 import { RiDeleteBinLine } from "react-icons/ri";
 import Model from '../model/model';
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MWM0ZjJlN2FhMzJkNWNhMzc1YWU5OSIsIm5hbWUiOiJ0YWhlciIsIm5hdGlvbmFsSWQiOjMwMjA5MjMxMzAxMTQ0LCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTM1NTA1ODMsImV4cCI6MTcxNjE0MjU4M30.dkqM6CgK9W2LJyNVd3paJe0Y2FWIuEHqZjy8CrgVLGA";
+const token="mm";
+
 const Admin = () => {
   const [editModel, setEditModel] = useState(false);
   const [addModel, setAddModel] = useState(false);
@@ -127,6 +128,7 @@ const Admin = () => {
   };
 
   return (
+    
     <>
       <Model
         edit_model={editModel}
@@ -160,8 +162,8 @@ const Admin = () => {
         </div>
         <button className='add' onClick={() => setAddModel(true)}> <IoMdAdd /></button>
       </div>
-    </>
-  );
-};
+   </>
+  )
+}
 
 export default Admin;
