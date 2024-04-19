@@ -18,11 +18,11 @@ import * as IoIcons5 from "react-icons/io5";
 import * as CgIcons from "react-icons/cg";
 import * as CiIcons from "react-icons/ci";
 import { NavLink } from 'react-router-dom';
+import Header from '../components/header'; 
 
 
 
-
-const Sidebar = ({children}) => {
+const Sidebar = ({children ,managerName }) => {
     const[isOpen ,setIsOpen] = useState(false);
     const toggle = () => setIsOpen (!isOpen);
     const menuItem=[
@@ -96,11 +96,13 @@ const Sidebar = ({children}) => {
     return (
         <div className="container">
            <div  className="sidebar"style={sidebarStyle}>
+
+            
                <div className="top_section" style={{width:isOpen? "254px":"90px"}}>
                     <div style={{display: isOpen ? "block" : "none"}} className="info-admin">
                     
                       <div  ><img src={imgprofile} alt=""  /> </div>  
-                    <h1  className=" icon name">ghada elsayed</h1>
+                    <h1  className=" icon name">{managerName}</h1>
                     </div>
                   
                    <div style={bar} className="bars">
@@ -135,7 +137,9 @@ const Sidebar = ({children}) => {
 }
                
            </div>
-           <main>{children}</main>
+           <main>
+           <Header />
+            {children}</main>
         </div>
     );
 };

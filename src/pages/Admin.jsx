@@ -5,7 +5,6 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import Model from '../model/model';
 
 
-
 const Admin = () => {
   const [editModel,setEditModel]=useState(false)
   const [addModel,setAddModel]=useState(false)
@@ -29,7 +28,7 @@ const Admin = () => {
   
 ]
   return (
-    
+   
     <>
       <Model edit_model={editModel} add_model={addModel} delete_model={deltecandidateModel} close_model={() => { setEditModel(false); setAddModel(false);setDeleteCandidateModel(false) } }/>
       <div className='top'>
@@ -66,6 +65,7 @@ const Admin = () => {
         
       </div>
    </>
+  
   )
 }
 

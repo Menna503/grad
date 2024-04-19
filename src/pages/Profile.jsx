@@ -17,9 +17,11 @@ import '../Styles/profilecss.css';
 import Realprof from '../components/Realprof';
 import PersonInfo from '../components/PersonInfo';
 
+
 function Profile() {
   return (
   
+
        <div className='profile_container'>
      <div className='page_img_profile' ><img src={Page_profile} alt=""  /> </div> 
     <div className='prof_component'>

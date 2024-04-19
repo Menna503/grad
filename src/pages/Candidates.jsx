@@ -2,6 +2,8 @@
 import { RiDeleteBinLine } from "react-icons/ri";
 import React, { useState } from 'react';
 import Model from '../model/model';
+
+
 const Candidates = () => {
   const [deltecandidateModel,setDeleteCandidateModel]=useState(false)
   const menue_table=[
@@ -26,6 +28,7 @@ const Candidates = () => {
   
 ]
   return (
+   
     <>
     <Model delete_model={deltecandidateModel}  close_model={() => { setDeleteCandidateModel(false);  } }/>
      <div className='top'>
@@ -60,6 +63,7 @@ const Candidates = () => {
       </div>
     
    </>
+   
    )
 }
 

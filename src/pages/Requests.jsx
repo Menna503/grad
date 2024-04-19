@@ -1,7 +1,8 @@
 import React ,{useEffect, useState} from 'react';
 import axios from 'axios';
 import Model from '../model/model';
-
+import Sidebar from '../components/Sidebar';
+import Header from'../components/header';
 
 
 function Requests() {
@@ -39,6 +40,7 @@ function Requests() {
 
 
   return (
+  
     <>
        
      <div className='top'>
@@ -73,6 +75,7 @@ function Requests() {
       </div>
     
    </>
+  
    )
 }
 

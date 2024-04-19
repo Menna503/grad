@@ -68,6 +68,8 @@ const deleteEvent = (eventId) => {
 
  
     return (
+
+       
         <div className='manageevents_maincontainer'>
             <p className='paragraph_in_manage_events'>Please press the below button to add an event</p>
             <div className='manageevents_container'>
@@ -99,6 +101,7 @@ const deleteEvent = (eventId) => {
                 </div>
             </div>
         </div>
+        
     );
 }
 
