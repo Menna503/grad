@@ -14,6 +14,7 @@ import Login from './pages/Login.jsx';
 // import { BrowserRouter, Routes, Route, Navigate ,Switch ,useLocation } from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from './components/MainLayout';
+import CandidateData from './pages/CandidateData.jsx';
 
 
 const App = () => {
@@ -27,8 +28,9 @@ const App = () => {
         <Routes>
         <Route path="/" element={<Login />} />
         
-
           
+          <Route path="/CandidateData" element={<MainLayout><CandidateData /></MainLayout>} />
+
           <Route path="/Dashboard" element={<MainLayout> <Dashboard /></MainLayout>} />
           <Route path="/Admin" element={<MainLayout> <Admin /> </MainLayout> } />
           <Route path="/Manageevents" element={ <MainLayout> <Manageevents /></MainLayout>} />
