@@ -321,9 +321,7 @@
   border: none;
   background-color: #f6fffb;
 }
-.imageppp{
-  
-}
+
 /****************************************************EVENTS*************************************************/
 
 .manageevents_maincontainer{
@@ -372,8 +370,7 @@ bottom: 25px;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000;
-  background-color: rgba(0,0,0,0.8);
+  /* background-color: rgba(0,0,0,0.4); */
   height: 100%;
   width: 100%;
   display: flex;

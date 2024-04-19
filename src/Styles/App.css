@@ -225,7 +225,7 @@ font-size: 20px;
     border: 1px solid #C7C7C7;
     border-radius: 10px;
     width: 1226px;
-    height: 820px;
+    height: 780px;
     max-width: 100%;
     /* height: auto; */
     /* margin: 0 auto; */
@@ -233,6 +233,7 @@ font-size: 20px;
     border-collapse: collapse;
     padding:20x;
     position: relative;
+    overflow: auto;
 }
 table{
 /* position: absolute; */

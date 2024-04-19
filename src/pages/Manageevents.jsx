@@ -32,7 +32,7 @@ const deleteEvent = (eventId) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this event?");
     
     if (confirmDelete) {
-        Axios.delete(`http://localhost:3001/events/${eventId}`)
+        Axios.delete( )
             .then(() => {
                 const updatedEvents = events.filter(event => event.id !== eventId);
                 setEvents(updatedEvents);
@@ -105,4 +105,4 @@ const deleteEvent = (eventId) => {
     );
 }
 
-export default Manageevents;
+export default Manageevents;
