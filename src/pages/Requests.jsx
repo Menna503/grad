@@ -2,6 +2,7 @@ import React ,{useEffect, useState} from 'react';
 import axios from 'axios';
 import Model from '../model/model';
 
+import { useNavigate } from 'react-router-dom';
 
 
 function Requests() {
@@ -12,24 +13,30 @@ function Requests() {
   //    .then(res => res.data.data)
   //    .catch(err => console.log(err));
 
+  const navigate = useNavigate();
 
 
   // }, [])
+  const handleClick = () => {
+    // Change the URL to page 2
+    // window.location.href = '/CandidateData.jsx';
+    navigate('/CandidateData');
+  };
   const menue_table=[
     {
-    img:"/candidate_img.svg",
+    img:"/candidate_request.svg",
     name:"mohmed ali mohmed ahmed",
     id:'9872626266262'
 
   },
   {
-    img:"/candidate_img.svg",
+    img:"/candidate_request.svg",
     name:"mohmed ali mohmed ahmed",
     id:'9872626266262'
 
   },
   {
-    img:"/candidate_img.svg",
+    img:"/candidate_request.svg",
     name:"mohmed ali mohmed ahmed",
     id:'9872626266262'
 
@@ -54,7 +61,7 @@ function Requests() {
          <td>{item.id}</td>
          <td >  
          <div>
-          <button className='submit_button btn_show'> show data</button>
+          <button className='submit_button btn_show' on onClick={handleClick}> show data</button>
           </div>
          </td>
        </tr>

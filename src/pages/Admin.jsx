@@ -90,7 +90,7 @@ import axios from 'axios';
 import {FaRegEdit}from "react-icons/fa";
 import { RiDeleteBinLine } from "react-icons/ri";
 import Model from '../model/model';
-
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MWM0ZjJlN2FhMzJkNWNhMzc1YWU5OSIsIm5hbWUiOiJ0YWhlciIsIm5hdGlvbmFsSWQiOjMwMjA5MjMxMzAxMTQ0LCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTM1NTA1ODMsImV4cCI6MTcxNjE0MjU4M30.dkqM6CgK9W2LJyNVd3paJe0Y2FWIuEHqZjy8CrgVLGA";
 const Admin = () => {
   const [editModel, setEditModel] = useState(false);
   const [addModel, setAddModel] = useState(false);
@@ -103,11 +103,19 @@ const Admin = () => {
     fetchData();
   }, []);
 
-  const fetchData = () => {
-    axios.get('http://localhost:3000/users')
-      .then(res => setData(res.data))
-      .catch(err => console.log(err));
-  };
+   const fetchData = () => {
+  //   axios.get('https://graduation-project-273e.onrender.com')
+  //     .then(res => setData(res.data))
+  //     .catch(err => console.log(err));
+  // };
+  axios.get('https://graduation-project-273e.onrender.com/api/controller/add', {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  })
+.then(res => setData(res.data))
+.catch(err => console.log(err));
+   };
 
   const updateData = (newData) => {
     setData([...data, newData]);

@@ -14,6 +14,7 @@ import Logout from './pages/logout.jsx';
 import Login from './pages/Login.jsx';
 import { BrowserRouter, Routes, Route, Navigate ,Switch ,useLocation} from 'react-router-dom';
 import Header from './components/header.jsx';
+import CandidateData from './pages/CandidateData.jsx';
 
 
 
@@ -43,6 +44,8 @@ const App = () => {
           <Route path="/Profile" element={<Profile />} />
           <Route path="/Help" element={<Help />} />
           <Route path="/Logout" element={<Logout />} />
+          <Route path="/CandidateData" element={<CandidateData/>} />
+
           {/* <Route path="/" element={<Dashboard />} /> */}
 
         </Routes>

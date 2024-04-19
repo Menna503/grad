@@ -226,7 +226,8 @@ const Overlayer_edit = ({ close, item, data, setData }) => {
         <h1 className='edit_h_pop'>Edit Admin</h1>
       </div>
       <div className='img_edit_pop'><img src='/edit_admin.svg'/></div> 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='form_continer'>
+        <div className='inputs_continer'>
         <input
           type='text'
           className='input'
@@ -246,6 +247,7 @@ const Overlayer_edit = ({ close, item, data, setData }) => {
         />
         {idWarning && <div className="warning">يرجى إدخال الرقم القومي</div>}
         {nationalIdWarning && <div className="warning">الرقم القومي يجب أن يكون مكونًا من 14 رقمًا وغير موجود بالفعل في قاعدة البيانات</div>}
+        </div>
         <button className='edit_buuton' type='submit'>Edit</button>
       </form>
     </div>
@@ -256,11 +258,11 @@ const Overlayer_edit = ({ close, item, data, setData }) => {
 const Overlayer_add_admin=({close,updates})=>{
   const[inputData,setInputData]=useState({
     name:'',
-    id:''
+    nationalId:''
   })
   const handleSubmit=(event)=>{
     event.preventDefault();
-    axios.post('http://localhost:3000/users',inputData)
+    axios.post('https://graduation-project-273e.onrender.com/api/controller/add',inputData)
     .then(res=>{
       // alert("data posted successfully")
       updates(res.data);
@@ -281,9 +283,11 @@ const Overlayer_add_admin=({close,updates})=>{
           
       </div>
      <div className='img_edit_pop'><img src='/add_admin.svg'/></div> 
-     <form onSubmit={handleSubmit}>
+     <form onSubmit={handleSubmit} className='form_continer'>
+      <div className='inputs_continer'>
      <input  onChange={e =>setInputData({...inputData,name:e.target.value})} type='name' className='input'placeholder='Enter Admin Name ' ></input>
      <input  onChange={e =>setInputData({...inputData,id:e.target.value})} type='id' className='input' placeholder='Enter ID'></input>
+    </div>
      <button className='edit_buuton'type='submit'> add</button>
      </form>
     
