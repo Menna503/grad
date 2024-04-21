@@ -5,11 +5,22 @@ import '../Styles/profilecss.css';
 import Addnewscomponent from '../components/Addnewscomponent';
 import { IoMdAdd } from "react-icons/io";
 import  Axios  from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Addnews() {
 
   const [showNewsModal, setShowNewsModal] = useState(false);
   const [newsss, setNewsss] = useState([]);
+  const navigate = useNavigate();
+
+  
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        navigate('/');
+    }
+}, [navigate]);
+
 
   const closeAddEventsModal = () => {
     setShowNewsModal(false);

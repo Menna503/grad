@@ -3,19 +3,21 @@ import axios from 'axios';
 import Model from '../model/model';
 import Sidebar from '../components/Sidebar';
 import Header from'../components/header';
-
+import { useNavigate } from 'react-router-dom';
 
 function Requests() {
-    
-  //   const [data , setData] = useState([])
-  // useEffect(()=>{
-  //    axios.get('https://reqres.in/api/users?page=2')
-  //    .then(res => res.data.data)
-  //    .catch(err => console.log(err));
+ 
 
 
+  const navigate = useNavigate();
 
-  // }, [])
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        navigate('/');
+    }
+}, [navigate]);
+
   const menue_table=[
     {
     img:"/candidate_img.svg",

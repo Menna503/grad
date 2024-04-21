@@ -1,10 +1,20 @@
 
 import { RiDeleteBinLine } from "react-icons/ri";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Model from '../model/model';
+import { useNavigate } from 'react-router-dom';
 
 
 const Candidates = () => {
+  
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        navigate('/');
+    }
+}, [navigate]);
   const [deltecandidateModel,setDeleteCandidateModel]=useState(false)
   const menue_table=[
     {
