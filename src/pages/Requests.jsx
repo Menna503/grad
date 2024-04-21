@@ -56,7 +56,7 @@ function Requests() {
          <td>{item.id}</td>
          <td >  
          <div>
-          <button className='submit_button btn_show' on onClick={handleClick}> show data</button>
+          <button className='submit_button btn_show' > show data</button>
           </div>
          </td>
        </tr>

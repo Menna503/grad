@@ -90,7 +90,7 @@ import axios from 'axios';
 import {FaRegEdit}from "react-icons/fa";
 import { RiDeleteBinLine } from "react-icons/ri";
 import Model from '../model/model';
-
+import { useNavigate } from 'react-router-dom';
 
 
 const Admin = () => {
@@ -115,6 +115,7 @@ const Admin = () => {
   }, []);
 
    const fetchData = () => {
+    const token = localStorage.getItem('token');
   //   axios.get('https://graduation-project-273e.onrender.com')
   //     .then(res => setData(res.data))
   //     .catch(err => console.log(err));
