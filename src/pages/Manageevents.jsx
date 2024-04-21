@@ -21,6 +21,27 @@ function Manageevents() {
             navigate('/');
         }
     }, [navigate]);
+    useEffect(() => {
+        if (token) {
+            Axios.get('https://graduation-project-273e.onrender.com/api/event', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            .then(res => {
+                // Extract the array of events from the response
+                const eventsArray = res.data.data.events;
+                if (Array.isArray(eventsArray)) {
+                    setEvents(eventsArray);
+                } else {
+                    console.error('Fetched events data is not an array:', res.data);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching events:', error);
+            });
+        }
+    }, [token]);
     
     const closeAddEventsModal = () => {
         setShowModal(false);
@@ -73,20 +94,20 @@ const updateEvent = (updatedEvent) => {
 //     .then(res => setEvents(res.data))
 //     .catch(error => console.error('Error fetching events:', error));
 // }, [token]);
-Axios.get('https://graduation-project-273e.onrender.com/api/event', {
-    headers: {
-        Authorization: `Bearer ${token}`
-    }
-})
-.then(res => {
-    // Ensure `res.data` is an array before updating `events`
-    if (Array.isArray(res.data)) {
-        setEvents(res.data);
-    } else {
-        console.error('Fetched events data is not an array:', res.data);
-    }
-})
-.catch(error => console.error('Error fetching events:', error));
+// Axios.get('https://graduation-project-273e.onrender.com/api/event', {
+//     headers: {
+//         Authorization: `Bearer ${token}`
+//     }
+// })
+// .then(res => {
+//     // Ensure `res.data` is an array before updating `events`
+//     if (Array.isArray(res.data)) {
+//         setEvents(res.data);
+//     } else {
+//         console.error('Fetched events data is not an array:', res.data);
+//     }
+// })
+// .catch(error => console.error('Error fetching events:', error));
 
  
     return (
