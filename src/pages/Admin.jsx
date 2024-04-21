@@ -90,7 +90,7 @@ import axios from 'axios';
 import {FaRegEdit}from "react-icons/fa";
 import { RiDeleteBinLine } from "react-icons/ri";
 import Model from '../model/model';
-import { useNavigate } from 'react-router-dom';
+
 
 
 const Admin = () => {
@@ -114,11 +114,19 @@ const Admin = () => {
     fetchData();
   }, []);
 
-  const fetchData = () => {
-    axios.get('http://localhost:3000/users')
-      .then(res => setData(res.data))
-      .catch(err => console.log(err));
-  };
+   const fetchData = () => {
+  //   axios.get('https://graduation-project-273e.onrender.com')
+  //     .then(res => setData(res.data))
+  //     .catch(err => console.log(err));
+  // };
+  axios.get('https://graduation-project-273e.onrender.com/api/controller/add', {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  })
+.then(res => setData(res.data))
+.catch(err => console.log(err));
+   };
 
   const updateData = (newData) => {
     setData([...data, newData]);

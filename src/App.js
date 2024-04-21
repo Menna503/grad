@@ -14,6 +14,7 @@ import Login from './pages/Login.jsx';
 // import { BrowserRouter, Routes, Route, Navigate ,Switch ,useLocation } from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from './components/MainLayout';
+import CandidateData from './pages/CandidateData.jsx';
 
 
 const App = () => {
@@ -28,8 +29,9 @@ const App = () => {
         <Route path="/" element={<Login />} />
         <Route path="/Login" element={<Login />} />
         
-
           
+          <Route path="/CandidateData" element={<MainLayout><CandidateData /></MainLayout>} />
+
           <Route path="/Dashboard" element={<MainLayout> <Dashboard /></MainLayout>} />
           <Route path="/Admin" element={<MainLayout> <Admin /> </MainLayout> } />
           <Route path="/Manageevents" element={ <MainLayout> <Manageevents /></MainLayout>} />
@@ -46,55 +48,4 @@ const App = () => {
   );
 };
 
-export default App;
-
-// import React from 'react';
-// import './Styles/App.css';
-// import Sidebar from './components/Sidebar';
-// import Header from './components/header';
-// import Dashboard from './pages/Dashboard';
-// import Admin from './pages/Admin';
-// import Manageevents from './pages/Manageevents';
-// import Candidates from './pages/Candidates';
-// import Addnews from './pages/Addnews';
-// import Profile from './pages/Profile';
-// import Help from './pages/Help';
-// import Requests from './pages/Requests';
-// import Logout from './pages/logout';
-// import Login from './pages/Login';
-// import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-
-// const App = () => {
-//     const location = useLocation(); // Use the useLocation hook to get the current route
-
-//     // Check if the current route is not the login page
-//     const isLoginPage = location.pathname === '/';
-
-//     return (
-//         <Router>
-//             {/* Conditionally render sidebar and header based on the current route */}
-//             {!isLoginPage && (
-//                 <>
-//                     <Sidebar />
-//                     <Header />
-//                 </>
-//             )}
-
-//             <Routes>
-//                 {/* Define the routes for the application */}
-//                 <Route path="/" element={<Login />} />
-//                 <Route path="/Dashboard" element={<Dashboard />} />
-//                 <Route path="/Admin" element={<Admin />} />
-//                 <Route path="/Manageevents" element={<Manageevents />} />
-//                 <Route path="/Requests" element={<Requests />} />
-//                 <Route path="/Candidates" element={<Candidates />} />
-//                 <Route path="/Addnews" element={<Addnews />} />
-//                 <Route path="/Profile" element={<Profile />} />
-//                 <Route path="/Help" element={<Help />} />
-//                 <Route path="/Logout" element={<Logout />} />
-//             </Routes>
-//         </Router>
-//     );
-// };
-
-// export default App;import React from 'react';
+export default App;
