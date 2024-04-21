@@ -19,7 +19,7 @@
 
 import React from 'react';
 import Sidebar from '../components/Sidebar';
-import Header from '../components/header'; // Make sure this import is correct
+import Header from '../components/header'; 
 
 const MainLayout = ({ children }) => {
     return (

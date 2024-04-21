@@ -21,6 +21,8 @@ function Manageevents() {
             navigate('/');
         }
     }, [navigate]);
+
+
     useEffect(() => {
         if (token) {
             Axios.get('https://graduation-project-273e.onrender.com/api/event', {
@@ -42,7 +44,7 @@ function Manageevents() {
             });
         }
     }, [token]);
-    
+
     const closeAddEventsModal = () => {
         setShowModal(false);
         setEventToEdit(null); 
@@ -84,30 +86,11 @@ const updateEvent = (updatedEvent) => {
     setEvents(updatedEvents);
 };
 
+// const updateEvent = (updatedEvent) => {
+//     const updatedEvents = events.map(event => event.id === updatedEvent.id ? updatedEvent : event);
+//     setEvents(updatedEvents);
+// };
 
-// useEffect(() => {
-//     Axios.get('https://graduation-project-273e.onrender.com/api/event', {
-//         headers: {
-//             Authorization: `Bearer ${token}`
-//         }
-//     })
-//     .then(res => setEvents(res.data))
-//     .catch(error => console.error('Error fetching events:', error));
-// }, [token]);
-// Axios.get('https://graduation-project-273e.onrender.com/api/event', {
-//     headers: {
-//         Authorization: `Bearer ${token}`
-//     }
-// })
-// .then(res => {
-//     // Ensure `res.data` is an array before updating `events`
-//     if (Array.isArray(res.data)) {
-//         setEvents(res.data);
-//     } else {
-//         console.error('Fetched events data is not an array:', res.data);
-//     }
-// })
-// .catch(error => console.error('Error fetching events:', error));
 
  
     return (
@@ -128,7 +111,7 @@ const updateEvent = (updatedEvent) => {
 
                             <div className='startevent' >
                                 <p className='PofmanageEvents'>End</p>
-                                <div className='boxof_start'> <span >{event.end}</span>  <span className='spanofevent'><CiCalendar /></span>  </div>
+                                <div className='boxof_start'> <span >{event.end}</span>    </div>
                             </div>
 
                             <div className='EditAndDelete'>
