@@ -27,44 +27,6 @@ function AddEvents({ close, addEvent, eventToEdit, updateEvent }) {
         }
     }, [eventToEdit]);
 
-    // function Submit(e) {
-    //     e.preventDefault();
-        
-    //     const token = localStorage.getItem('loginToken');
-
-    //     if (token) {
-    //         // Define the headers including the token for authorization
-    //         const config = {
-    //             headers: {
-    //                 Authorization: `Bearer ${token}`
-    //             }
-    //         };
-
-
-    //     if (eventToEdit) {
-    //         Axios.patch(`${url}/${eventToEdit.id}`, data , config)
-    //             .then(res => {
-    //                 console.log(res.data);
-    //                 updateEvent(res.data);
-    //                 close(); 
-    //             })
-    //             .catch(error => {
-    //                 console.error('Error editing event:', error);
-    //             });
-    //     } else {
-    //         Axios.post(url, data , config)
-    //             .then(res => {
-    //                 console.log(res.data);
-    //                 addEvent(res.data);
-    //                 close();
-    //             })
-    //             .catch(error => {
-    //                 console.error('Error adding event:', error);
-    //                 console.error('Response error data:', error.response?.data);
-    //             });
-    //     }
-    // }
-
 
 
     function Submit(e) {
@@ -113,45 +75,7 @@ function AddEvents({ close, addEvent, eventToEdit, updateEvent }) {
             navigate('/');
         }
     }
-    
-    // function Submit(e) {
-    //     e.preventDefault();
-    //     const token = localStorage.getItem('token');
 
-    //     if (!token) {
-    //         alert('You are not authorized. Please log in.');
-    //         close();
-    //         return;
-    //     }
-
-    //     const config = {
-    //         headers: {
-    //             Authorization: `Bearer ${token}`
-    //         }
-    //     };
-
-    //     if (eventToEdit) {
-    //         // Editing an existing event
-    //         Axios.patch(`${url}/${eventToEdit.id}`, data, config)
-    //             .then(res => {
-    //                 updateEvent(res.data); // Update the event
-    //                 close(); // Close the modal
-    //             })
-    //             .catch(error => {
-    //                 console.error('Error editing event:', error);
-    //             });
-    //     } else {
-    //         // Adding a new event
-    //         Axios.post(url, data, config)
-    //             .then(res => {
-    //                 addEvent(res.data); // Add the new event
-    //                 close(); // Close the modal
-    //             })
-    //             .catch(error => {
-    //                 console.error('Error adding event:', error);
-    //             });
-    //     }
-    // }
     function handle(e) {
         const { id, value } = e.target;
         setData(prevData => ({
@@ -159,18 +83,6 @@ function AddEvents({ close, addEvent, eventToEdit, updateEvent }) {
             [id]: value
         }));
 
-        // const { id, value } = e.target;
-        // let formattedValue = value;
-    
-        // if (id === "start" || id === "end") {
-        //     // Format the date value to match the required format
-        //     formattedValue = format(new Date(value), "yyyy-MM-dd");
-        // }
-    
-        // setData(prevData => ({
-        //     ...prevData,
-        //     [id]: formattedValue,
-        // }));
     }
 
     function handleClose(e) {
@@ -201,10 +113,6 @@ function AddEvents({ close, addEvent, eventToEdit, updateEvent }) {
                                 
                             </div>  
 
-                            {/* <div className='bigboxofAddevents' >
-                                <p className='PofmanageEvents'>title</p>
-                                <input onChange={handle} id="type" placeholder='Name Of Event' type='text' className='box_of_Addevents' value={data.type}></input>
-                            </div> */}
 
                             <div className='bigboxofAddevents' >
                                 <p className='PofmanageEvents'>Start</p>

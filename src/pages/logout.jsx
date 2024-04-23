@@ -8,7 +8,7 @@ function logout() {
   return (
   
     <div>
-      {/* <Header/> */}
+     
     </div>
     
   )

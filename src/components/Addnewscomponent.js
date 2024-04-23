@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
-import * as IoIcons from "react-icons/io";
-import * as FaIcons from "react-icons/fa";
 import Addnewsposter from '../images/Addnewsposter.svg';
 import { IoIosClose } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
@@ -87,18 +85,7 @@ function Addnewscomponent({ close , addNews , newsToEdit , updateNews}) {
           [id]: value
       }));
 
-      // const { id, value } = e.target;
-      // let formattedValue = value;
-  
-      // if (id === "start" || id === "end") {
-      //     // Format the date value to match the required format
-      //     formattedValue = format(new Date(value), "yyyy-MM-dd");
-      // }
-  
-      // setData(prevData => ({
-      //     ...prevData,
-      //     [id]: formattedValue,
-      // }));
+      
   }
 
   function handleClose(e) {

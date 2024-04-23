@@ -1,7 +1,6 @@
 import React from 'react';
 import './Styles/App.css';
 import axios from 'axios';
-// import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Dashboard from './pages/Dashboard.jsx';
 import Admin from './pages/Admin.jsx';
 import Manageevents from './pages/Manageevents.jsx';
@@ -12,16 +11,14 @@ import Help from './pages/Help.jsx';
 import Requests from './pages/Requests.jsx';
 import Logout from './pages/logout.jsx';
 import Login from './pages/Login.jsx';
-// import { BrowserRouter, Routes, Route, Navigate ,Switch ,useLocation } from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from './components/MainLayout';
 import CandidateData from './pages/CandidateData.jsx';
-axios.defaults.baseURL = process.env.REACT_APP_API_URL + '/api/'
-axios.defaults.withCredentials = false
 import { UserContextProvider } from './UserContext.jsx';
-
 axios.defaults.baseURL = process.env.REACT_APP_API_URL + '/api/'
 axios.defaults.withCredentials = false
+
+
 
 
 const App = () => {

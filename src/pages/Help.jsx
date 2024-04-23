@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import HelpComponent from '../components/HelpComponent';
+import HelpComponent from '../components/HelpOverlay';
 import "../Styles/profilecss.css";
 import { IoMdAdd } from "react-icons/io";
 import {FaRegEdit}from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
-import Axios from 'axios';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function Help() {
@@ -24,7 +24,7 @@ function Help() {
 
     const fetchQuestions = () => {
         if (token) {
-            Axios.get('https://graduation-project-273e.onrender.com/api/question', {
+            axios.get('controller', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -47,7 +47,7 @@ function Help() {
     useEffect(() => {
         fetchQuestions();
     }, [token]);
-    
+
 
     const addQuestion = (newQuestion) => {
         fetchQuestions(); 
@@ -77,7 +77,7 @@ const deleteQuestion = (iid) => {
 
         if (token) {
             
-            const url = `https://graduation-project-273e.onrender.com/api/question/${iid}`;
+            // const url = `https://graduation-project-273e.onrender.com/api/question/${iid}`;
 
             const config = {
                 headers: {
@@ -85,7 +85,7 @@ const deleteQuestion = (iid) => {
                 }
             };
            
-            Axios.delete(url, config)
+            axios.delete('controller', config)
                 .then(() => {
                    
                     const updatedQuestions = questions.filter(question => question._id !== iid);

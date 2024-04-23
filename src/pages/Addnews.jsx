@@ -1,5 +1,4 @@
 import React,{useState, useEffect} from 'react';
-// import Profe from '../components/Profe';
 import Addnewsposter from '../images/Addnewsposter.svg';
 import '../Styles/profilecss.css';
 import Addnewscomponent from '../components/Addnewscomponent';
@@ -67,7 +66,6 @@ function Addnews() {
   };
 
 const deleteNews = (eventId) => {
-  // Display a confirmation dialog
   const confirmDelete = window.confirm("Are you sure you want to delete this event?");
   
   if (confirmDelete) {
@@ -92,11 +90,6 @@ const updateNews = (updatedNews) => {
   setNewss(updatedNewss);
 };
 
-// const updateEvent = (updatedEvent) => {
-//     const updatedEvents = events.map(event => event.id === updatedEvent.id ? updatedEvent : event);
-//     setEvents(updatedEvents);
-// };
-
 
 
   return (
@@ -116,14 +109,6 @@ const updateNews = (updatedNews) => {
                               <div className='boxof_answer'> <span className='the_answer' >{news.description}</span>    </div>
                           </div>
 
-                          {/* <div className='startevent' >
-                              <div className='boxof_start'> <span >{questionn.answer}</span>    </div>
-                          </div> */}
-
-                          {/* <div className='EditAndDelete'>
-                              <button className='Editevent_button' onClick={() => editQuestion(questionn)}> Edit </button>
-                              <button className='deleteevent_button' onClick={() => deleteQuestion(questionn.id)}> Delete </button>
-                          </div> */}
                       </div>
                   ))}
                   {showModal && (

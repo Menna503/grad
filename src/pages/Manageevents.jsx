@@ -31,7 +31,7 @@ function Manageevents() {
                 }
             })
             .then(res => {
-                // Extract the array of events from the response
+              
                 const eventsArray = res.data.data.events;
                 if (Array.isArray(eventsArray)) {
                     setEvents(eventsArray);
@@ -60,21 +60,7 @@ function Manageevents() {
         setShowModal(true);
     };
 
-// const deleteEvent = (eventId) => {
-//     // Display a confirmation dialog
-//     const confirmDelete = window.confirm("Are you sure you want to delete this event?");
-    
-//     if (confirmDelete) {
-//         Axios.delete( )
-//             .then(() => {
-//                 const updatedEvents = events.filter(event => event.id !== eventId);
-//                 setEvents(updatedEvents);
-//             })
-//             .catch(error => {
-//                 console.error('Error deleting event:', error);
-//             });
-//     }
-// };
+
 
 const updateEvent = (updatedEvent) => {
     const updatedEvents = events.map(event => {
@@ -86,10 +72,6 @@ const updateEvent = (updatedEvent) => {
     setEvents(updatedEvents);
 };
 
-// const updateEvent = (updatedEvent) => {
-//     const updatedEvents = events.map(event => event.id === updatedEvent.id ? updatedEvent : event);
-//     setEvents(updatedEvents);
-// };
 
 
  
@@ -114,10 +96,6 @@ const updateEvent = (updatedEvent) => {
                                 <div className='boxof_start'> <p >{event.end}</p>    </div>
                             </div>
 
-                            <div className='EditAndDelete'>
-                                <button className='Editevent_button' onClick={() => editEvent(event)}> Edit </button>
-                                {/* <button className='deleteevent_button' onClick={() => deleteEvent(event.id)}> Delete </button> */}
-                            </div>
                         </div>
                     ))}
                     {showModal && (
