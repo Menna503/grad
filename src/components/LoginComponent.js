@@ -1,58 +1,51 @@
-
-import React, { useEffect, useState } from 'react';
-import Axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import axios from 'axios';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { saveToken } from '../utils/authentication';
+import { UserContext } from '../UserContext';
 
 function LoginComponent() {
     const navigate = useNavigate();
-    const [managerName, setManagerName] = useState('');
-    const [userRole, setUserRole] = useState('');
-    const url = "https://graduation-project-273e.onrender.com/api/controller";
+    const { user, setUser } = useContext(UserContext); // Extracting setUser from UserContext
 
     const [data, setData] = useState({
         nationalId: "",
         password: ""
     });
 
+    if (user) { return <Navigate to={'/'} /> }
+
     function handleSubmit(e) {
         e.preventDefault();
 
-        Axios.post(url, data)
+        axios.post('controller', data)
             .then(response => {
                 if (response.data.status === "success") {
                     const role = response.data.data.controller.role;
                     const token = response.data.data.token;
                     const name = response.data.data.controller.name;
 
-                     console.log('Extracted role:', role);
-                     console.log(response.data);
-
-                    //  saveToken(token);
-                    localStorage.setItem('token', token);
-                    setManagerName(name);
-                    setUserRole(role);
+                    saveToken(token);
+                    setUser(response.data.data.controller); // Setting user using setUser from context
 
                     if (role === "MANAGER") {
-                        navigate('/dashboard');
-                        console.log('Retrieved token:', token);
-
+                        navigate('/');
                     } else if (role === "ADMIN") {
                         navigate('/manageevents');
                     } else {
                         console.error('Login failed: Only MANAGERS and ADMINS are allowed to log in.');
                         alert('Login failed: Only MANAGERS and ADMINS are allowed to log in.');
-                    }  
+                    }
                 } else {
                     console.error('Login failed:', response.data.message);
                     alert('Login failed, check your data');
                 }
             })
             .catch(error => {
-                console.error('Error during login:', error);
+                console.error('Error during login:', error.message);
                 alert('Login failed, Try again ');
             });
     }
-   
 
     function handle(e) {
         const { id, value } = e.target;
@@ -62,11 +55,11 @@ function LoginComponent() {
         }));
     }
 
-    useEffect(() => {
-        if (userRole) {
-            console.log(`User role: ${userRole}`);
-        }
-    }, [userRole]);
+    // useEffect(() => {
+    //     if (user) {
+    //         console.log(`Logged in as: ${user}`);
+    //     }
+    // }, [user]);
 
     return (
         <div>
@@ -76,11 +69,11 @@ function LoginComponent() {
                     <p className='pp_of_welcome'>log in your account to access the dashboard</p>
 
                     <div className='bigboxofLogin'>
-                        <input  id="nationalId" onChange={handle} placeholder='Enter ID' type='text' value={data.nationalId} className='box_of_login_page' />
+                        <input id="nationalId" onChange={handle} placeholder='Enter ID' type='text' value={data.nationalId} className='box_of_login_page' />
                     </div>
 
                     <div className='bigboxofLogin'>
-                        <input id="password" onChange={handle}  placeholder='Password' type='password' value={data.password} className='box_of_login_page' />
+                        <input id="password" onChange={handle} placeholder='Password' type='password' value={data.password} className='box_of_login_page' />
                     </div>
                 </div>
 
@@ -91,8 +84,3 @@ function LoginComponent() {
 }
 
 export default LoginComponent;
-
-
-
-
-
