@@ -29,9 +29,9 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 const MainLayout = ({ children }) => {
 
-    // const { user } = useContext(UserContext)
-    // if (!user)
-    //     return <Navigate to={'/login'} />
+    const { user } = useContext(UserContext)
+    if (!user)
+        return <Navigate to={'/login'} />
 
     return (
         <>
