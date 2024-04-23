@@ -37,26 +37,22 @@ function handle(e){
 
          <div className='profilec'>
 
-        <p className='p3_of_profile'>change password</p>
-        <div className='bigboxofprofile' >
-        <p className='p1_of_profile'>old password</p>
-        
-        <input onChange={(e)=>handle(e)} id="oldpassword" value={data.oldpassword}  type='password'  className='box_of_profile'></input>
-         
-       </div>
-         
+                 <p className='p3_of_profile'>change password</p>
+                     <div className='bigboxofprofile' >
+                        <p className='p1_of_profile'>old password</p>
+                         <input onChange={(e)=>handle(e)} id="oldpassword" value={data.oldpassword}  type='password'  className='box_of_profile'></input>
+                    </div>
+                      
 
-       <div className='bigboxofprofile' >
-        <p className='p1_of_profile'>new password</p>
-      
-         <input onChange={(e)=>handle(e)} id="newpassword" value={data.newpassword}  type='password'  className='box_of_profile'></input>
-     
-       </div>
+                    <div className='bigboxofprofile' >
+                       <p className='p1_of_profile'>new password</p>
+                       <input onChange={(e)=>handle(e)} id="newpassword" value={data.newpassword}  type='password'  className='box_of_profile'></input>
+                    </div>
 
-       <button className='submit_button'>update</button> 
-       </div>
+                    <button className='submit_button'>update</button> 
+          </div>
 
-        
+                      
         
       </form>
     </div>

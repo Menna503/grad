@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import AddEvents from '../components/AddEvents';
+import AddEvents from '../components/AddEventsOverlay';
 import "../Styles/profilecss.css";
 import { IoMdAdd } from "react-icons/io";
 import { CiCalendar } from "react-icons/ci";

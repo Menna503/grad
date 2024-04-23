@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import Addnewsposter from '../images/Addnewsposter.svg';
 import '../Styles/profilecss.css';
-import Addnewscomponent from '../components/Addnewscomponent';
+import Addnewscomponent from '../components/AddnewOverlay';
 import { IoMdAdd } from "react-icons/io";
 import  Axios  from 'axios';
 import { useNavigate } from 'react-router-dom';
