@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { createContext } from "react";
 import { getToken } from "./utils/authentication";
-import axios from "axios";
 import { jwtDecode } from "jwt-decode"
 
 export const UserContext = createContext({})
@@ -16,7 +15,6 @@ export function UserContextProvider({ children }) {
             if (!token) return
 
             const decodedToken = jwtDecode(token)
-
             setUser(decodedToken)
         }
     }, [])

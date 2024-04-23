@@ -23,22 +23,23 @@ import Header from '../components/header';
 
 import { useContext } from 'react';
 import { UserContext } from '../UserContext';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 
 
 
 const MainLayout = ({ children }) => {
 
-    const { user } = useContext(UserContext)
-    if (!user)
-        return <Navigate to={'/login'} />
+    // const { user } = useContext(UserContext)
+    // if (!user)
+    //     return <Navigate to={'/login'} />
 
     return (
         <>
             {/* <Header /> */}
-            <Sidebar>
-                {children}
-            </Sidebar>
+            <Sidebar >
+                <Outlet />
+                {/* {children}*/}
+            </Sidebar >
         </>
     );
 };

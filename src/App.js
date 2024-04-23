@@ -29,24 +29,22 @@ const App = () => {
 
 
     <UserContextProvider>
-      <Router>
-        <Routes>
-          {/* <Route path="/" element={<Login />} /> */}
-          <Route path="/Login" element={<Login />} />
-          <Route path="/" element={<MainLayout />} >
-            <Route index element={<Dashboard />} />
-            <Route path="/CandidateData" element={<CandidateData />} />
-            <Route path="/Admin" element={<Admin />} />
-            <Route path="/Manageevents" element={<Manageevents />} />
-            <Route path="/Requests" element={<Requests />} />
-            <Route path="/Candidates" element={<Candidates />} />
-            <Route path="/Addnews" element={<Addnews />} />
-            <Route path="/Profile" element={<Profile />} />
-            <Route path="/Help" element={<Help />} />
-            <Route path="/Logout" element={<Logout />} />
-          </Route>
-        </Routes>
-      </Router>
+      <Routes>
+        {/* <Route path="/" element={<Login />} /> */}
+        <Route path="/Login" element={<Login />} />
+        <Route path="/" element={<MainLayout />} >
+          <Route index element={<Dashboard />} />
+          <Route path="/CandidateData" element={<CandidateData />} />
+          <Route path="/Admin" element={<Admin />} />
+          <Route path="/Manageevents" element={<Manageevents />} />
+          <Route path="/Requests" element={<Requests />} />
+          <Route path="/Candidates" element={<Candidates />} />
+          <Route path="/Addnews" element={<Addnews />} />
+          <Route path="/Profile" element={<Profile />} />
+          <Route path="/Help" element={<Help />} />
+          <Route path="/Logout" element={<Logout />} />
+        </Route>
+      </Routes>
     </UserContextProvider>
   );
 };
