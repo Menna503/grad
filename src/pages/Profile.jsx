@@ -11,7 +11,7 @@
 
 // export default Profile
 import React,{useEffect, useState} from 'react';
-import Profe from '../components/Profe';
+// import Profe from '../components/Profe';
 import Page_profile from '../images/page_profile.svg';
 import '../Styles/profilecss.css';
 import Realprof from '../components/Realprof';

@@ -106,12 +106,12 @@ const updateEvent = (updatedEvent) => {
 
                             <div className='startevent' >
                                 <p className='PofmanageEvents'>Start</p>
-                                <div className='boxof_start'> <span >{event.start} </span>  <span className='spanofevent'><CiCalendar /></span>  </div>
+                                <div className='boxof_start'> <p>{event.start} </p>   </div>
                             </div>
 
                             <div className='startevent' >
                                 <p className='PofmanageEvents'>End</p>
-                                <div className='boxof_start'> <span >{event.end}</span>    </div>
+                                <div className='boxof_start'> <p >{event.end}</p>    </div>
                             </div>
 
                             <div className='EditAndDelete'>

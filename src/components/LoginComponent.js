@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function LoginComponent() {
@@ -17,7 +17,7 @@ function LoginComponent() {
     function handleSubmit(e) {
         e.preventDefault();
 
-        Axios.post(url, data)
+        axios.post('controller', data)
             .then(response => {
                 if (response.data.status === "success") {
                     const role = response.data.data.controller.role;

@@ -1,140 +1,149 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import * as IoIcons from "react-icons/io";
 import * as FaIcons from "react-icons/fa";
 import Addnewsposter from '../images/Addnewsposter.svg';
 import { IoIosClose } from "react-icons/io";
+import { useNavigate } from 'react-router-dom';
 
 
-function Addnewscomponent({ close ,addNewsCards}){
-    
-  const url = "http://localhost:3001/news";
+function Addnewscomponent({ close , addNews , newsToEdit , updateNews}) {
+  const url = "https://graduation-project-273e.onrender.com/api/news";
 
+
+  const navigate = useNavigate();
+ 
+ 
   const [data, setData] = useState({
-      titleOfNews: "",
-      imageOfNews: "",
-      news: ""
+          header: "",
+          image: "",
+          description: ""
   });
 
+
+
+  useEffect(() => {
+      if (newsToEdit) {
+          setData(newsToEdit);
+      }
+  }, [newsToEdit]);
+
+
+
+
+
   function Submit(e) {
-    e.preventDefault();
-   
-        Axios.post(url, data)
-            .then(res => {
-                console.log(res.data);
-                addNewsCards(res.data);
-                close();
-            })
-            .catch(error => {
-                console.error('Error adding event:', error);
-            });
-   
-}
-function handle(e) {
-  const { id, value } = e.target;
-  setData(prevData => ({
-    ...prevData,
-    [id]: value
-  }));
-}
+      e.preventDefault();
+      const token = localStorage.getItem('token');
 
- 
+      if (token) {
+          const config = {
+              headers: {
+                  Authorization: `Bearer ${token}`
+              }
+          };
+
+          
+          if (newsToEdit) {
+              Axios.patch(`${url}/${newsToEdit.id}`, data, config)
+                  .then(res => {
+                      console.log(res.data);
+                      updateNews(res.data);
+                      close();
+                  })
+                  .catch(error => {
+                      console.error('Error editing event:', error);
+                  });
+
+                  if (newsToEdit) {
+                      console.log('eventToEdit object:', newsToEdit);
+                      console.log('Editing event with ID:', newsToEdit.id);
+                  } else {
+                      console.log('eventToEdit is undefined or null');
+                  }
+          } else {
+              Axios.post(url, data, config)
+                  .then(res => {
+                      console.log(res.data);
+                      addNews(res.data);
+                      close();
+                  })
+                  .catch(error => {
+                      console.error('Error adding event:', error);
+                      console.error('Response error data:', error.response?.data);
+                  });
+          }
+      } else {
+          console.error('Token not found, redirecting to login');
+          navigate('/');
+      }
+  }
   
+
+  function handle(e) {
+      const { id, value } = e.target;
+      setData(prevData => ({
+          ...prevData,
+          [id]: value
+      }));
+
+      // const { id, value } = e.target;
+      // let formattedValue = value;
+  
+      // if (id === "start" || id === "end") {
+      //     // Format the date value to match the required format
+      //     formattedValue = format(new Date(value), "yyyy-MM-dd");
+      // }
+  
+      // setData(prevData => ({
+      //     ...prevData,
+      //     [id]: formattedValue,
+      // }));
+  }
+
   function handleClose(e) {
-    if (e.target.classList.contains('eventModal')) {
-        close();
-    }
-}
+      if (e.target.classList.contains('newsModal')) {
+          close();
+      }
+  }
+
+  
+
   return (
-    <div className="newsModal" >
-       <div className="newsModalContainer">
-       <form  onSubmit={Submit}>
+      <div className="newsModal"  onClick={handleClose}>
+     <div className="newsModalContainer">
+     <form  onSubmit={Submit}>
 
-         <div className='Addnewslec'>
+       <div className='Addnewslec'>
 
-         <div className='closee_button' onClick={close}> <IoIosClose /> </div>
+       <div className='closee_button' onClick={close}> <IoIosClose /> </div>
 
-         <div className='Addnewwslec'>
+       <div className='Addnewwslec'>
 
-        <div className='page_img_addnews' ><img src={Addnewsposter} alt=""  /> </div> 
-
-        <div className='bigboxofAddnews' >
-         <input  id="titleOfNews" onChange={handle} placeholder='Add Title Of The News' type='text' value={data.titleOfNews} className='box_of_Addnews'></input>
-        </div>
-
-           <div className='bigboxofAddnewsupload' >
-         <input  id="imageOfNews"  onChange={handle} placeholder='Add Image Of The News' type='file' value={data.imageOfNews}  className='box_of_upload'></input>
-        </div>
-        
-
-        <div className='bigboxofAddnewarea' >
-         <textarea   id="news" onChange={handle} placeholder='News......' type='text' value={data.news}  className='box_of_Addnewsarea'></textarea>
-        </div> 
-    
+      <div className='page_img_addnews' ><img src={Addnewsposter} alt=""  /> </div> 
+      <div className='bigboxofAddnews' >
+          <input  id="header" onChange={handle} placeholder='Add Title Of The News' type='text' value={data.header} className='box_of_Addnews'></input>
           </div>
-        <button className='adddd_button' type="submit">Add</button> 
-        </div>
 
+            <div className='bigboxofAddnewsupload' >
+          <input  id="image"  onChange={handle} placeholder='Add Image Of The News' type='file' value={data.image}  className='box_of_upload'></input>
+         </div>
         
-       </form>
-       </div>
-    </div>
+
+         <div className='bigboxofAddnewarea' >
+          <textarea   id="description" onChange={handle} placeholder='News......' type='text' value={data.description}  className='box_of_Addnewsarea'></textarea>
+         </div> 
+  
+        </div>
+        <button className='addd_button' type="submit">{newsToEdit ? "Edit" : "Add"}</button>
+      </div>
+
+      
+     </form>
+     </div>
+  </div>
   );
 }
 
 export default Addnewscomponent;
 
-// import React, { useState } from 'react';
-// import Axios from 'axios';
-// import { IoIosClose } from "react-icons/io";
-// import Addnewsposter from '../images/Addnewsposter.svg';
-
-// function Addnewscomponent({ close, addNewsCards }) {
-//   const url = "http://localhost:3001/news";
-//   const [data, setData] = useState({
-//     titleOfNews: "",
-//     imageOfNews: "",
-//     news: ""
-//   });
-
-//   function Submit(e) {
-//     e.preventDefault();
-//     Axios.post(url, data)
-//       .then(res => {
-//         addNewsCards(res.data);
-//         close();
-//       })
-//       .catch(error => {
-//         console.error('Error adding news:', error);
-//       });
-//   }
-
-//   function handle(e) {
-//     const { id, value } = e.target;
-//     setData(prevData => ({
-//       ...prevData,
-//       [id]: value
-//     }));
-//   }
-
-//   return (
-//     <div className="newsModal">
-//       <div className="newsModalContainer">
-//         <form onSubmit={Submit}>
-//           <div className='Addnewslec'>
-//             <div className='closee_button' onClick={close}><IoIosClose /></div>
-//             <div className='Addnewwslec'>
-//               <div className='page_img_addnews'><img src={Addnewsposter} alt="" /></div>
-//               <div className='bigboxofAddnews'><input id="titleOfNews" onChange={handle} placeholder='Add Title Of The News' type='text' value={data.titleOfNews} className='box_of_Addnews'></input></div>
-//               <div className='bigboxofAddnewsupload'><input id="imageOfNews" onChange={handle} placeholder='Add Image Of The News' type='file' value={data.imageOfNews} className='box_of_upload'></input></div>
-//               <div className='bigboxofAddnewarea'><textarea id="news" onChange={handle} placeholder='News......' type='text' value={data.news} className='box_of_Addnewsarea'></textarea></div>
-//             </div>
-//             <button className='adddd_button' type="submit">Add</button>
-//           </div>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Addnewscomponent;

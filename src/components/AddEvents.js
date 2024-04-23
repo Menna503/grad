@@ -3,10 +3,11 @@ import Axios from 'axios';
 import "../Styles/profilecss.css";
 import { IoIosClose } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
+import { format } from 'date-fns';
 
 function AddEvents({ close, addEvent, eventToEdit, updateEvent }) {
     const url = "https://graduation-project-273e.onrender.com/api/event";
-                
+
 
     const navigate = useNavigate();
    
@@ -64,6 +65,8 @@ function AddEvents({ close, addEvent, eventToEdit, updateEvent }) {
     //     }
     // }
 
+
+
     function Submit(e) {
         e.preventDefault();
         const token = localStorage.getItem('token');
@@ -86,6 +89,13 @@ function AddEvents({ close, addEvent, eventToEdit, updateEvent }) {
                     .catch(error => {
                         console.error('Error editing event:', error);
                     });
+
+                    if (eventToEdit) {
+                        console.log('eventToEdit object:', eventToEdit);
+                        console.log('Editing event with ID:', eventToEdit.id);
+                    } else {
+                        console.log('eventToEdit is undefined or null');
+                    }
             } else {
                 Axios.post(url, data, config)
                     .then(res => {
@@ -103,6 +113,7 @@ function AddEvents({ close, addEvent, eventToEdit, updateEvent }) {
             navigate('/');
         }
     }
+    
     // function Submit(e) {
     //     e.preventDefault();
     //     const token = localStorage.getItem('token');
@@ -148,7 +159,18 @@ function AddEvents({ close, addEvent, eventToEdit, updateEvent }) {
             [id]: value
         }));
 
-       
+        // const { id, value } = e.target;
+        // let formattedValue = value;
+    
+        // if (id === "start" || id === "end") {
+        //     // Format the date value to match the required format
+        //     formattedValue = format(new Date(value), "yyyy-MM-dd");
+        // }
+    
+        // setData(prevData => ({
+        //     ...prevData,
+        //     [id]: formattedValue,
+        // }));
     }
 
     function handleClose(e) {
