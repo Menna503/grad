@@ -16,10 +16,8 @@ const MainLayout = ({ children }) => {
 
     return (
         <>
-            {/* <Header /> */}
             <Sidebar >
                 <Outlet />
-                {/* {children}*/}
             </Sidebar >
         </>
     );

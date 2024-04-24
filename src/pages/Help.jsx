@@ -24,7 +24,7 @@ function Help() {
 
     const fetchQuestions = () => {
         if (token) {
-            axios.get('https://graduation-project-273e.onrender.com/api/question', {
+            axios.get('question', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -77,7 +77,7 @@ const deleteQuestion = (iid) => {
 
         if (token) {
             
-            const url = `https://graduation-project-273e.onrender.com/api/question/${iid}`;
+            const url = `question/${iid}`;
 
             const config = {
                 headers: {
@@ -85,7 +85,7 @@ const deleteQuestion = (iid) => {
                 }
             };
            
-            axios.delete('url', config)
+            axios.delete(url, config)
                 .then(() => {
                    
                     const updatedQuestions = questions.filter(question => question._id !== iid);

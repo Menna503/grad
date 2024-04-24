@@ -4,14 +4,11 @@ import "../Styles/profilecss.css";
 import { IoIosClose } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
 import Helpposter from '../images/helpposter.svg';
-import { saveToken } from '../utils/authentication';
-import { UserContext } from '../UserContext';
+
 
 
 function HelpOverlay({ close , addQuestion , questionToEdit , updateQuestion  }) {
-    const url = "https://graduation-project-273e.onrender.com/api/question";
-
-
+   
     const navigate = useNavigate();
    
    
@@ -44,7 +41,7 @@ function HelpOverlay({ close , addQuestion , questionToEdit , updateQuestion  })
             
             if (questionToEdit) {
                 if (token) {
-                axios.patch(`${url}${questionToEdit._id}`, data, {
+                axios.patch(`${'question'}/${questionToEdit._id}`, data, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -65,7 +62,7 @@ function HelpOverlay({ close , addQuestion , questionToEdit , updateQuestion  })
                         console.log('eventToEdit is undefined or null');
                     }
             }} else {
-                axios.post('controller/api/question/', data, config)
+                axios.post('question', data, config)
                     .then(res => {
                         addQuestion(res.data);
                         console.log(res.data);
