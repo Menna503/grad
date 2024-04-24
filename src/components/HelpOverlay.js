@@ -8,7 +8,7 @@ import { saveToken } from '../utils/authentication';
 import { UserContext } from '../UserContext';
 
 
-function HelpComponent({ close , addQuestion , questionToEdit , updateQuestion  }) {
+function HelpOverlay({ close , addQuestion , questionToEdit , updateQuestion  }) {
     const url = "https://graduation-project-273e.onrender.com/api/question";
 
 
@@ -133,4 +133,4 @@ function HelpComponent({ close , addQuestion , questionToEdit , updateQuestion  
     );
 }
 
-export default HelpComponent;
+export default HelpOverlay;

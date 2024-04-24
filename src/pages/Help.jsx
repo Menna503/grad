@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import HelpComponent from '../components/HelpOverlay';
+import HelpOverlay from '../components/HelpOverlay';
 import "../Styles/profilecss.css";
 import { IoMdAdd } from "react-icons/io";
 import {FaRegEdit}from "react-icons/fa";
@@ -127,7 +127,7 @@ const deleteQuestion = (iid) => {
                         </div>
                     ))}
                     {showModal && (
-                        <HelpComponent close={closeAddQuestionsModal} addQuestion={addQuestion} questionToEdit={questionToEdit} updateQuestion={updateQuestion} />
+                        <HelpOverlay close={closeAddQuestionsModal} addQuestion={addQuestion} questionToEdit={questionToEdit} updateQuestion={updateQuestion} />
                     )}
                     <button className='add_button' onClick={() => setShowModal(true)}><IoMdAdd /></button>
                 </div>
