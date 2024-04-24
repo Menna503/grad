@@ -19,8 +19,6 @@ const Login = () => {
         password: ""
     });
 
-    if (!user) { return <Navigate to={'/'} /> }
-
     function handleSubmit(e) {
         e.preventDefault();
 
