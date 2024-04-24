@@ -9,7 +9,7 @@ import { UserContext } from '../UserContext';
 
 
 function HelpComponent({ close , addQuestion , questionToEdit , updateQuestion  }) {
-    // const url = "https://graduation-project-273e.onrender.com/api/question";
+    const url = "https://graduation-project-273e.onrender.com/api/question";
 
 
     const navigate = useNavigate();
@@ -44,7 +44,7 @@ function HelpComponent({ close , addQuestion , questionToEdit , updateQuestion  
             
             if (questionToEdit) {
                 if (token) {
-                axios.patch(`${'controller'}/${questionToEdit._id}`, data, {
+                axios.patch(`${url}${questionToEdit._id}`, data, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -65,7 +65,7 @@ function HelpComponent({ close , addQuestion , questionToEdit , updateQuestion  
                         console.log('eventToEdit is undefined or null');
                     }
             }} else {
-                axios.post('controller', data, config)
+                axios.post('controller/api/question/', data, config)
                     .then(res => {
                         addQuestion(res.data);
                         console.log(res.data);

@@ -85,7 +85,6 @@ const Sidebar = ({ children, managerName }) => {
     ]
     const sidebarStyle = {
         width: isOpen ? "304px" : "97px",
-        // transition: "width 0.3s ease" // إضافة تأثير الانتقال للتغييرات في العرض
     };
     const bar = {
         marginLeft: isOpen ? "0px" : "48px",
