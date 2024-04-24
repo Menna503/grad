@@ -33,12 +33,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import React from 'react';
 import Login from './pages/Login';
+import { BrowserRouter } from 'react-router-dom';
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
-    {/* <Login/> */}
-
+    <BrowserRouter>
+      <App />
+      {/* <Login/> */}
+    </BrowserRouter>
   </React.StrictMode>
 );
 

@@ -15,7 +15,6 @@ export function UserContextProvider({ children }) {
             if (!token) return
 
             const decodedToken = jwtDecode(token)
-
             setUser(decodedToken)
         }
     }, [])

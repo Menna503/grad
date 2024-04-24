@@ -5,7 +5,7 @@ import Header from '../components/header';
 
 import { useContext } from 'react';
 import { UserContext } from '../UserContext';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 
 
 
@@ -17,6 +17,7 @@ const MainLayout = ({ children }) => {
 
     return (
         <>
+            {/* <Header /> */}
             <Sidebar>
                 {children}
             </Sidebar>
