@@ -1,7 +1,7 @@
 import React from 'react'
 import '../Styles/profilecss.css';
 import Loginposter from '../images/forlogin.svg';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
@@ -38,8 +38,7 @@ const Login = () => {
                     } else if (role === "ADMIN") {
                         navigate('/manageevents');
                     } else {
-                        console.error('Login failed: Only MANAGERS and ADMINS are allowed to log in.');
-                        
+                        console.error('Login failed: Only MANAGERS and ADMINS are allowed to log in.');  
                     }
                 } else {
                     console.error('Login failed:', response.data.message);

@@ -105,32 +105,6 @@ const Sidebar = ({ children, managerName }) => {
                         <h1 className=" icon name">{managerName}</h1>
                     </div>
 
-                  
-                   <div style={bar} className="bars">
-                   <MdIcons.MdOutlineKeyboardDoubleArrowRight onClick={toggle}/>
-                  
-                   </div>
-               
-               </div>
-                    <hr style={{display:isOpen?"block":"none"}}></hr>
-             
-               {
-    menuItem.map((item) => (
-        <div key={item.path}>
-            <NavLink to={item.path} className="link" activeClassName="active">
-                <div className="icon">{item.icon}</div>
-                <div style={{display: isOpen ? "block" : "none"}} className="link_text">{item.name}</div>
-            </NavLink>
-        </div>
-    ))
-}
-               
-           </div>
-           <main>
-           <Header />
-            {children}</main>
-=======
-
                     <div style={bar} className="bars">
                         <MdIcons.MdOutlineKeyboardDoubleArrowRight onClick={toggle} />
 
@@ -138,19 +112,7 @@ const Sidebar = ({ children, managerName }) => {
 
                 </div>
                 <hr style={{ display: isOpen ? "block" : "none" }}></hr>
-                {/* {
-                   menuItem.map((item, index)=>(
-                        <div   >
-                             <NavLink to={item.path} key={index} className="link" activeclassName="active">
-                          
-                          <div className="icon">{item.icon}</div>
-                          <div style={{display: isOpen ? "block" : "none"}} className="link_text">{item.name}</div>
-                   
-                          </NavLink>
-                        </div>
-                      
-                   ))
-               } */}
+              
                 {
                     menuItem.map((item) => (
                         <div key={item.path}>
@@ -166,7 +128,6 @@ const Sidebar = ({ children, managerName }) => {
             <main>
                 <Header />
                 {children}</main>
-
         </div>
     );
 };
