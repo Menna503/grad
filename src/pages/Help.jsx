@@ -117,8 +117,8 @@ const deleteQuestion = (iid) => {
                                 <div className='boxof_qestion'> <span className='the_qestion'>{question.question} </span>   </div>
                                 <div className='boxof_answer'> <span className='the_answer' >{question.answer}</span>    </div>
                             </div>
+                            
                             <div className='EditAndDeleteforHelp'>
-                                
                                 <button className='delete_icon  delete_edit_ic' onClick={() => deleteQuestion(question._id)}><RiDeleteBin6Fill />  </button>
                                 <button className='edit_icon delete_edit_ic' onClick={() => editQuestion(question)}><FaRegEdit /> </button>
                             </div>

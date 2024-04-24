@@ -106,25 +106,19 @@ function HelpOverlay({ close , addQuestion , questionToEdit , updateQuestion  })
        <form  onSubmit={Submit}>
 
          <div className='Addnewslec'>
+            <div className='closehelp_button' onClick={close}> <IoIosClose /> </div>
+                <div className='Addnewwslec'>
+                    <div className='page_img_addnews' ><img src={Helpposter} alt=""  /> </div> 
+                            <div className='bigboxofAddnews' >
+                                 <input  id="question" onChange={handle} placeholder='Add Question' type='text' value={data.question} className='box_of_Addnews'></input>
+                            </div>
 
-         <div className='closehelp_button' onClick={close}> <IoIosClose /> </div>
-
-         <div className='Addnewwslec'>
-
-        <div className='page_img_addnews' ><img src={Helpposter} alt=""  /> </div> 
-
-        <div className='bigboxofAddnews' >
-         <input  id="question" onChange={handle} placeholder='Add Question' type='text' value={data.question} className='box_of_Addnews'></input>
-        </div>
-
-
-        <div className='bigboxofAddnewarea' >
-         <textarea   id="answer" onChange={handle} placeholder='Answer......' type='text' value={data.answer}  className='box_of_Addnewsarea'></textarea>
-        </div> 
-    
-          </div>
-          <button className='addd_button_for_help' type="submit">{questionToEdit ? "Edit" : "Add"}</button>
-        </div>
+                            <div className='bigboxofAddnewarea' >
+                                <textarea   id="answer" onChange={handle} placeholder='Answer......' type='text' value={data.answer}  className='box_of_Addnewsarea'></textarea>
+                            </div> 
+                </div>
+                        <button className='addd_button_for_help' type="submit">{questionToEdit ? "Edit" : "Add"}</button>
+            </div>
 
         
        </form>
