@@ -17,9 +17,10 @@ const MainLayout = ({ children }) => {
     return (
         <>
             {/* <Header /> */}
-            <Sidebar>
-                {children}
-            </Sidebar>
+            <Sidebar >
+                <Outlet />
+                {/* {children}*/}
+            </Sidebar >
         </>
     );
 };
