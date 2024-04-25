@@ -27,10 +27,11 @@ const Login = () => {
                     const role = response.data.data.controller.role;
                     const token = response.data.data.token;
                     const name = response.data.data.controller.name;
-
+                    const user =response.data.data.controller;
+                    
                     saveToken(token);
-                    setUser(response.data.data.controller); 
-
+                    setUser(user);
+                    
                     if (role === "MANAGER") {
                         navigate('/');
                     } else if (role === "ADMIN") {
