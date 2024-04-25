@@ -11,6 +11,7 @@ import Help from './pages/Help.jsx';
 import Requests from './pages/Requests.jsx';
 import Logout from './pages/logout.jsx';
 import Login from './pages/Login.jsx';
+import { useTranslation } from 'react-i18next';
 // import { BrowserRouter, Routes, Route, Navigate ,Switch ,useLocation } from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from './components/MainLayout';
@@ -18,11 +19,11 @@ import CandidateData from './pages/CandidateData.jsx';
 
 
 const App = () => {
-   
+  const [t, i18n] = useTranslation();
 
   return (
 
-  
+   
 
     <Router> 
         <Routes>

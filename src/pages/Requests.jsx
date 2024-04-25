@@ -6,14 +6,41 @@ import { useNavigate } from 'react-router-dom';
 
 
 function Requests() {
-    
-  //   const [data , setData] = useState([])
-  // useEffect(()=>{
-  //    axios.get('https://reqres.in/api/users?page=2')
-  //    .then(res => res.data.data)
-  //    .catch(err => console.log(err));
-
+  const [data, setData] = useState([]);
   const navigate = useNavigate();
+  const token = localStorage.getItem('token') || '';
+
+  // const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchData();
+  }, [token]);
+
+  const fetchData = () => {
+    if (token) {
+      axios.get('https://graduation-project-273e.onrender.com/api/candidate', {
+          headers: {
+              Authorization: `Bearer ${token}`,
+          }
+      })
+      .then(res => {
+          const candidateArray = res.data.data && res.data.data.candidates;
+          if (candidateArray) {
+              console.log(candidateArray);
+              setData(candidateArray);
+          } else {
+              console.error('Candidates array not found in API response:', res.data);
+          }
+      })
+      .catch(error => {
+          console.error('Error fetching candidates:', error);
+      });
+    } else {
+      console.error('Token is not available.');
+    }
+  };
+
+  
 
 
   // }, [])
@@ -22,28 +49,7 @@ function Requests() {
     // window.location.href = '/CandidateData.jsx';
     navigate('/CandidateData');
   };
-  const menue_table=[
-    {
-    img:"/candidate_request.svg",
-    name:"mohmed ali mohmed ahmed",
-    id:'9872626266262'
-
-  },
-  {
-    img:"/candidate_request.svg",
-    name:"mohmed ali mohmed ahmed",
-    id:'9872626266262'
-
-  },
-  {
-    img:"/candidate_request.svg",
-    name:"mohmed ali mohmed ahmed",
-    id:'9872626266262'
-
-  },
   
-]
-
 
   return (
   
@@ -53,26 +59,24 @@ function Requests() {
     <div className='continer_table'>
       <table>
       
-     {
-       menue_table.map((item) => (
-        <tbody>
-        <tr >
-        <td ><div><img src= {item.img}/></div></td>
-         <td>{item.name} </td>
-         <td>{item.id}</td>
-         <td >  
-         <div>
-          <button className='submit_button btn_show' on onClick={handleClick}> show data</button>
+     
+      {data.map((item) => (
+  item.status === 'notyet' && ( 
+    <tbody key={item._id}>
+      <tr>
+        <td><div className='candidate_img'><img src='/6.jpg' alt='candidate' /></div></td>
+        <td>{item.name}</td>
+        <td>{item.nationalId}</td>
+        <td>  
+          <div>
+            <button className='submit_button btn_show' onClick={handleClick}> show data</button>
           </div>
-         </td>
-       </tr>
-           
-       
-       
-       </tbody>
-        
-    ))
-     }
+        </td>
+      </tr>
+    </tbody>
+  )
+))}
+
      
      
       </table>

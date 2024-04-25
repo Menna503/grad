@@ -37,6 +37,21 @@ main{
     position: absolute;
     z-index: 1000;
 }
+.arsidebar{
+    
+        background: #065C61;
+        color: #fff;
+        height: 100%; /* املأ الارتفاع ليصل إلى نهاية الصفحة */
+        width: 304px;
+        border-radius: 0px 20px 20px 0px;
+        transition: all 0.5s;
+        position: fixed; /* أو استخدم position: absolute; حسب الحاجة */
+        right: 0; /* جعل العنصر يظهر على اليمين من الصفحة */
+        top: 0; /* قم بضبط الارتفاع إلى الأعلى ليملأ الشاشة */
+        z-index: 1000;
+
+    
+}
 .top_section{
     display: flex;
     flex-direction: column;
@@ -353,3 +368,15 @@ text-transform: capitalize;
    color: #055b60 !important;
 }
 /*End Candidate Data page*/
+
+
+/*request page*/
+
+.candidate_img img{
+    width: 130px;
+    height: auto;
+    border-radius: 50%;
+    /* border-radius: 0.5px; */
+    /* font-size:35px; */
+
+}

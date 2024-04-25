@@ -29,6 +29,7 @@ reportWebVitals();*/
 
 
 import { createRoot } from 'react-dom/client'; // استخدم createRoot من react-dom/client بدلاً من react-dom
+import './i18n';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import React from 'react';
