@@ -1,38 +1,27 @@
-
 import Styles from'./model.css';
 import'./model.css';
-import { BsPersonGear, BsPersonX  } from "react-icons/bs";
+import {  BsPersonX ,BsPersonGear } from "react-icons/bs";
 import { createPortal } from 'react-dom';
 import { IoIosClose } from "react-icons/io";
 import axios, { Axios } from 'axios';
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import'../Styles/profilecss.css';
 import { useNavigate } from 'react-router-dom';
-const BackDrop=()=>{
-  return <div className="backDrop"></div>
-}
+import { CgPassword } from 'react-icons/cg';
 
+const BackDrop = () => {
+  return <div className="backDrop"></div>;
+};
 
-// const Overlayer_edit = ({ close, item,item_id, data, setData }) => {
-//   console.log(item);
+// const OverlayerEdit = ({ close, item, data, setData }) => {
 //   const [formData, setFormData] = useState({
-//     name: '',
-//     nationalId:''
+//     name: item.name,
+//     id: item.id
 //   });
-  
-//   // useEffect(() => {
-//   //   setFormData({
-//   //     name: item.name,
-//   //     nationalId: item.nationalId
-//   //   });
-//   // }, [item_id]);
-//   useEffect(() => {
-//     setFormData({
-//         name: item.name,
-//         nationalId: item.nationalId
-//     });
-// }, [item._id]); // تحديث البيانات عندما يتغير item_id
 
+//   const [nameWarning, setNameWarning] = useState(false);
+//   const [idWarning, setIdWarning] = useState(false);
+//   const [nationalIdWarning, setNationalIdWarning] = useState(false);
 
 //   const handleChange = (e) => {
 //     setFormData({
@@ -41,205 +30,195 @@ const BackDrop=()=>{
 //     });
 //   };
 
+//   const validateNationalID = (id) => {
+//     if (id.length !== 14) {
+//       setNationalIdWarning(true);
+//       return false;
+//     }
+//     const isExists = data.some(admin => admin.id === id && admin.id !== item.id);
+//     if (isExists) {
+//       setNationalIdWarning(true);
+//       return false;
+//     }
+//     return true;
+//   };
+
 //   const handleSubmit = (e) => {
 //     e.preventDefault();
-//     // اتبع الخطوات اللازمة لإرسال البيانات إلى الخادم
-//   };
-  
-//   return (
-//     <div className="overlay">
-//       <button className='close_pop' onClick={close}><IoIosClose/></button>  
-//       <div className='edit'>
-//         <BsPersonGear className='edit_i_pop'/>
-//         <h1 className='edit_h_pop'>Edit Admin</h1>
-//       </div>
-//       <div className='img_edit_pop'><img src='/edit_admin.svg'/></div> 
-//       <form onSubmit={handleSubmit} className='form_continer'>
-//         <div className='inputs_continer'>
-//         <input
-//           type='text'
-//           className='input'
-//           name='name'
-//           value={formData.name}
-//           onChange={handleChange}
-//           placeholder='Enter Admin Name'
-//         />
-       
-//         <input
-//           type='text'
-//           className='input'
-//           name='nationalId'
-//           value={formData.nationalId}
-//           placeholder='Enter ID'
-//           onChange={handleChange}
-//         />
-//         </div>
-//         <button className='edit_buuton' type='submit'>Edit</button>
-//       </form>
-//     </div>
-//   );
 
-// }
+//     setNameWarning(false);
+//     setIdWarning(false);
+//     setNationalIdWarning(false);
 
-
-
-// const Overlayer_edit = ({ close, item,  data, setData, editId}) => {
-//   const token = localStorage.getItem('token') || '';
-//   console.log('admin id ',editId);
-//   const [formData, setFormData] = useState({
-//     id:editId,
-//     name: '',
-//     nationalId: ''
-//   });
-//   useEffect(() => {
-//     if (editId && token) {
-//         axios.get(`https://graduation-project-273e.onrender.com/api/controller/`, {
-//             headers: {
-//                 Authorization: `Bearer ${token}`,
-//             }
-//         })
-//         .then(res => {
-//             setFormData({
-//                 ...formData,
-//                 name: res.data.name,
-//                 nationalId: res.data.nationalId
-//             });
-//         })
-//         .catch(err => console.log(err));
+//     if (!formData.name.trim()) {
+//       setNameWarning(true);
+//       return;
 //     }
-// }, [editId, token]);
+//     if (!formData.id.trim()) {
+//       setIdWarning(true);
+//       return;
+//     }
+//     if (!validateNationalID(formData.id)) {
+//       return;
+//     }
 
-  
+//     axios.put(`http://localhost:3000/users/${item.id}`, formData)
+//       .then(res => {
+//         const updatedData = data.map(admin => {
+//           if (admin.id === item.id) {
+//             return {
+//               ...admin,
+//               name: formData.name,
+//               id: formData.id
+//             };
+//           }
+//           return admin;
+//         });
+//         setData(updatedData);
+//         close();
+//       })
+//       .catch(err => console.log(err));
+//   };
+
 //   return (
 //     <div className="overlay">
 //       <button className='close_pop' onClick={close}><IoIosClose/></button>  
 //       <div className='edit'>
-//         <BsPersonGear className='edit_i_pop'/>
 //         <h1 className='edit_h_pop'>Edit Admin</h1>
+//         <div className='img_edit_pop'><img src='/edit_admin.svg'/></div> 
 //       </div>
-//       <div className='img_edit_pop'><img src='/edit_admin.svg'/></div> 
-//       <form  className='form_continer'>
-//         <div className='inputs_continer'>
+//       <form onSubmit={handleSubmit} className='form_container'>
+//         <div className='inputs_container'>
 //           <input
 //             type='text'
 //             className='input'
 //             name='name'
 //             value={formData.name}
-//             onChange
+//             onChange={handleChange}
 //             placeholder='Enter Admin Name'
 //           />
+//           {nameWarning && <div className="warning">Please enter admin name</div>}
 //           <input
 //             type='text'
 //             className='input'
-//             name='nationalId'
-//             value={formData.nationalId}
+//             name='id'
+//             value={formData.id}
 //             placeholder='Enter ID'
-//             onChange
+//             onChange={handleChange}
 //           />
+//           {idWarning && <div className="warning">Please enter national ID</div>}
+//           {nationalIdWarning && <div className="warning">National ID should be 14 digits and not already existing in the database</div>}
 //         </div>
-//         <button className='edit_buuton' type='submit'>Edit</button>
+//         <button className='edit_button' type='submit'>Edit</button>
 //       </form>
 //     </div>
-//   );
-// }
-
-
-
-
-const Overlayer_edit = ({ close, item, _id }) => {
-  console.log('the person id',_id);
-  const token = localStorage.getItem('token') || '';
+//   )
+// };
+const Overlayer_edit = ({ close, item, data, setData }) => {
   const [formData, setFormData] = useState({
-    name: '',
-    nationalId: ''
+    name: item.name,
+    id: item.id
   });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (_id && token) {
-          const res = await axios.get(`https://graduation-project-273e.onrender.com/api/controller${_id}`,{
-            headers: {
-              Authorization: `Bearer ${token}`,
-            }
-          });
-          const { name, nationalId } = res.data.data;
-          setFormData({ name, nationalId });
-        }
-      } catch (error) {
-        console.error('Error fetching admin data:', error);
-      }
-    };
-
-    fetchData();
-  }, [_id, token]);
+  const [nameWarning, setNameWarning] = useState(false);
+  const [idWarning, setIdWarning] = useState(false);
+  const [nationalIdWarning, setNationalIdWarning] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      if (_id && token) {
-        // https://graduation-project-273e.onrender.com/api/controller/${_id}`
-        await axios.patch(`https://graduation-project-273e.onrender.com/api/controller/admin/${_id}`
-        , formData, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          }
-        });
-        // Handle successful update
-      }
-    } catch (error) {
-      console.error('Error updating admin data:', error);
+  const validateNationalID = (id) => {
+    if (id.length !== 14) {
+      setNationalIdWarning(true);
+      return false;
     }
+    const isExists = data.some(admin => admin.id === id && admin.id !== item.id);
+    if (isExists) {
+      setNationalIdWarning(true);
+      return false;
+    }
+    return true;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    setNameWarning(false);
+    setIdWarning(false);
+    setNationalIdWarning(false);
+
+    if (!formData.name.trim()) {
+      setNameWarning(true);
+      return;
+    }
+    if (!formData.id.trim()) {
+      setIdWarning(true);
+      return;
+    }
+    if (!validateNationalID(formData.id)) {
+      return;
+    }
+
+    axios.put(`http://localhost:3000/users/${item.id}`, formData)
+      .then(res => {
+        const updatedData = data.map(admin => {
+          if (admin.id === item.id) {
+            return {
+              ...admin,
+              name: formData.name,
+              id: formData.id
+            };
+          }
+          return admin;
+        });
+        setData(updatedData);
+        close();
+      })
+      .catch(err => console.log(err));
   };
 
   return (
     <div className="overlay">
-      <button className='close_pop' onClick={close}><IoIosClose /></button>
+      <button className='close_pop' onClick={close}><IoIosClose/></button>  
       <div className='edit'>
-        <BsPersonGear className='edit_i_pop' />
+        <BsPersonGear className='edit_i_pop'/>
         <h1 className='edit_h_pop'>Edit Admin</h1>
       </div>
-      <div className='img_edit_pop'><img src='/edit_admin.svg' /></div>
-      <form className='form_continer' onSubmit={handleSubmit}>
+      <div className='img_edit_pop'><img src='/edit_admin.svg'/></div> 
+      <form onSubmit={handleSubmit} className='form_continer'>
         <div className='inputs_continer'>
-          <input
-            type='text'
-            className='input'
-            name='name'
-            value={formData.name}
-            onChange={handleChange}
-            placeholder='Enter Admin Name'
-          />
-          <input
-            type='text'
-            className='input'
-            name='nationalId'
-            value={formData.nationalId}
-            onChange={handleChange}
-            placeholder='Enter ID'
-          />
+        <input
+          type='text'
+          className='input'
+          name='name'
+          value={formData.name}
+          onChange={handleChange}
+          placeholder='Enter Admin Name'
+        />
+        {nameWarning && <div className="warning">يرجى إدخال اسم المستخدم</div>}
+        <input
+          type='text'
+          className='input'
+          name='id'
+          value={formData.id}
+          placeholder='Enter ID'
+          onChange={handleChange}
+        />
+        {idWarning && <div className="warning">يرجى إدخال الرقم القومي</div>}
+        {nationalIdWarning && <div className="warning">الرقم القومي يجب أن يكون مكونًا من 14 رقمًا وغير موجود بالفعل في قاعدة البيانات</div>}
         </div>
         <button className='edit_buuton' type='submit'>Edit</button>
       </form>
     </div>
-  );
+  )
 }
 
 
-
-
-
-
-
-const Overlayer_add_admin = ({ close, updates}) => {
+const OverlayerAddAdmin = ({ close, updates }) => {
   const [inputData, setInputData] = useState({
     name: '',
     nationalId: '',
@@ -248,84 +227,131 @@ const Overlayer_add_admin = ({ close, updates}) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    
     const token = localStorage.getItem('token');
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`, // Correctly enclosed in backticks
       }
     };
 
     axios.post('https://graduation-project-273e.onrender.com/api/controller/add', inputData, config)
       .then(res => {
-        // Update the state with the new admin data
-        updates(res.data );
+        updates(res.data);
         close();
-        
-        
       })
-      .catch(err => console.error(err));
-  }
+      .catch(error => {
+        console.error('Error adding admin:', error);
+      });
+  };
 
   return (
     <div className="overlay">
-      <button className='close_pop' onClick={close}><IoIosClose /></button>
+    <button className='close_pop'onClick={close}><IoIosClose/></button>   
       <div className='edit'>
-        <BsPersonGear className='edit_i_pop' />
-        <h1 className='edit_h_pop'>Add admin</h1>
+          <BsPersonGear className='edit_i_pop'/>
+          <h1 className='edit_h_pop'>add admin</h1>
+          
       </div>
-      <div className='img_edit_pop'><img src='/add_admin.svg' /></div>
-      <form onSubmit={handleSubmit} className='form_continer'>
-        <div className='inputs_continer'>
-          <input onChange={e => setInputData({ ...inputData, name: e.target.value })} type='name' className='input' placeholder='Enter Admin Name ' ></input>
-          <input onChange={e => setInputData({ ...inputData, nationalId: e.target.value })} type='id' className='input' placeholder='Enter National ID'></input>
-          <input onChange={e => setInputData({ ...inputData, password: e.target.value })} type='password' className='input' placeholder='Enter Password ' ></input>
+     <div className='img_edit_pop'><img src='/add_admin.svg'/></div> 
+     <form onSubmit={handleSubmit} className='form_continer'>
+      <div className='inputs_continer'>
+      <input onChange={e => setInputData({...inputData, name: e.target.value})} type='text' className='input' placeholder='Enter Admin Name'/>
+          <input onChange={e => setInputData({...inputData, nationalId: e.target.value})} type='text' className='input' placeholder='Enter National ID'/>
+          <input onChange={e => setInputData({...inputData, password: e.target.value})} type='password' className='input' placeholder='Enter Admin Password'/>
+    </div>
+     <button className='edit_buuton'type='submit'> add</button>
+     </form>
+    
+     </div>);
+
+};
+
+// const OverlayerDeleteCandidate = ({ close, onDelete }) => {
+//   return (
+//     <div className='overlay overlay_delete'>
+//       <button className='close_pop' onClick={close}><IoIosClose/></button> 
+//       <p className='p_delete'>Are you sure you want to delete?</p>
+//       <button className='yes_button' onClick={onDelete}>Yes</button>
+//     </div>
+//   );
+// };
+const OverlayerDeleteAdmin = ({ close, onDelete }) => {
+  return (
+    <div className='overlay overlay_delete'>
+      <button className='close_pop' onClick={close}><IoIosClose/></button> 
+      <p className='p_delete'>Are you sure you want to delete?</p>
+      <button className='yes_button' onClick={onDelete}>Yes</button>
+    </div>
+  );
+};
+
+const OverlayerAddEvent = () => {
+  const url = "";
+  const [data, setData] = useState({
+    header: '',
+    description: ''
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios.post(url, {
+      header: data.header,
+      description: data.description
+    })
+    .then(res => {
+      console.log(res.data);
+    })
+    .catch(err => {
+      console.error(err);
+    });
+  };
+
+  const handleInputChange = (e) => {
+    setData({
+      ...data,
+      [e.target.id]: e.target.value
+    });
+  };
+
+  return (
+    <div className="overlay overlayer_event">
+      <form onSubmit={handleSubmit}>
+        <div className='Addnelec'>
+          <div className='bigboxofAddevents'>
+            <input onChange={handleInputChange} id="header" placeholder='Title' type='text' className='box_of_Adde' />
+          </div>
+          <div className='Addeventslec'>  
+            <div className='bigboxofAddevents'>
+              <p className='PofmanageEvents'>Start</p>
+              <input onChange={handleInputChange} id="startDate" placeholder='' type='date' className='box_of_Addevents' />
+            </div>
+            <div className='bigboxofAddevents'>
+              <p className='PofmanageEvents'>End</p>
+              <input onChange={handleInputChange} id="endDate" placeholder='' type='date' className='box_of_Addevents' />
+            </div>
+          </div>
+          <button className='addd_button' type='submit'>Add</button> 
         </div>
-        <button className='edit_buuton' type='submit'>Add</button>
       </form>
     </div>
   );
-}
+};
 
-
-const Overlayer_delete_admins = ({ close ,onDelete}) => {
+function Model({ edit_model, add_model, delete_model, add_event, close_model, onDelete, update, item, data, setData }) {
   return (
-    <div className='overlay overlay_delete'>
-      <button className='close_pop' onClick={close}><IoIosClose/></button> 
-      <BsPersonX className='Overlayer_delete_icon'/>
-      <p className='p_delete'> are you sure you want to delete?</p>
-      <button className='yes_button'onClick={onDelete} >yes</button>
-    </div>
-  );
-}
-const Overlayer_delete_candidate = ({ close ,onDelete}) => {
-  return (
-    <div className='overlay overlay_delete'>
-      <button className='close_pop' onClick={close}><IoIosClose/></button> 
-      <BsPersonX className='Overlayer_delete_icon'/>
-      <p className='p_delete'> are you sure you want to delete?</p>
-      <button className='yes_button'onClick={onDelete} >yes</button>
-    </div>
-  );
-}
-
-function Model({edit_model,add_model,delete_model,delet_candidate,close_model,onDelete,update,item,data,setData,_id}) {
-  return (
-   (edit_model||add_model||delete_model ||delet_candidate)&& (
+    (edit_model||add_model||delete_model)&& (
     <>
-    {createPortal(
-    < >
-           <BackDrop/>
-           
-          {  edit_model&&<  Overlayer_edit close={close_model} item={item} data={data} setData={setData} _id={_id}/>}
-          {  delete_model&&<  Overlayer_delete_admins close={close_model }onDelete={onDelete} item={item}/>}
-           
-         { add_model&& < Overlayer_add_admin close={close_model} updates={update} />}
-         {/* {add_event&&<Overlayer_add_event/>} */}
-         {  delet_candidate&&<  Overlayer_delete_candidate close={close_model }onDelete={onDelete} item={item}/>}
-        
-          
-    </>,document.getElementById('model')
-    )}
+      {createPortal(
+        <>
+          <BackDrop />
+          {  edit_model&&<  Overlayer_edit close={close_model} item={item} data={data} setData={setData}/>}
+          {delete_model && <OverlayerDeleteAdmin close={close_model} onDelete={onDelete} />}
+          {add_model && <OverlayerAddAdmin close={close_model} updates={update} />}
+          {/* {add_event && <OverlayerAddEvent />} */}
+        </>,
+        document.getElementById('model')
+      )}
     </>
   ))
 }

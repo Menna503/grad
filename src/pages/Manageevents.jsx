@@ -1,69 +1,76 @@
+
 import React, { useState, useEffect } from 'react';
-import AddEvents from '../components/AddEvents';
+import AddEvents from '../components/EventsOverlay';
 import "../Styles/profilecss.css";
 import { IoMdAdd } from "react-icons/io";
-import { CiCalendar } from "react-icons/ci";
 import Axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Manageevents() {
+
+    const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
     const [events, setEvents] = useState([]);
     const [eventToEdit, setEventToEdit] = useState(null);
+    const token = localStorage.getItem('token') || '';
+   
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            navigate('/');
+        }
+    }, [navigate]);
 
-    // Define the close function
+
+    useEffect(() => {
+        if (token) {
+            Axios.get('https://graduation-project-273e.onrender.com/api/event', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            .then(res => {
+              
+                const eventsArray = res.data.data.events;
+                if (Array.isArray(eventsArray)) {
+                    setEvents(eventsArray);
+                } else {
+                    console.error('Fetched events data is not an array:', res.data);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching events:', error);
+            });
+        }
+    }, [token]);
+
     const closeAddEventsModal = () => {
         setShowModal(false);
-        setEventToEdit(null); // Reset the event to edit after closing the modal
+        setEventToEdit(null); 
     };
 
-    // Function to add an event to the events state
+
     const addEvent = (event) => {
         setEvents([...events, event]);
     };
 
-    // Function to edit an event
     const editEvent = (event) => {
         setEventToEdit(event);
         setShowModal(true);
     };
 
-const deleteEvent = (eventId) => {
-    // Display a confirmation dialog
-    const confirmDelete = window.confirm("Are you sure you want to delete this event?");
-    
-    if (confirmDelete) {
-        Axios.delete( )
-            .then(() => {
-                const updatedEvents = events.filter(event => event.id !== eventId);
-                setEvents(updatedEvents);
-            })
-            .catch(error => {
-                console.error('Error deleting event:', error);
-            });
-    }
+
+
+const updateEvent = (updatedEvent) => {
+    const updatedEvents = events.map(event => {
+        if (event.id === updatedEvent.id) {
+            return updatedEvent;
+        }
+        return event;
+    });
+    setEvents(updatedEvents);
 };
 
-    useEffect(() => {
-        // Fetch events from the JSON server when the component mounts
-        Axios.get("http://localhost:3001/events")
-            .then(res => {
-                setEvents(res.data);
-            })
-            .catch(error => {
-                console.error('Error fetching events:', error);
-            });
-    }, []); // Empty dependency array ensures this effect runs only once when the component mounts
-
-    // Function to update event data after editing
-    const updateEvent = (updatedEvent) => {
-        const updatedEvents = events.map(event => {
-            if (event.id === updatedEvent.id) {
-                return updatedEvent;
-            }
-            return event;
-        });
-        setEvents(updatedEvents);
-    };
 
 
  
@@ -76,22 +83,18 @@ const deleteEvent = (eventId) => {
                 <div className='manageevents_component'>
                     {events.map(event => (
                         <div key={event.id} className="event">
-                            <div className='theTitleOfEvent'> <p className='titleofevent'>{event.titleOfEvent}</p> </div>
+                            <div className='theTitleOfEvent'> <p className='titleofevent'>{event.type}</p> </div>
 
                             <div className='startevent' >
                                 <p className='PofmanageEvents'>Start</p>
-                                <div className='boxof_start'> <span >{event.start} </span>  <span className='spanofevent'><CiCalendar /></span>  </div>
+                                <div className='boxof_start'> <p>{event.start} </p>   </div>
                             </div>
 
                             <div className='startevent' >
                                 <p className='PofmanageEvents'>End</p>
-                                <div className='boxof_start'> <span >{event.end}</span>  <span className='spanofevent'><CiCalendar /></span>  </div>
+                                <div className='boxof_start'> <p >{event.end}</p>    </div>
                             </div>
 
-                            <div className='EditAndDelete'>
-                                <button className='Editevent_button' onClick={() => editEvent(event)}> Edit </button>
-                                <button className='deleteevent_button' onClick={() => deleteEvent(event.id)}> Delete </button>
-                            </div>
                         </div>
                     ))}
                     {showModal && (

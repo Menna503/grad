@@ -29,52 +29,19 @@ reportWebVitals();*/
 
 
 import { createRoot } from 'react-dom/client'; // استخدم createRoot من react-dom/client بدلاً من react-dom
-import './i18n';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import React from 'react';
 import Login from './pages/Login';
+import { BrowserRouter } from 'react-router-dom';
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
-    {/* <Login/> */}
-
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>
 );
 
 reportWebVitals();
 
-// import React, { useState } from 'react';
-// import { createRoot } from 'react-dom/client';
-// import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-// import App from './App';
-// import Login from './pages/Login';
-// import reportWebVitals from './reportWebVitals';
-
-// const RootComponent = () => {
-//     const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-//     return (
-//         <BrowserRouter>
-//             <Routes>
-//                 {isLoggedIn ? (
-//                     <Route path="/*" element={<App />} />
-//                 ) : (
-//                     <>
-//                         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
-//                         <Route path="/*" element={<Navigate to="/login" />} />
-//                     </>
-//                 )}
-//             </Routes>
-//         </BrowserRouter>
-//     );
-// };
-
-// createRoot(document.getElementById('root')).render(
-//     <React.StrictMode>
-//         <RootComponent />
-//     </React.StrictMode>
-// );
-
-// reportWebVitals();

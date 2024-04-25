@@ -1,6 +1,6 @@
 import React from 'react';
 import './Styles/App.css';
-// import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import axios from 'axios';
 import Dashboard from './pages/Dashboard.jsx';
 import Admin from './pages/Admin.jsx';
 import Manageevents from './pages/Manageevents.jsx';
@@ -9,43 +9,41 @@ import Addnews from './pages/Addnews.jsx';
 import Profile from './pages/Profile.jsx';
 import Help from './pages/Help.jsx';
 import Requests from './pages/Requests.jsx';
-import Logout from './pages/logout.jsx';
 import Login from './pages/Login.jsx';
-import { useTranslation } from 'react-i18next';
-// import { BrowserRouter, Routes, Route, Navigate ,Switch ,useLocation } from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from './components/MainLayout';
 import CandidateData from './pages/CandidateData.jsx';
+import { UserContextProvider } from './UserContext.jsx';
+axios.defaults.baseURL = process.env.REACT_APP_API_URL + '/api/'
+axios.defaults.withCredentials = false
+
+
 
 
 const App = () => {
-  const [t, i18n] = useTranslation();
 
+ 
   return (
 
-   
 
-    <Router> 
-        <Routes>
+    <UserContextProvider>
+      <Routes>
         <Route path="/" element={<Login />} />
-        
-          
-          <Route path="/CandidateData" element={<MainLayout><CandidateData /></MainLayout>} />
-
-          <Route path="/Dashboard" element={<MainLayout> <Dashboard /></MainLayout>} />
-          <Route path="/Admin" element={<MainLayout> <Admin /> </MainLayout> } />
-          <Route path="/Manageevents" element={ <MainLayout> <Manageevents /></MainLayout>} />
-          <Route path="/Requests" element={ <MainLayout> <Requests/></MainLayout>} />
-          <Route path="/Candidates" element={  <MainLayout> <Candidates /> </MainLayout>} />
-          <Route path="/Addnews" element={<MainLayout> <Addnews /></MainLayout>} />
-          <Route path="/Profile" element={<MainLayout> <Profile /> </MainLayout>} />
-          <Route path="/Help" element={<MainLayout> <Help /> </MainLayout>} />
-          <Route path="/Logout" element={ <MainLayout> <Logout /></MainLayout>} />
-           
-
-        </Routes>
-    </Router>
+        <Route path="/Login" element={<Login />} />
+        <Route  element={<MainLayout />} >
+          <Route path='/Dashboard' element={<Dashboard />} />
+          <Route path="/CandidateData" element={<CandidateData />} />
+          <Route path="/Admin" element={<Admin />} />
+          <Route path="/Manageevents" element={<Manageevents />} />
+          <Route path="/Requests" element={<Requests />} />
+          <Route path="/Candidates" element={<Candidates />} />
+          <Route path="/Addnews" element={<Addnews />} />
+          <Route path="/Profile" element={<Profile />} />
+          <Route path="/Help" element={<Help />} />
+        </Route>
+      </Routes>
+    </UserContextProvider>
   );
 };
 
-export default App;
+export default App;
