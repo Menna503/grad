@@ -1,4 +1,3 @@
-
 import { RiDeleteBinLine } from "react-icons/ri";
 import React, { useEffect, useState } from 'react';
 import Model from '../model/model';
@@ -6,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Candidates = () => {
-  
   const navigate = useNavigate();
 
   useEffect(() => {

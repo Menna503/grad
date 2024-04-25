@@ -1,16 +1,8 @@
 import React from 'react'
-// import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
 
-  // const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token');
-  //   if (!token) {
-  //     navigate('/');
-  //   }
-  // }, [navigate]);
+ 
 
   return (
 
@@ -23,4 +15,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default Dashboard;

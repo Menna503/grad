@@ -6,6 +6,7 @@ import * as FaIcons from "react-icons/fa6";
 import * as IoIcons from "react-icons/io";
 import * as IoIcons5 from "react-icons/io5";
 import * as CgIcons from "react-icons/cg";
+import { RiLockPasswordLine } from "react-icons/ri";
 import '../Styles/profilecss.css';
 import { NavLink ,useNavigate } from 'react-router-dom';
 import { UserContext } from '../UserContext';
@@ -26,7 +27,7 @@ const Sidebar = ({ children, managerName }) => {
     const navigate = useNavigate();
     const menuItem = [
         {
-            path: "/",
+            path: "/Dashboard",
             name: "Dashboard",
             icon: <MdIcons.MdOutlineDashboard />
 
@@ -38,8 +39,8 @@ const Sidebar = ({ children, managerName }) => {
 
         },
         {
-            path: "/Manageevents",
-            name: "Manageevents",
+            path: "/Events",
+            name: "Events",
             icon: <RiIcons.RiCalendarCheckLine />
 
         },
@@ -57,8 +58,8 @@ const Sidebar = ({ children, managerName }) => {
 
         },
         {
-            path: "/Addnews",
-            name: "Addnews",
+            path: "/News",
+            name: "News",
             icon: <IoIcons5.IoNewspaper />
 
         },
@@ -69,9 +70,15 @@ const Sidebar = ({ children, managerName }) => {
 
         },
         {
-            path: "/Help",
-            name: "Help",
+            path: "/Questions",
+            name: "Questions",
             icon: <IoIcons5.IoHelpCircleOutline />
+
+        },
+        {
+            path: "/Reset",
+            name: "Reset",
+            icon: <RiLockPasswordLine />
 
         }
     ]

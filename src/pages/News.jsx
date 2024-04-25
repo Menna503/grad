@@ -6,7 +6,7 @@ import  axios  from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 
-function Addnews() {
+function News() {
 
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
@@ -138,4 +138,4 @@ const deleteNews = (iid) => {
   );
 }
 
-export default Addnews;
+export default News;

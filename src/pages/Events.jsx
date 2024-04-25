@@ -6,7 +6,7 @@ import { IoMdAdd } from "react-icons/io";
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-function Manageevents() {
+function Events() {
 
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
@@ -108,4 +108,4 @@ const updateEvent = (updatedEvent) => {
     );
 }
 
-export default Manageevents;
+export default Events;

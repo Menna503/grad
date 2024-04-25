@@ -33,9 +33,9 @@ const Login = () => {
                     setUser(user);
                     
                     if (role === "MANAGER") {
-                        navigate('/');
+                        navigate('/Dashboard');
                     } else if (role === "ADMIN") {
-                        navigate('/manageevents');
+                        navigate('/Events');
                     } else {
                         console.error('Login failed: Only MANAGERS and ADMINS are allowed to log in.');  
                     }
