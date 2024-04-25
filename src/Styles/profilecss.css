@@ -59,19 +59,6 @@
   
 }
 
-/*input {
-    color: #4b4949;
-    font-family: "Inter-Regular", Helvetica;
-    font-size: 24px;
-    font-weight: 400;
-    letter-spacing: 0;
-    line-height: normal;
-    text-transform: capitalize;
-    /* margin-left: 11px; */
-   /* margin-left: 0.88%;
-
-}*/
-
 .box_of_profile{
     background-color: #ffffff;
     border: 1px solid;
@@ -134,6 +121,7 @@
   text-transform: capitalize;
   font-weight: 400;
   margin-left: 650px;
+  cursor: pointer;
 }
 
 /* .submit_button:hover {
@@ -216,7 +204,7 @@
   gap: 8px;
 }
 
-.add_button{
+.add_button_news{
   border-radius: 10px;
   box-shadow: 0px 4px 4px #00000040;
   height: 60px;
@@ -227,9 +215,10 @@
   font-family: "Inter-Regular", Helvetica;
   text-transform: capitalize;
   font-weight: 400;
-  margin-left: 940px;
-  margin-top: 30px;
-}
+  margin-left: 500px;
+  margin-top: 20px;
+  cursor: pointer;
+} 
 
 .bigboxofAddnewsupload{
   display: flex;
@@ -289,21 +278,7 @@
   top: 120px;
   color:#4b4949 ;
   cursor: pointer;
-}
-
-.adddd_button{
-  border-radius: 10px;
-  box-shadow: 0px 4px 4px #00000040;
-  height: 60px;
-  width:260px;
-  color: white;
-  background-color:#065C61 ;
-  font-size: 21px;
-  font-family: "Inter-Regular", Helvetica;
-  text-transform: capitalize;
-  font-weight: 400;
-  margin-left: 500px;
-  margin-top: 30px;
+  cursor: pointer;
 }
 
 .Addnewwslec{
@@ -322,6 +297,15 @@
 .button_of_readmore{
   border: none;
   background-color: #f6fffb;
+}
+
+.news{
+  background-color: #f6fffb;
+  border: 1px solid;
+  border-color: #065c61;
+  border-radius: 10px;
+  height: 453px;
+  width: 394px;
 }
 
 /****************************************************EVENTS*************************************************/
@@ -367,6 +351,7 @@ font-weight: 400;
 position:absolute;
 right: 51px;
 bottom: 25px;
+cursor: pointer;
 }
 .eventModal{
   position: fixed;
@@ -414,6 +399,7 @@ bottom: 25px;
   font-weight: 400;
   /* margin-left: 160px; */
   margin-top: 30px;
+  cursor: pointer;
 }
 
 .Addeventslec{
@@ -468,19 +454,7 @@ bottom: 25px;
   cursor: pointer;
 }
 
-/* #title{
-  background-color: #ffffff;
-  border-radius: 10px;
-  height: 39px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  width: 186px;
-  font-size: 20px;
-  padding-right: 10px;
-  padding-left: 10px;
-  color: #4b4949;
-  border-color: white;
-} */
+
 .manageevents_component{
   display: flex;
   flex-direction: row;
@@ -570,6 +544,7 @@ font-family: "Inter-Regular", Helvetica;
 font-size: 16px;
 font-weight: 400;
 margin-top: 25px;
+cursor: pointer;
 }
 .deleteevent_button{
   background-color: #ff4265;
@@ -582,6 +557,7 @@ font-family: "Inter-Regular", Helvetica;
 font-size: 16px;
 font-weight: 400;
 margin-top: 25px;
+cursor: pointer;
 
 }
 
@@ -698,6 +674,7 @@ margin-bottom: 20px;
   font-weight: 400;
    margin-left: 80px;
   margin-top: 90px; 
+  cursor: pointer;
 }
 
 /* ************************************************************** HELP ************************************************************* */
@@ -772,12 +749,14 @@ overflow: auto;
 }
 .delete_icon{
   background-color: #ff4265;
+  cursor: pointer;
   
 }
 .edit_icon{
   background-color: #055b60;
   color: #ffffff;
   font-weight: 600;
+  cursor: pointer;
   /* margin-right: 24px; */
 }
 
@@ -806,6 +785,7 @@ overflow: auto;
   font-weight: 400;
   margin-left: 500px;
   margin-top: 30px;
+  cursor: pointer;
 }
 
 .helpModalContainer{
@@ -828,4 +808,28 @@ overflow: auto;
   top: 160px;
   color:#4b4949 ;
   cursor: pointer;
+}
+/* *********************************************logout button *************************************/
+.logOut_button{
+  display: flex;
+  background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    gap:20px;
+    cursor: pointer;
+}
+.logoutIcon{
+transform: rotate(180deg);
+font-size: 24px;
+color: white;
+margin-left: 25px;
+
+}
+.logout_Title{
+  font-size: 20px;
+color: white;
+font-weight: 400;
+text-transform: capitalize;
+margin-top: 5px;
 }

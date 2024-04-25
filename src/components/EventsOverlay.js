@@ -18,8 +18,7 @@ function AddEvents({ close, addEvent, eventToEdit, updateEvent }) {
         end: ""
          
     });
-
-
+    
 
     useEffect(() => {
         if (eventToEdit) {

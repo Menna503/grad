@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import HelpOverlay from '../components/HelpOverlay';
 import "../Styles/profilecss.css";
 import { IoMdAdd } from "react-icons/io";
@@ -7,20 +7,15 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-function Help() {
 
+function Help() {
+    
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
     const [questions, setQuestions] = useState([]);
     const [questionToEdit, setQuestionToEdit] = useState(null);
     const token = localStorage.getItem('token') || '';
    
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (!token) {
-            navigate('/');
-        }
-    }, [navigate]);
 
     const fetchQuestions = () => {
         if (token) {

@@ -1,14 +1,4 @@
-import React, { useState } from 'react';
-import {
-    FaTh,
-    FaBars,
-    FaUserAlt,
-    FaRegChartBar,
-    FaCommentAlt,
-    FaShoppingBag,
-    FaThList
-} from "react-icons/fa";
-
+import React, { useContext, useState } from 'react';
 import imgprofile from '../images/imgprofile.svg';
 import * as MdIcons from "react-icons/md";
 import * as RiIcons from "react-icons/ri";
@@ -16,8 +6,9 @@ import * as FaIcons from "react-icons/fa6";
 import * as IoIcons from "react-icons/io";
 import * as IoIcons5 from "react-icons/io5";
 import * as CgIcons from "react-icons/cg";
-import * as CiIcons from "react-icons/ci";
-import { NavLink } from 'react-router-dom';
+import '../Styles/profilecss.css';
+import { NavLink ,useNavigate } from 'react-router-dom';
+import { UserContext } from '../UserContext';
 import Header from '../components/header';
 
 
@@ -25,6 +16,14 @@ import Header from '../components/header';
 const Sidebar = ({ children, managerName }) => {
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
+    const { logout } = useContext(UserContext);
+
+    const handleLogout = () => {
+        logout();
+        navigate('/login'); 
+    };
+
+    const navigate = useNavigate();
     const menuItem = [
         {
             path: "/",
@@ -74,14 +73,7 @@ const Sidebar = ({ children, managerName }) => {
             name: "Help",
             icon: <IoIcons5.IoHelpCircleOutline />
 
-        },
-        {
-            path: "/Logout",
-            name: "Logot",
-            icon: < CiIcons.CiLogout />
-
         }
-
     ]
     const sidebarStyle = {
         width: isOpen ? "304px" : "97px",
@@ -119,9 +111,17 @@ const Sidebar = ({ children, managerName }) => {
                                 <div className="icon">{item.icon}</div>
                                 <div style={{ display: isOpen ? "block" : "none" }} className="link_text">{item.name}</div>
                             </NavLink>
+                            
                         </div>
                     ))
                 }
+
+                 <div style={{ display: isOpen ? "block" : "none" }}>
+                    <button onClick={handleLogout} className='logOut_button' >
+                        <div className='logoutIcon' > <MdIcons.MdLogout /> </div>
+                        <div className='logout_Title' >Logout</div>
+                    </button>
+                </div>
 
             </div>
             <main>

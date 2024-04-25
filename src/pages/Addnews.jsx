@@ -1,15 +1,9 @@
 import React,{useState, useEffect} from 'react';
-import Addnewsposter from '../images/Addnewsposter.svg';
 import '../Styles/profilecss.css';
-import Addnewscomponent from '../components/AddnewOverlay';
+import Addnewscomponent from '../components/newsOverlay';
 import { IoMdAdd } from "react-icons/io";
-import  Axios  from 'axios';
+import  axios  from 'axios';
 import { useNavigate } from 'react-router-dom';
-
-
-
-
-
 
 
 function Addnews() {
@@ -28,27 +22,32 @@ function Addnews() {
   }, [navigate]);
 
 
-  useEffect(() => {
-      if (token) {
-          Axios.get('https://graduation-project-273e.onrender.com/api/news', {
-              headers: {
-                  Authorization: `Bearer ${token}`
-              }
-          })
-          .then(res => {
-              // Extract the array of events from the response
-              const newssArray = res.data.data.news;
-              if (Array.isArray(newssArray)) {
-                  setNewss(newssArray);
-              } else {
-                  console.error('Fetched news data is not an array:', res.data);
-              }
-          })
-          .catch(error => {
-              console.error('Error fetching news:', error);
-          });
-      }
-  }, [token]);
+  const fetchQuestions = () => {
+    if (token) {
+        axios.get('news', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then(res => {
+            const questionsArray = res.data.data.news;
+            if (Array.isArray(questionsArray)) {
+                setNewss(questionsArray);
+            } else {
+                console.error('Fetched questions data is not an array:', res.data);
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching questions:', error);
+        });
+    }
+};
+
+
+useEffect(() => {
+    fetchQuestions();
+}, [token]);
+
 
   const closeAddNewssModal = () => {
       setShowModal(false);
@@ -56,38 +55,50 @@ function Addnews() {
   };
 
 
-  const addNews = (news) => {
-      setNewss([...newss, news]);
-  };
+  const addNews = (newNews) => {
+    fetchQuestions(); 
+};
 
-  const editNews= (news) => {
-      setNewsToEdit(news);
-      setShowModal(true);
-  };
 
-const deleteNews = (eventId) => {
-  const confirmDelete = window.confirm("Are you sure you want to delete this event?");
-  
-  if (confirmDelete) {
-      Axios.delete( )
-          .then(() => {
-              const updatedEvents = newss.filter(event => event.id !== eventId);
-              setNewss(updatedEvents);
-          })
-          .catch(error => {
-              console.error('Error deleting event:', error);
-          });
-  }
+const editNews = (news) => {
+    setNewsToEdit(news);
+    setShowModal(true);
 };
 
 const updateNews = (updatedNews) => {
-  const updatedNewss = newss.map(news => {
-      if (news.id === updatedNews.id) {
-          return updatedNews;
-      }
-      return news;
-  });
-  setNewss(updatedNewss);
+    fetchQuestions(); 
+};
+
+const deleteNews = (iid) => {
+    console.log('Deleting question with ID:', iid);
+  
+    const confirmDelete = window.confirm("Are you sure you want to delete this question?");
+    if (confirmDelete) {
+        const token = localStorage.getItem('token'); 
+
+        if (token) {
+            
+            const url = `news/${iid}`;
+
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            };
+           
+            axios.delete(url, config)
+                .then(() => {
+                   
+                    const updatedNews = newss.filter(news => news._id !== iid);
+                    setNewss(updatedNews);
+                })
+                .catch(error => {
+                    console.error('Error deleting question:', error);
+                });
+        } else {
+            console.error('Authorization token is missing. Deletion cannot proceed.');
+        }
+    }
 };
 
 
@@ -108,6 +119,11 @@ const updateNews = (updatedNews) => {
                               <div className='boxof_answer'> <span className='the_answer' >{news.image}</span>    </div>
                               <div className='boxof_answer'> <span className='the_answer' >{news.description}</span>    </div>
                           </div>
+                         
+                          <div className='EditAndDeleteforHelp'>
+                                <button className='delete_icon  delete_edit_ic' onClick={() => deleteNews(news._id)}>Delete </button>
+                                <button className='edit_icon delete_edit_ic' onClick={() => editNews(news)}>Edit</button>
+                            </div>
 
                       </div>
                   ))}
@@ -123,5 +139,3 @@ const updateNews = (updatedNews) => {
 }
 
 export default Addnews;
-
-

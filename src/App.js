@@ -9,7 +9,6 @@ import Addnews from './pages/Addnews.jsx';
 import Profile from './pages/Profile.jsx';
 import Help from './pages/Help.jsx';
 import Requests from './pages/Requests.jsx';
-import Logout from './pages/logout.jsx';
 import Login from './pages/Login.jsx';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from './components/MainLayout';
@@ -23,13 +22,12 @@ axios.defaults.withCredentials = false
 
 const App = () => {
 
-
+ 
   return (
 
 
     <UserContextProvider>
       <Routes>
-        {/* <Route path="/" element={<Login />} /> */}
         <Route path="/Login" element={<Login />} />
         <Route path="/" element={<MainLayout />} >
           <Route index element={<Dashboard />} />
@@ -41,7 +39,6 @@ const App = () => {
           <Route path="/Addnews" element={<Addnews />} />
           <Route path="/Profile" element={<Profile />} />
           <Route path="/Help" element={<Help />} />
-          <Route path="/Logout" element={<Logout />} />
         </Route>
       </Routes>
     </UserContextProvider>

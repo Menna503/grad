@@ -8,10 +8,7 @@ import Helpposter from '../images/helpposter.svg';
 
 
 function HelpOverlay({ close , addQuestion , questionToEdit , updateQuestion  }) {
-   
     const navigate = useNavigate();
-   
-   
     const [data, setData] = useState({
         question: "",
         answer: ""
@@ -98,7 +95,7 @@ function HelpOverlay({ close , addQuestion , questionToEdit , updateQuestion  })
     
 
     return (
-        <div className="newsModal"  onClick={handleClose}>
+    <div className="newsModal"  onClick={handleClose}>
        <div className="helpModalContainer">
        <form  onSubmit={Submit}>
 

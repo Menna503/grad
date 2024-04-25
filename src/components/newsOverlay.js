@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import Addnewsposter from '../images/Addnewsposter.svg';
 import { IoIosClose } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
 
 
 function Addnewscomponent({ close , addNews , newsToEdit , updateNews}) {
-  const url = "https://graduation-project-273e.onrender.com/api/news";
-
 
   const navigate = useNavigate();
  
@@ -31,52 +29,58 @@ function Addnewscomponent({ close , addNews , newsToEdit , updateNews}) {
 
 
   function Submit(e) {
-      e.preventDefault();
-      const token = localStorage.getItem('token');
+    e.preventDefault();
+    const token = localStorage.getItem('token');
 
-      if (token) {
-          const config = {
-              headers: {
-                  Authorization: `Bearer ${token}`
-              }
-          };
+    if (token) {
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        };
 
-          
-          if (newsToEdit) {
-              Axios.patch(`${url}/${newsToEdit.id}`, data, config)
-                  .then(res => {
-                      console.log(res.data);
-                      updateNews(res.data);
-                      close();
-                  })
-                  .catch(error => {
-                      console.error('Error editing event:', error);
-                  });
+        
+        if (newsToEdit) {
+            if (token) {
+            axios.patch(`${'news'}/${newsToEdit._id}`, data, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+                .then(res => {
+                    console.log(res.data);
+                    updateNews(res.data);
+                    close();
+                })
+                .catch(error => {
+                    console.error('Error editing event:', error);
+                });
 
-                  if (newsToEdit) {
-                      console.log('eventToEdit object:', newsToEdit);
-                      console.log('Editing event with ID:', newsToEdit.id);
-                  } else {
-                      console.log('eventToEdit is undefined or null');
-                  }
-          } else {
-              Axios.post(url, data, config)
-                  .then(res => {
-                      console.log(res.data);
-                      addNews(res.data);
-                      close();
-                  })
-                  .catch(error => {
-                      console.error('Error adding event:', error);
-                      console.error('Response error data:', error.response?.data);
-                  });
-          }
-      } else {
-          console.error('Token not found, redirecting to login');
-          navigate('/');
-      }
-  }
-  
+                if (newsToEdit) {
+                    console.log('eventToEdit object:', newsToEdit);
+                    console.log('Editing event with ID:', newsToEdit._id);
+                } else {
+                    console.log('eventToEdit is undefined or null');
+                }
+        }} else {
+            axios.post('question', data, config)
+                .then(res => {
+                    addNews(res.data);
+                    console.log(res.data);
+                    
+                    close();
+                })
+                .catch(error => {
+                    console.error('Error adding event:', error);
+                    console.error('Response error data:', error.response?.data);
+                });
+        }
+    } else {
+        console.error('Token not found, redirecting to login');
+        navigate('/');
+    }
+}
+
 
   function handle(e) {
       const { id, value } = e.target;
@@ -133,4 +137,3 @@ function Addnewscomponent({ close , addNews , newsToEdit , updateNews}) {
 }
 
 export default Addnewscomponent;
-

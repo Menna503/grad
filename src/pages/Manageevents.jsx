@@ -1,9 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
-import AddEvents from '../components/AddEventsOverlay';
+import AddEvents from '../components/EventsOverlay';
 import "../Styles/profilecss.css";
 import { IoMdAdd } from "react-icons/io";
-import { CiCalendar } from "react-icons/ci";
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 

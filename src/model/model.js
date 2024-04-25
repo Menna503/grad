@@ -1,4 +1,3 @@
-
 import Styles from'./model.css';
 import'./model.css';
 import { BsPersonGear, BsPersonX  } from "react-icons/bs";
@@ -11,141 +10,6 @@ import { useNavigate } from 'react-router-dom';
 const BackDrop=()=>{
   return <div className="backDrop"></div>
 }
-// const Overlayer_edit = ({ close,item }) => {
- 
-//   const [formData, setFormData] = useState({
-//     name: item.name,
-//     id: item.id
-//   });
-
-//   // const handleChange = (e) => {
-//   //   setFormData({
-//   //     ...formData,
-//   //     [e.target.name]: e.target.value,
-//   //     [e.target.id]: e.target.value
-//   //   });
-//   // };
-//   const handleChange = (e) => {
-//     setFormData({
-//       ...formData,
-//       [e.target.name]: e.target.value,
-//       [e.target.id === "id" ? "idValue" : e.target.id]: e.target.value
-//     });
-//   };
-  
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     // Send a request to update admin data
-//     axios.put(`http://localhost:3000/users/${item.id}`, formData)
-//       .then(res => {
-//         // Update the admin data in the parent component's state
-//         // update(res.data);
-//         close();
-//       })
-//       .catch(err => console.log(err));
-//   };
-//   return (
-//   <div className="overlay">
-//    <button className='close_pop'onClick={close}><IoIosClose/></button>  
-//     <div className='edit'>
-//         <BsPersonGear className='edit_i_pop'/>
-//         <h1 className='edit_h_pop'>Edit Admin</h1>
-        
-//     </div>
-//    <div className='img_edit_pop'><img src='/edit_admin.svg'/></div> 
-//    <form onSubmit={handleSubmit}>
-//         <input
-//           type='text'
-//           className='input'
-//           name='name'
-//           // value={item.name}
-//           value={formData.name}
-//           onChange={handleChange}
-         
-//           placeholder='Enter Admin Name'
-//         />
-//         <input
-//           type='text'
-//           className='input'
-//           name='id'
-//         // value={item.id}
-//         value={formData.id}
-//           placeholder='Enter ID'
-//           onChange={handleChange}
-//         />
-//         <button className='edit_buuton' type='submit'>Edit</button>
-//       </form>
-//    </div>);
-//   }
-
-
-// const Overlayer_edit = ({ close, item,data,setData }) => {
-//   const [formData, setFormData] = useState({
-//     name: item.name,
-//     id: item.id
-//   });
-
-//   const handleChange = (e) => {
-//     setFormData({
-//       ...formData,
-//       [e.target.name]: e.target.value
-//     });
-//   };
-  
-//   const handleSubmit = (e) => {
-
-    
-//     e.preventDefault();
-//     axios.put(`http://localhost:3000/users/${item.id}`, formData)
-//       .then(res => {
-//         // Update the admin data in the parent component's state
-//         // Update the data in the state by mapping over it and replacing the modified item
-//         const updatedData = data.map(admin => {
-//           if (admin.id === item.id) {
-//             return {
-//               ...admin,
-//               name: formData.name,
-//               id: formData.id
-//             };
-//           }
-//           return admin;
-//         });
-//         setData(updatedData);
-//         close();
-//       })
-//       .catch(err => console.log(err));
-//   };
-
-//   return (
-//     <div className="overlay">
-//       <button className='close_pop' onClick={close}><IoIosClose/></button>  
-//       <div className='edit'>
-//         <BsPersonGear className='edit_i_pop'/>
-//         <h1 className='edit_h_pop'>Edit Admin</h1>
-//       </div>
-//       <div className='img_edit_pop'><img src='/edit_admin.svg'/></div> 
-//       <form onSubmit={handleSubmit}>
-//         <input
-//           type='text'
-//           className='input'
-//           name='name'
-//           value={formData.name}
-//           onChange={handleChange}
-//           placeholder='Enter Admin Name'
-//         />
-//         <input
-//           type='text'
-//           className='input'
-//           name='id'
-//           value={formData.id}
-//           placeholder='Enter ID'
-//           onChange={handleChange}
-//         />
-//         <button className='edit_buuton' type='submit'>Edit</button>
-//       </form>
-//     </div>
-//   )
-// }
 
 const Overlayer_edit = ({ close, item, data, setData }) => {
   const [formData, setFormData] = useState({
@@ -165,12 +29,10 @@ const Overlayer_edit = ({ close, item, data, setData }) => {
   };
 
   const validateNationalID = (id) => {
-    // Check if the national ID is 14 characters long
     if (id.length !== 14) {
       setNationalIdWarning(true);
       return false;
     }
-    // Check if the national ID already exists in the database
     const isExists = data.some(admin => admin.id === id && admin.id !== item.id);
     if (isExists) {
       setNationalIdWarning(true);
@@ -182,12 +44,10 @@ const Overlayer_edit = ({ close, item, data, setData }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Reset warning messages
     setNameWarning(false);
     setIdWarning(false);
     setNationalIdWarning(false);
 
-    // Validate name and national ID
     if (!formData.name.trim()) {
       setNameWarning(true);
       return;
