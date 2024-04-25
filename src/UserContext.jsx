@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { createContext } from "react";
 import { getToken, removeToken } from "./utils/authentication";
-
 import { jwtDecode } from "jwt-decode";
 
 
@@ -19,7 +18,7 @@ export function UserContextProvider({ children }) {
             const decodedToken = jwtDecode(token)
             setUser(decodedToken)
         }
-    }, [[user]])
+    }, [])
    
 
     const logout = () => {
