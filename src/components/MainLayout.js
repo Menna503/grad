@@ -8,7 +8,7 @@ import { UserContext } from '../UserContext';
 const MainLayout = ({ children }) => {
     const token = localStorage.getItem('token');
     const { user} = useContext(UserContext);
-    if (!user)
+    if ( !token)
         return <Navigate to={'/login'} />
 
 
