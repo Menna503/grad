@@ -9,7 +9,7 @@ import { jwtDecode } from "jwt-decode";
 export const UserContext = createContext({})
 
 export function UserContextProvider({ children }) {
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState('')
 
     useEffect(() => {
         if (!user) {
@@ -30,5 +30,5 @@ export function UserContextProvider({ children }) {
         <UserContext.Provider value={{ user, setUser, logout}}>
             {children}
         </UserContext.Provider>
-    )
+    )
 }

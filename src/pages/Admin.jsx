@@ -11,7 +11,7 @@ const Admin = () => {
     const [addModel, setAddModel] = useState(false);
     const [deleteAdminModel, setDeleteAdminModel] = useState(false);
     const [data, setData] = useState([]);
-    const [_id, set_Id] = useState(null);
+    const [AdminToEdit,setAdminToEdit ] = useState(null);
     const [deleteItemId, setDeleteItemId] = useState(null);
     const token = localStorage.getItem('token') || '';
     const navigate = useNavigate();
@@ -47,10 +47,19 @@ const Admin = () => {
         setData(prevData => [...prevData, newData]);
     };
 
-    const handleEdit = (_id) => {
-        set_Id(_id);
+    // const handleEdit = (_id) => {
+    //     set_Id(_id);
+    //     setEditModel(true);
+    // };
+    const editAdmin = (item) => {
+        setAdminToEdit(item);
         setEditModel(true);
     };
+
+    // const updateADMIN = () => {
+    //     fetchData(); 
+    // };
+
    
     const deleteAdmin = (_id) => {
         if (token) {
@@ -87,7 +96,7 @@ const Admin = () => {
                                         <td>{item.nationalId}</td>
                                         <td>
                                             <div>
-                                                <button className='edit_icon delete_edit_ic' onClick={() => handleEdit(item._id)}><FaRegEdit /></button>
+                                                <button className='edit_icon delete_edit_ic' onClick={() => editAdmin(item)}><FaRegEdit /></button>
                                                 <button className='delete_icon  delete_edit_ic' onClick={() => {  setDeleteItemId(item._id); setDeleteAdminModel(true); }}><RiDeleteBinLine /></button>
                                             </div>
                                         </td>
@@ -108,7 +117,7 @@ const Admin = () => {
                                             data={data}
                                             setData={setData}
                                             onDelete={() => deleteAdmin(item._id)}
-                                            _id={_id}
+                                            AdminToEdit={AdminToEdit}
                                         />
                                     )}
                                 </React.Fragment>

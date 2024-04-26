@@ -1,34 +1,48 @@
-
-import React,{useEffect, useState} from 'react';
+import React,{ useState, useContext} from 'react';
 import Page_profile from '../images/page_profile.svg';
+import Admin_page_profile from '../images/Admin_page_profile.svg';
 import '../Styles/profilecss.css';
-import PersonInfo from '../components/PersonInfo';
-import { useNavigate } from 'react-router-dom';
+import * as IoIcons from "react-icons/io";
+import * as FaIcons from "react-icons/fa";
+import { UserContext } from '../UserContext';
 import axios from 'axios';
 
 function Profile() {
 
-
-    const navigate = useNavigate();
-
+    const { user} = useContext(UserContext);
+    const profile = user.role ==="ADMIN" ?  Admin_page_profile : Page_profile;
+    
     const [data, setData] = useState({
       password:"",
       newPassword:"",
     
     });
-    
+
+    const [successMessage, setSuccessMessage] = useState("");
+
     function Submit(e){
       e.preventDefault();
       const token = localStorage.getItem('token');
 
       if (token) {
-        axios.patch(`${'controller'}/${'controller._id'}`, data, {
+        axios.patch(`${'controller'}/${user._id}`, data, {
+
             headers: {
+                // Authorization: Bearer ${token}
                 Authorization: `Bearer ${token}`
+
             }
         })
             .then(res => {
-                console.log(res.data);
+              console.log(res.data);
+              setSuccessMessage("Password updated successfully!");
+              setData({
+                  password: "",
+                  newPassword: ""
+              });
+              setTimeout(() => {
+                  setSuccessMessage("");
+              }, 5000);
             })
             .catch(error => {
                 console.error('Error editing password:', error);
@@ -42,14 +56,30 @@ function Profile() {
           ...prevData,
           [id]: value
       }));
+     
+
 
   }
 
   return (
   <div className='profile_container'>
-    <div className='page_img_profile' ><img src={Page_profile} alt=""  /> </div> 
+    <div className='page_img_profile' ><img src={profile} alt=""  /> </div> 
     <div className='prof_component'>
-       {/* <PersonInfo/> */}
+        <div className='bigboxofprofile' >
+                <p className='p1_of_profile'>name</p>
+                  <div className='box_of_profile'>
+                      <IoIcons.IoMdPerson className='prof_icon'/>
+                      <p className='p2_of_profile'>{user.name}</p>
+                  </div>
+            </div>
+
+          <div className='bigboxofprofile' >
+            <p className='p1_of_profile'>national ID</p>
+              <div className='box_of_profile'>
+                  <FaIcons.FaIdCard className='prof_icon'/>
+                  <p className='p2_of_profile'>{user.nationalId}</p>
+              </div>
+          </div>
         <form onSubmit={(e)=> Submit(e)}>
 
               <div className='profilec'>
@@ -70,8 +100,9 @@ function Profile() {
               </div>
             
         </form>
-          
-        
+          {successMessage && (
+            <div className='success_message'>{successMessage} </div>)}
+
     </div>
   </div>
     
@@ -81,4 +112,4 @@ function Profile() {
 
 
 
-export default Profile;
+export default Profile;

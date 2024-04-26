@@ -48,6 +48,7 @@ const Header = () => {
     return (
         <div id='header'> 
             <h1 id="title">{currentPage}</h1>
+           
             <div id="iconsH">
                 <button className='header_icon'><GoIcons.GoMoon/></button>
 
