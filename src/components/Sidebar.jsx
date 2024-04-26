@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import imgprofile from '../images/imgprofile.svg';
+import Admin_sidebar from '../images/Admin_sidebar.svg';
 import * as MdIcons from "react-icons/md";
 import * as RiIcons from "react-icons/ri";
 import * as FaIcons from "react-icons/fa6";
@@ -14,10 +15,10 @@ import Header from '../components/header';
 
 
 
-const Sidebar = ({ children, managerName }) => {
+const Sidebar = ({ children }) => {
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
-    const { logout } = useContext(UserContext);
+    const { logout, user} = useContext(UserContext);
 
     const handleLogout = () => {
         logout();
@@ -25,7 +26,53 @@ const Sidebar = ({ children, managerName }) => {
     };
 
     const navigate = useNavigate();
-    const menuItem = [
+   
+
+    const AdminMenuItem = [
+        {
+            path: "/Dashboard",
+            name: "Dashboard",
+            icon: <MdIcons.MdOutlineDashboard />
+
+        },
+        {
+            path: "/Events",
+            name: "Events",
+            icon: <RiIcons.RiCalendarCheckLine />
+
+        },
+        {
+            path: "/Candidates",
+            name: "Candidates",
+            icon: <IoIcons.IoMdPerson />
+
+        },
+        {
+            path: "/News",
+            name: "News",
+            icon: <IoIcons5.IoNewspaper />
+
+        },
+        {
+            path: "/Profile",
+            name: "Profile",
+            icon: <CgIcons.CgProfile />
+
+        },
+        {
+            path: "/Questions",
+            name: "Questions",
+            icon: <IoIcons5.IoHelpCircleOutline />
+
+        },
+        {
+            path: "/Reset",
+            name: "Reset",
+            icon: <RiLockPasswordLine />
+        }
+    ];
+
+    const MangerMenuItem = [
         {
             path: "/Dashboard",
             name: "Dashboard",
@@ -50,7 +97,6 @@ const Sidebar = ({ children, managerName }) => {
             icon: <FaIcons.FaPen />
 
         },
-
         {
             path: "/Candidates",
             name: "Candidates",
@@ -81,7 +127,10 @@ const Sidebar = ({ children, managerName }) => {
             icon: <RiLockPasswordLine />
 
         }
-    ]
+    ];
+    const menuItem = user.role === "ADMIN" ? AdminMenuItem :MangerMenuItem ;
+    const image_user = user.role === "ADMIN" ? Admin_sidebar : imgprofile;
+
     const sidebarStyle = {
         width: isOpen ? "304px" : "97px",
     };
@@ -99,8 +148,8 @@ const Sidebar = ({ children, managerName }) => {
                 <div className="top_section" style={{ width: isOpen ? "254px" : "90px" }}>
                     <div style={{ display: isOpen ? "block" : "none" }} className="info-admin">
 
-                        <div  ><img src={imgprofile} alt="" /> </div>
-                        <h1 className=" icon name">{managerName}</h1>
+                        <div  ><img src={image_user} alt="" /> </div>
+                        <p className=" icon name">{user.name}</p>
                     </div>
 
                     <div style={bar} className="bars">

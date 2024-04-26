@@ -101,8 +101,8 @@
 .p2_of_profile{
   color: #4b4949;
   font-family: "Inter-Regular", Helvetica;
-  font-size: 20px;
-  font-weight: 400;
+  font-size: 26px;
+  font-weight: 600;
   letter-spacing: 0;
   text-transform: capitalize;
   /* margin-right: 92px;  */
@@ -123,7 +123,13 @@
   margin-left: 650px;
   cursor: pointer;
 }
-
+.success_message{
+  font-size: 27px;
+  color: #055b60;
+  font-weight: 600;
+  margin-top: -100px;
+  margin-left: 10px;
+}
 /* .submit_button:hover {
   background-color: #065c61b5;
   } */
@@ -675,6 +681,15 @@ margin-bottom: 20px;
    margin-left: 80px;
   margin-top: 90px; 
   cursor: pointer;
+}
+
+.failed_message{
+  font-size: 27px;
+  color:red;
+  font-family: "Inter-Regular", Helvetica;
+  /* font-weight: 600; */
+  padding-top: 430px;
+  margin-left:-490px;
 }
 
 /* ************************************************************** HELP ************************************************************* */

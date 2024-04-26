@@ -11,12 +11,13 @@ import { UserContext } from '../UserContext';
 
 const Login = () => {
   const navigate = useNavigate();
-    const { user, setUser } = useContext(UserContext); 
+    const {user, setUser } = useContext(UserContext); 
 
     const [data, setData] = useState({
         nationalId: "",
         password: ""
     });
+    const [failedMessage, setFailedMessage] = useState("");
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -26,25 +27,30 @@ const Login = () => {
                 if (response.data.status === "success") {
                     const role = response.data.data.controller.role;
                     const token = response.data.data.token;
-                    const name = response.data.data.controller.name;
                     const user =response.data.data.controller;
                     
                     saveToken(token);
                     setUser(user);
                     
-                    if (role === "MANAGER") {
+                    if (user.role === "MANAGER" || "ADMIN" ) {
                         navigate('/Dashboard');
-                    } else if (role === "ADMIN") {
-                        navigate('/Events');
                     } else {
                         console.error('Login failed: Only MANAGERS and ADMINS are allowed to log in.');  
                     }
                 } else {
-                    console.error('Login failed:', response.data.message);
+                    console.error( response.data.message);
                 }
             })
             .catch(error => {
                 console.error('Error during login:', error.message);
+                setFailedMessage("Login failed ! Try again !");
+                    setData({
+                        nationalId: "",
+                        password: ""
+                    });
+                    setTimeout(() => {
+                        setFailedMessage("");
+                    }, 5000);
             });
     }
 
@@ -64,12 +70,14 @@ const Login = () => {
             <div className='box_of_login'>
             <div className='page_img_Login' > <img src={Loginposter} alt=""  /> </div> 
             </div>
-
+           
+           <div>
+          
             <form onSubmit={handleSubmit}>
                 <div className='loginlec'>
-                    <p className='p_of_welcome'>welcome!</p>
-                    <p className='pp_of_welcome'>log in your account to access the dashboard</p>
-
+                   
+                  <p className='p_of_welcome'>welcome!</p>
+                   <p className='pp_of_welcome'>log in your account to access the dashboard</p>
                     <div className='bigboxofLogin'>
                         <input id="nationalId" onChange={handle} placeholder='Enter ID' type='text' value={data.nationalId} className='box_of_login_page' />
                     </div>
@@ -81,8 +89,14 @@ const Login = () => {
 
                 <button type="submit" className='login_button'>Log in</button>
             </form>
+           
+            </div>
+            {failedMessage && (
+                          <p className='failed_message'>{failedMessage} </p>)}
           
+           
         </div>
+       
     </div>
   )
 }

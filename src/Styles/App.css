@@ -62,12 +62,9 @@ main{
     font-weight:600;/*semi bold*/
     text-transform: capitalize;
     position: absolute;
-    left: 20%;
-    margin-top: 5px;
+    left: 35%;
+    padding-top: 17px;
     margin-bottom: 49px;
-    
-    
-    
 }
 hr{
    
