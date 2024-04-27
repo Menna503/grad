@@ -28,7 +28,7 @@ const App = () => {
 
     <UserContextProvider>
     <Routes>
-      <Route path="/" element={<Login />} />
+      <Route path="/" element={ <Login />} />
       <Route path="/Login" element={<Login />} />
       <Route  element={<MainLayout />} >
         <Route path="/Dashboard" element={<Dashboard />} />

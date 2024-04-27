@@ -144,7 +144,6 @@ const Sidebar = ({ children }) => {
         <div className="container">
             <div className="sidebar" style={sidebarStyle}>
 
-
                 <div className="top_section" style={{ width: isOpen ? "254px" : "90px" }}>
                     <div style={{ display: isOpen ? "block" : "none" }} className="info-admin">
 

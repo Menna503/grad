@@ -81,7 +81,7 @@ function Profile() {
 
               <div className='profilec'>
 
-                <p className='p3_of_profile'>change password</p>
+                <p className='p3_of_profile'>change your password</p>
                     <div className='bigboxofprofile' >
                       <p className='p1_of_profile'>old password</p>
                         <input id="password" onChange={handle}  value={data.password}  type='password'  className='box_of_profile'></input>

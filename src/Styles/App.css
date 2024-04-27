@@ -59,7 +59,7 @@ main{
  
     
 }.name{
-    font-weight:600;/*semi bold*/
+    font-weight:600;
     text-transform: capitalize;
     position: absolute;
     left: 35%;
