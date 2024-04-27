@@ -64,7 +64,7 @@ const Reset = () => {
                   </div>
                  
                   <div className='bigboxofprofile reset' >
-                      <p className='p1_of_profile password' >user password :   {data.password} </p>
+                      <p className='p1_of_profile password' >user new password :   {data.password} </p>
                   </div>
 
                   <button className='submit_button_reset'  type="submit">reset</button> 

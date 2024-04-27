@@ -132,7 +132,7 @@ const Sidebar = ({ children }) => {
     const image_user = user.role === "ADMIN" ? Admin_sidebar : imgprofile;
 
     const sidebarStyle = {
-        width: isOpen ? "304px" : "97px",
+        width: isOpen ? "304px" : "100px",
     };
     const bar = {
         marginLeft: isOpen ? "0px" : "48px",
@@ -162,7 +162,8 @@ const Sidebar = ({ children }) => {
                 {
                     menuItem.map((item) => (
                         <div key={item.path}>
-                            <NavLink to={item.path} className="link" activeClassName="active">
+                            <NavLink to={item.path} className="link" >
+                                <div activeClassName="active"></div>
                                 <div className="icon">{item.icon}</div>
                                 <div style={{ display: isOpen ? "block" : "none" }} className="link_text">{item.name}</div>
                             </NavLink>
@@ -173,7 +174,7 @@ const Sidebar = ({ children }) => {
 
                  <div style={{ display: isOpen ? "block" : "none" }}>
                     <button onClick={handleLogout} className='logOut_button' >
-                        <div className='logoutIcon' > <MdIcons.MdLogout /> </div>
+                        {/* <div className='logoutIcon' > <MdIcons.MdLogout /> </div> */}
                         <div className='logout_Title' >Logout</div>
                     </button>
                 </div>
