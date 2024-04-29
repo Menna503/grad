@@ -1,8 +1,12 @@
 import React,{useState, useEffect} from 'react';
 import '../Styles/profilecss.css';
 import Addnewscomponent from '../components/newsOverlay';
+import NewsReadMore_Overlay from '../components/NewsReadMore_Overlay';
 import { IoMdAdd } from "react-icons/io";
+import {FaRegEdit}from "react-icons/fa";
+import { RiDeleteBin6Fill } from "react-icons/ri";
 import  axios  from 'axios';
+import egyptianFlag from "../images/egyptian_flag.svg";
 import { useNavigate } from 'react-router-dom';
 
 
@@ -10,6 +14,7 @@ function News() {
 
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
+  const [showReadModal, setShowReadModal] = useState(false);
   const [newss, setNewss] = useState([]);
   const [newsToEdit, setNewsToEdit] = useState(null);
   const token = localStorage.getItem('token') || '';
@@ -54,6 +59,9 @@ useEffect(() => {
       setNewsToEdit(null); 
   };
 
+  const closeReadModal = () => {
+    setShowReadModal(false);
+};
 
   const addNews = (newNews) => {
     fetchQuestions(); 
@@ -107,28 +115,30 @@ const deleteNews = (iid) => {
 
      
       <div className='manageevents_maincontainer'>
-          <p className='paragraph_in_manage_events'>Please press the below button to add Qestion</p>
+          <p className='paragraph_in_manage_events newsparagraph'>Please press the below button to add News</p>
           <div className='manageevents_container'>
               <div className='managequestions_component'>
-                  {newss.map(news => (
-                      <div key={news.id} className="question">
+                   {newss.map(news => (
+                      
+                            <div  className="news">
+                       <div className='newsBoxContainer' >
+                              <div className='boxof_image'> <img src={egyptianFlag} alt=""  />    </div>
+                              <div className='boxof_header'> <span className='the_header' >Billionaire-backed Koch networkendorses Nikki ....</span>  </div>
+                              <div className='boxof_description'> <button className='the_description' onClick={() => setShowReadModal(true)} >Read more</button>    </div>
                           
-
-                          <div className='questionBoxContainer' >
-                              <div className='boxof_qestion'> <span className='the_qestion'>{news.header} </span>   </div>
-                              <div className='boxof_answer'> <span className='the_answer' >{news.image}</span>    </div>
-                              <div className='boxof_answer'> <span className='the_answer' >{news.description}</span>    </div>
-                          </div>
-                         
-                          <div className='EditAndDeleteforHelp'>
-                                <button className='delete_icon  delete_edit_ic' onClick={() => deleteNews(news._id)}>Delete </button>
-                                <button className='edit_icon delete_edit_ic' onClick={() => editNews(news)}>Edit</button>
+                        </div>
+                          <div className='Edit_and_Delete_News'>
+                                <button className='delete_icon  delete_edit_ic' ><RiDeleteBin6Fill />  </button>
+                                <button className='edit_icon delete_edit_ic' ><FaRegEdit /> </button>
                             </div>
-
-                      </div>
-                  ))}
+                    </div>                     
+                 ))}  
+                  
                   {showModal && (
                       <Addnewscomponent close={closeAddNewssModal} addNews={addNews} newsToEdit={newsToEdit} updateNews={updateNews} />
+                  )}
+                  {showReadModal && (
+                      <NewsReadMore_Overlay close={ closeReadModal}  />
                   )}
                   <button className='add_button' onClick={() => setShowModal(true)}><IoMdAdd /></button>
               </div>

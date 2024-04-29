@@ -303,7 +303,38 @@
   height: 453px;
   width: 394px;
 }
-
+.boxof_image{
+  padding-left: 20px;
+ padding-top: 20px;
+}
+.boxof_header{
+  color: #000000;
+  font-size: 24px;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 600;
+  padding-left: 25px;
+  padding-top: 20px;
+}
+.Edit_and_Delete_News{
+  padding-left: 250px;
+}
+.boxof_description{
+  font-family: "Inter-Regular", Helvetica;
+  padding-left: 25px;
+  padding-top: 10px;
+}
+.newsparagraph{
+  margin-left: -30px;
+}
+.the_description{
+  background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    color: #065c61;
+  font-weight: 600;
+  font-size: 24px;
+}
 /****************************************************EVENTS*************************************************/
 
 .manageevents_maincontainer{
@@ -829,6 +860,7 @@ overflow: auto;
     cursor: pointer;
    margin-left: 30px;
    margin-top: 30px;
+  
 }
 
 .logout_Title{
@@ -850,6 +882,8 @@ text-transform: capitalize;
     flex-direction: column;
     margin-top: 30px;
     margin-left: 90px;
+    /* justify-content: center;
+    align-items: center; */
 } 
 .submit_button_reset{
   border-radius: 10px;
@@ -862,8 +896,8 @@ text-transform: capitalize;
   font-family: "Inter-Regular", Helvetica;
   text-transform: capitalize;
   font-weight: 400;
-  margin-left: 400px;
-  margin-top: 30px;
+  margin-left: 400px; 
+  margin-top: 30px; 
   cursor: pointer;
 }
 .page_img_reset{
@@ -871,8 +905,8 @@ text-transform: capitalize;
   margin-left: 35.17%;
 }
 .reset{
-padding-left: 250px;
-margin-top: 10px;
+ padding-left: 250px; 
+margin-top: 10px; 
 }
 .resetParagraph{
   text-decoration: none;

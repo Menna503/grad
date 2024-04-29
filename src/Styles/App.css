@@ -62,7 +62,7 @@ main{
     font-weight:600;
     text-transform: capitalize;
     position: absolute;
-    left: 35%;
+    left: 30%;
     padding-top: 17px;
     margin-bottom: 49px;
 }
@@ -99,6 +99,7 @@ hr{
     padding-right: 60px; */
     /* margin-left: 80px; */
     margin-bottom: 16px;
+    text-decoration: none;
      padding:10px;
      gap: 30px;
     /* align-items:flex-start;
@@ -128,13 +129,14 @@ hr{
 
 
 .icon{
-    font-size: 28px;
+    font-size: 26px;
     /* display: flex; */
     /* flex-direction: column; */
     /* justify-content: end; */
 }
 .link_text{
-font-size: 24px;
+font-size: 23px;
+
 }
 /* .info-admin{
     display:flex;

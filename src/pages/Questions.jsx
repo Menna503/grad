@@ -5,12 +5,11 @@ import { IoMdAdd } from "react-icons/io";
 import {FaRegEdit}from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+
 
 
 function Help() {
     
-    const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
     const [questions, setQuestions] = useState([]);
     const [questionToEdit, setQuestionToEdit] = useState(null);
