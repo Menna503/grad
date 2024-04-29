@@ -10,7 +10,7 @@
     /* justify-content: space-between; */
     /* height: auto; */
 }
-main{
+.en_main{
     width: 93.7%;
     height: 100%;
      
@@ -21,6 +21,12 @@ main{
     /* margin-left: 5%; */
     /* padding-top: 20px; */
     /* margin-top: 20px; */
+}
+.ar_main{
+    margin-right: 6.37% !important;
+    width: 93.7%;
+    height: 100%;
+    /* transform: rotate(360deg); */
 }
 .sidebar{
     background: #065C61;
@@ -37,19 +43,15 @@ main{
     position: absolute;
     z-index: 1000;
 }
-.arsidebar{
-    
-        background: #065C61;
-        color: #fff;
-        height: 100%; /* املأ الارتفاع ليصل إلى نهاية الصفحة */
-        width: 304px;
-        border-radius: 0px 20px 20px 0px;
-        transition: all 0.5s;
-        position: fixed; /* أو استخدم position: absolute; حسب الحاجة */
-        right: 0; /* جعل العنصر يظهر على اليمين من الصفحة */
-        top: 0; /* قم بضبط الارتفاع إلى الأعلى ليملأ الشاشة */
-        z-index: 1000;
 
+
+.arsidebar{
+        border-radius: 20px 0px 0px 20px;
+        position: fixed; 
+        right: 0;
+        top: 0; 
+        z-index: 1000;
+    
     
 }
 .top_section{

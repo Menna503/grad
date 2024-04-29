@@ -3,7 +3,7 @@ import'./model.css';
 import {  BsPersonX ,BsPersonGear } from "react-icons/bs";
 import { createPortal } from 'react-dom';
 import { IoIosClose } from "react-icons/io";
-import axios, { Axios } from 'axios';
+import axios from 'axios';
 import React, { useState,useEffect } from 'react';
 import'../Styles/profilecss.css';
 import { useNavigate } from 'react-router-dom';
@@ -15,10 +15,149 @@ const BackDrop = () => {
 
 
 
-const Overlayer_edit = ({ close, item, data, setData,AdminToEdit }) => {
-  const [formData, setFormData] = useState({
+// const Overlayer_edit = ({ close,AdminToEdit }) => {
+//   const [Data, setData] = useState({
+//     name: '',
+//     nationalId: '',
+
+//   });
+
+//   useEffect(() => {
+//     if (AdminToEdit) {
+//         setData(AdminToEdit);
+//     }
+// }, [AdminToEdit]);
+
+// function Submit(e){
+//   e.preventDefault();
+//   const token = localStorage.getItem('token');
+//  console.log(AdminToEdit._id)
+
+//   if (token) {
+    
+//     axios.patch(`https://graduation-project-273e.onrender.com/api/controller/admin/${AdminToEdit._id}`, Data, {
+
+//         headers: {
+//           Authorization: `Bearer ${token}`
+
+//         }
+//     })
+//         .then(res => {
+//           console.log(res.data);
+//           close();
+//         })
+//         .catch(error => {
+//             console.error('Error editing admin', error);
+//         });
+// }
+// }
+
+
+//   // const [nameWarning, setNameWarning] = useState(false);
+//   // const [idWarning, setIdWarning] = useState(false);
+//   // const [nationalIdWarning, setNationalIdWarning] = useState(false);
+
+//   function handle(e) {
+//     const { id, value } = e.target;
+//     setData(prevData => ({
+//         ...prevData,
+//         [id]: value
+//     }));
+
+// }
+
+
+//   // const validateNationalID = (id) => {
+//   //   if (id.length !== 14) {
+//   //     setNationalIdWarning(true);
+//   //     return false;
+//   //   }
+//   //   const isExists = data.some(admin => admin.id === id && admin.id !== item.id);
+//   //   if (isExists) {
+//   //     setNationalIdWarning(true);
+//   //     return false;
+//   //   }
+//   //   return true;
+//   // };
+
+//   // const handleSubmit = (e) => {
+//   //   e.preventDefault();
+
+//   //   setNameWarning(false);
+//   //   setIdWarning(false);
+//   //   setNationalIdWarning(false);
+
+//   //   if (!formData.name.trim()) {
+//   //     setNameWarning(true);
+//   //     return;
+//   //   }
+//   //   if (!formData.id.trim()) {
+//   //     setIdWarning(true);
+//   //     return;
+//   //   }
+//   //   if (!validateNationalID(formData.id)) {
+//   //     return;
+//   //   }
+
+//   //   axios.put(`http://localhost:3000/users/${item.id}`, formData)
+//   //     .then(res => {
+//   //       const updatedData = data.map(admin => {
+//   //         if (admin.id === item.id) {
+//   //           return {
+//   //             ...admin,
+//   //             name: formData.name,
+//   //             id: formData.id
+//   //           };
+//   //         }
+//   //         return admin;
+//   //       });
+//   //       setData(updatedData);
+//   //       close();
+//   //     })
+//   //     .catch(err => console.log(err));
+//   // };
+
+//   return (
+//     <div className="overlay">
+//       <button className='close_pop' onClick={close}><IoIosClose/></button>  
+//       <div className='edit'>
+//         <BsPersonGear className='edit_i_pop'/>
+//         <h1 className='edit_h_pop'>Edit Admin</h1>
+//       </div>
+//       <div className='img_edit_pop'><img src='/edit_admin.svg'/></div> 
+//       <form onSubmit={Submit} className='form_continer'>
+//         <div className='inputs_continer'>
+//         <input
+//           type='text'
+//           className='input'
+//           id='name'
+//           value={Data.name}
+//           onChange={handle}
+//           placeholder='Enter Admin Name'
+//         />
+//         {/* {nameWarning && <div className="warning">يرجى إدخال اسم المستخدم</div>} */}
+//         <input
+//           type='text'
+//           className='input'
+//           id='nationalId'
+//           value={Data.nationalId}
+//           placeholder='Enter ID'
+//           onChange={handle}
+//         />
+       
+//         {/* {idWarning && <div className="warning">يرجى إدخال الرقم القومي</div>}
+//         {nationalIdWarning && <div className="warning">الرقم القومي يجب أن يكون مكونًا من 14 رقمًا وغير موجود بالفعل في قاعدة البيانات</div>} */}
+//         </div>
+//         <button className='edit_buuton' type='submit'>Edit</button>
+//       </form>
+//     </div>
+//   )
+// }
+const Overlayer_edit = ({ close,AdminToEdit }) => {
+  const [Data, setData] = useState({
     name: '',
-    nationalId: ''
+    nationalId: '',
+
   });
 
   useEffect(() => {
@@ -30,9 +169,11 @@ const Overlayer_edit = ({ close, item, data, setData,AdminToEdit }) => {
 function Submit(e){
   e.preventDefault();
   const token = localStorage.getItem('token');
+ console.log(AdminToEdit._id)
 
   if (token) {
-    axios.patch(`${'controller'}/${AdminToEdit._id}`, data, {
+    
+     axios.patch(`${'/controller/admin'}/${AdminToEdit._id}`, Data,{
 
         headers: {
           Authorization: `Bearer ${token}`
@@ -41,17 +182,13 @@ function Submit(e){
     })
         .then(res => {
           console.log(res.data);
+          close();
         })
         .catch(error => {
-            console.error('Error editing password:', error);
+            console.error('Error editing admin', error);
         });
 }
 }
-
-
-  // const [nameWarning, setNameWarning] = useState(false);
-  // const [idWarning, setIdWarning] = useState(false);
-  // const [nationalIdWarning, setNationalIdWarning] = useState(false);
 
   function handle(e) {
     const { id, value } = e.target;
@@ -63,55 +200,6 @@ function Submit(e){
 }
 
 
-  // const validateNationalID = (id) => {
-  //   if (id.length !== 14) {
-  //     setNationalIdWarning(true);
-  //     return false;
-  //   }
-  //   const isExists = data.some(admin => admin.id === id && admin.id !== item.id);
-  //   if (isExists) {
-  //     setNationalIdWarning(true);
-  //     return false;
-  //   }
-  //   return true;
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   setNameWarning(false);
-  //   setIdWarning(false);
-  //   setNationalIdWarning(false);
-
-  //   if (!formData.name.trim()) {
-  //     setNameWarning(true);
-  //     return;
-  //   }
-  //   if (!formData.id.trim()) {
-  //     setIdWarning(true);
-  //     return;
-  //   }
-  //   if (!validateNationalID(formData.id)) {
-  //     return;
-  //   }
-
-  //   axios.put(`http://localhost:3000/users/${item.id}`, formData)
-  //     .then(res => {
-  //       const updatedData = data.map(admin => {
-  //         if (admin.id === item.id) {
-  //           return {
-  //             ...admin,
-  //             name: formData.name,
-  //             id: formData.id
-  //           };
-  //         }
-  //         return admin;
-  //       });
-  //       setData(updatedData);
-  //       close();
-  //     })
-  //     .catch(err => console.log(err));
-  // };
 
   return (
     <div className="overlay">
@@ -126,22 +214,22 @@ function Submit(e){
         <input
           type='text'
           className='input'
-          name='name'
-          value={formData.name}
+          id='name'
+          value={Data.name}
           onChange={handle}
           placeholder='Enter Admin Name'
         />
-        {/* {nameWarning && <div className="warning">يرجى إدخال اسم المستخدم</div>} */}
+     
         <input
           type='text'
           className='input'
-          name='id'
-          value={formData.id}
+          id='nationalId'
+          value={Data.nationalId}
           placeholder='Enter ID'
           onChange={handle}
         />
-        {/* {idWarning && <div className="warning">يرجى إدخال الرقم القومي</div>}
-        {nationalIdWarning && <div className="warning">الرقم القومي يجب أن يكون مكونًا من 14 رقمًا وغير موجود بالفعل في قاعدة البيانات</div>} */}
+       
+  
         </div>
         <button className='edit_buuton' type='submit'>Edit</button>
       </form>
@@ -150,7 +238,7 @@ function Submit(e){
 }
 
 
-const OverlayerAddAdmin = ({ close, updates }) => {
+const OverlayerAddAdmin = ({ close,addNewAdmin, updates }) => {
   const [inputData, setInputData] = useState({
     name: '',
     nationalId: '',
@@ -170,6 +258,7 @@ const OverlayerAddAdmin = ({ close, updates }) => {
     axios.post('https://graduation-project-273e.onrender.com/api/controller/add', inputData, config)
       .then(res => {
         // updates(res.data);
+        addNewAdmin(res.inputData);
         close();
       })
       .catch(error => {
@@ -270,7 +359,7 @@ const OverlayerAddEvent = () => {
   );
 };
 
-function Model({ edit_model, add_model, delete_model, add_event, close_model, onDelete, update, item, data, setData, AdminToEdit}) {
+function Model({ edit_model, add_model, delete_model, add_event, close_model, onDelete, update, item, data, setData, AdminToEdit,addNewAdmin}) {
   return (
     (edit_model||add_model||delete_model)&& (
     <>
@@ -279,7 +368,7 @@ function Model({ edit_model, add_model, delete_model, add_event, close_model, on
           <BackDrop />
           {  edit_model&&<  Overlayer_edit close={close_model} item={item} data={data} setData={setData} AdminToEdit={AdminToEdit}/>}
           {delete_model && <OverlayerDeleteAdmin close={close_model} onDelete={onDelete} />}
-          {add_model && <OverlayerAddAdmin close={close_model} updates={update} />}
+          {add_model && <OverlayerAddAdmin close={close_model} updates={update} addNewAdmin={addNewAdmin} />}
           {/* {add_event && <OverlayerAddEvent />} */}
         </>,
         document.getElementById('model')

@@ -25,7 +25,7 @@ const Admin = () => {
     }, [token, navigate]);
 
     const fetchData = () => {
-        axios.get('https://graduation-project-273e.onrender.com/api/controller', {
+        axios.get('controller', {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
@@ -43,9 +43,12 @@ const Admin = () => {
         });
     };
 
-    const updateData = (newData) => {
-        setData(prevData => [...prevData, newData]);
-    };
+    // const updateData = (newData) => {
+    //     setData(prevData => [...prevData, newData]);
+    // };
+    const addNewAdmin = (newAdmin) => {
+        fetchData(); 
+    };
 
     // const handleEdit = (_id) => {
     //     set_Id(_id);
@@ -112,10 +115,11 @@ const Admin = () => {
                                                 setDeleteAdminModel(false);
                                                 setDeleteItemId(null);
                                             }}
-                                            update={updateData}
-                                            item={item}
-                                            data={data}
+                                            // update={updateData}
+                                            // item={item}
+                                            // data={data}
                                             setData={setData}
+                                            addAdmin={addNewAdmin}
                                             onDelete={() => deleteAdmin(item._id)}
                                             AdminToEdit={AdminToEdit}
                                         />

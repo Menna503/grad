@@ -38,13 +38,13 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import * as GoIcons from 'react-icons/go';
 import * as RiIcons from 'react-icons/ri';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next'; // Import useTranslation
 
 const Header = () => {
     const location = useLocation();
     const currentPage = location.pathname.substring(1);
-    const [t, i18n] = useTranslation();
-    
+    const { t, i18n } = useTranslation();
+
     return (
         <div id='header'> 
             <h1 id="title">{currentPage}</h1>
@@ -52,19 +52,15 @@ const Header = () => {
             <div id="iconsH">
                 <button className='header_icon'><GoIcons.GoMoon/></button>
 
-                {i18n.language === 'en' && (
+                {i18n.language === 'en' ? (
                     <button className='header_icon' onClick={() => { i18n.changeLanguage('ar') }}>
-                        <RiIcons.RiGlobalLine/>
+                      <p>اللغة العربية</p>  <RiIcons.RiGlobalLine/>
                     </button>
-                )}
-                
-                {i18n.language === 'ar' && (
+                ) : (
                     <button className='header_icon' onClick={() => { i18n.changeLanguage('en') }}>
-                        <RiIcons.RiGlobalLine/>
+                       <p>English</p> <RiIcons.RiGlobalLine/>
                     </button>
                 )}
-
-                <button className='header_icon'><RiIcons.RiGlobalLine/></button>
             </div>
         </div>
     );

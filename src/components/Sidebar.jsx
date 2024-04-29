@@ -1,4 +1,6 @@
 import React, { useContext, useState } from 'react';
+import { useTranslation } from 'react-i18next'; // Import useTranslation
+
 import imgprofile from '../images/imgprofile.svg';
 import Admin_sidebar from '../images/Admin_sidebar.svg';
 import * as MdIcons from "react-icons/md";
@@ -16,6 +18,8 @@ import Header from '../components/header';
 
 
 const Sidebar = ({ children }) => {
+    const [ t ,i18n] = useTranslation();
+
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
     const { logout, user} = useContext(UserContext);
@@ -31,43 +35,43 @@ const Sidebar = ({ children }) => {
     const AdminMenuItem = [
         {
             path: "/Dashboard",
-            name: "Dashboard",
+            name: t('1'),
             icon: <MdIcons.MdOutlineDashboard />
 
         },
         {
             path: "/Events",
-            name: "Events",
+            name: t('3'),
             icon: <RiIcons.RiCalendarCheckLine />
 
         },
         {
             path: "/Candidates",
-            name: "Candidates",
+            name: t('5'),
             icon: <IoIcons.IoMdPerson />
 
         },
         {
             path: "/News",
-            name: "News",
+            name: t('6'),
             icon: <IoIcons5.IoNewspaper />
 
         },
         {
             path: "/Profile",
-            name: "Profile",
+            name: t('7'),
             icon: <CgIcons.CgProfile />
 
         },
         {
             path: "/Questions",
-            name: "Questions",
+            name: t('8'),
             icon: <IoIcons5.IoHelpCircleOutline />
 
         },
         {
             path: "/Reset",
-            name: "Reset",
+            name: t('9'),
             icon: <RiLockPasswordLine />
         }
     ];
@@ -75,55 +79,55 @@ const Sidebar = ({ children }) => {
     const MangerMenuItem = [
         {
             path: "/Dashboard",
-            name: "Dashboard",
+            name: t('1'),
             icon: <MdIcons.MdOutlineDashboard />
 
         },
         {
             path: "/Admin",
-            name: "Admin",
+            name: t('2'),
             icon: <MdIcons.MdOutlineManageAccounts />
 
         },
         {
             path: "/Events",
-            name: "Events",
+            name: t('3'),
             icon: <RiIcons.RiCalendarCheckLine />
 
         },
         {
             path: "/Requests",
-            name: "Requests",
+            name: t('4'),
             icon: <FaIcons.FaPen />
 
         },
         {
             path: "/Candidates",
-            name: "Candidates",
+            name: t('5'),
             icon: <IoIcons.IoMdPerson />
 
         },
         {
             path: "/News",
-            name: "News",
+            name: t('6'),
             icon: <IoIcons5.IoNewspaper />
 
         },
         {
             path: "/Profile",
-            name: "Profile",
+            name: t('7'),
             icon: <CgIcons.CgProfile />
 
         },
         {
             path: "/Questions",
-            name: "Questions",
+            name: t('8'),
             icon: <IoIcons5.IoHelpCircleOutline />
 
         },
         {
             path: "/Reset",
-            name: "Reset",
+            name: t('9'),
             icon: <RiLockPasswordLine />
 
         }
@@ -142,7 +146,7 @@ const Sidebar = ({ children }) => {
 
     return (
         <div className="container">
-            <div className="sidebar" style={sidebarStyle}>
+         <div className={i18n.language === 'ar' ? ' sidebar arsidebar' : 'sidebar'} style={sidebarStyle}>
 
 
                 <div className="top_section" style={{ width: isOpen ? "254px" : "90px" }}>
@@ -175,12 +179,12 @@ const Sidebar = ({ children }) => {
                  <div style={{ display: isOpen ? "block" : "none" }}>
                     <button onClick={handleLogout} className='logOut_button' >
                         <div className='logoutIcon' > <MdIcons.MdLogout /> </div>
-                        <div className='logout_Title' >Logout</div>
+                        <div className='logout_Title' >{t('10')}</div>
                     </button>
                 </div>
 
             </div>
-            <main>
+            <main className={i18n.language === 'ar' ? 'ar_main' : ' en_main'}>
                 <Header />
                 {children}</main>
         </div>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Model from '../model/model';
 
 function Requests() {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
+  const [selectedCandidate, setSelectedCandidate] = useState(null);
   const token = localStorage.getItem('token') || '';
 
   useEffect(() => {
@@ -36,28 +36,14 @@ function Requests() {
     }
   };
 
-  const handleClick = () => {
-    navigate('/CandidateData');
-  };
+  // Requests.jsx
 
-  const menue_table = [
-    {
-      img: "/candidate_request.svg",
-      name: "mohmed ali mohmed ahmed",
-      id: '9872626266262'
-    },
-    {
-      img: "/candidate_request.svg",
-      name: "mohmed ali mohmed ahmed",
-      id: '9872626266262'
-    },
-    {
-      img: "/candidate_request.svg",
-      name: "mohmed ali mohmed ahmed",
-      id: '9872626266262'
-    }
-  ];
+const handleClick = (item) => {
+  setSelectedCandidate(item);
+  navigate(`/CandidateData/${item._id}`);
+};
 
+  
   return (
     <>
       <div className='top'>
@@ -67,26 +53,13 @@ function Requests() {
               {data.map((item) => (
                 item.status === 'notyet' && (
                   <tr key={item._id}>
-                    <td><div className='candidate_img'><img src='/6.jpg' alt='candidate' /></div></td>
+                    <td><div className='candidate_img'><img src='/candidate_img.svg' alt='candidate' /></div></td>
                     <td>{item.name}</td>
                     <td>{item.nationalId}</td>
                     <td>
                       <div>
-                        <button className='submit_button btn_show' onClick={handleClick}>Show Data</button>
-                        {/* {menue_table.map((menu_item) => (
-                          <tbody key={menu_item.id}>
-                            <tr>
-                              <td><div><img src={menu_item.img} /></div></td>
-                              <td>{menu_item.name}</td>
-                              <td>{menu_item.id}</td>
-                              <td>
-                                <div>
-                                  <button className='submit_button btn_show'>Show Data</button>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        ))} */}
+                        <button className='submit_button btn_show' onClick={()=>handleClick(item)} >Show Data</button>
+                       
                       </div>
                     </td>
                   </tr>
