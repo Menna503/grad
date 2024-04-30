@@ -28,6 +28,7 @@ const App = () => {
   return (
 
     <UserContextProvider>
+<<<<<<< HEAD
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/Login" element={<Login />} />
@@ -45,6 +46,25 @@ const App = () => {
         </Route>
       </Routes>
     </UserContextProvider>
+=======
+    <Routes>
+      <Route path="/" element={ <Login />} />
+      <Route path="/Login" element={<Login />} />
+      <Route  element={<MainLayout />} >
+        <Route path="/Dashboard" element={<Dashboard />} />
+        <Route path="/CandidateData" element={<CandidateData />} />
+        <Route path="/Admin" element={<Admin />} />
+        <Route path="/Events" element={<Events />} />
+        <Route path="/Requests" element={<Requests />} />
+        <Route path="/Candidates" element={<Candidates />} />
+        <Route path="/News" element={<News />} />
+        <Route path="/Profile" element={<Profile />} />
+        <Route path="/Questions" element={<Questions />} />
+        <Route path="/Reset" element={<Reset/>} />
+      </Route>
+    </Routes>
+  </UserContextProvider>
+>>>>>>> 11b85f0157393e361c6014f8fe6bc1dbc683ded5
   );
 };
 
