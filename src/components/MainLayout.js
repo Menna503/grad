@@ -11,7 +11,6 @@ const MainLayout = ({ children }) => {
         return <Navigate to={'/login'} />
 
 
-
     return (
         <>
             <Sidebar >

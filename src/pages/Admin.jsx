@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { IoMdAdd } from "react-icons/io";
 import axios from 'axios';
-import {FaRegEdit}from "react-icons/fa";
+import { FaRegEdit } from "react-icons/fa";
 import { RiDeleteBinLine } from "react-icons/ri";
 import Model from '../model/model';
 import { useNavigate } from 'react-router-dom';
@@ -20,25 +20,25 @@ const Admin = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
-        navigate('/');
+      navigate('/');
     }
-}, [navigate]);
+  }, [navigate]);
 
   useEffect(() => {
     fetchData();
   }, []);
 
-   const fetchData = () => {
+  const fetchData = () => {
     const token = localStorage.getItem('token');
-  
-  axios.get('https://graduation-project-273e.onrender.com/api/controller/add', {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    }
-  })
-.then(res => setData(res.data))
-.catch(err => console.log(err));
-   };
+
+    axios.get('https://graduation-project-273e.onrender.com/api/controller/add', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
+      .then(res => setData(res.data))
+      .catch(err => console.log(err));
+  };
 
   const updateData = (newData) => {
     setData([...data, newData]);
@@ -50,7 +50,7 @@ const Admin = () => {
   };
 
   return (
-    
+
     <>
       <Model
         edit_model={editModel}
@@ -84,7 +84,7 @@ const Admin = () => {
         </div>
         <button className='add' onClick={() => setAddModel(true)}> <IoMdAdd /></button>
       </div>
-   </>
+    </>
   )
 }
 
