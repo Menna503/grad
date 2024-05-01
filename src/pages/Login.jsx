@@ -10,8 +10,8 @@ import { UserContext } from '../UserContext';
 
 
 const Login = () => {
-  const navigate = useNavigate();
-    const {user, setUser } = useContext(UserContext); 
+    const navigate = useNavigate();
+    const { user, setUser } = useContext(UserContext);
 
     const [data, setData] = useState({
         nationalId: "",
@@ -27,30 +27,30 @@ const Login = () => {
                 if (response.data.status === "success") {
                     const role = response.data.data.controller.role;
                     const token = response.data.data.token;
-                    const user =response.data.data.controller;
-                    
+                    const user = response.data.data.controller;
+
                     saveToken(token);
                     setUser(user);
-                    
-                    if (user.role === "MANAGER" || "ADMIN" ) {
-                        navigate('/Dashboard');
+
+                    if (user.role === "MANAGER" || "ADMIN") {
+                        navigate('/');
                     } else {
-                        console.error('Login failed: Only MANAGERS and ADMINS are allowed to log in.');  
+                        console.error('Login failed: Only MANAGERS and ADMINS are allowed to log in.');
                     }
                 } else {
-                    console.error( response.data.message);
+                    console.error(response.data.message);
                 }
             })
             .catch(error => {
                 console.error('Error during login:', error.message);
                 setFailedMessage("Login failed ! Try again !");
-                    setData({
-                        nationalId: "",
-                        password: ""
-                    });
-                    setTimeout(() => {
-                        setFailedMessage("");
-                    }, 5000);
+                setData({
+                    nationalId: "",
+                    password: ""
+                });
+                setTimeout(() => {
+                    setFailedMessage("");
+                }, 5000);
             });
     }
 
@@ -62,43 +62,43 @@ const Login = () => {
         }));
     }
 
-  
-  return (
-    <div className='Login_bigcontainer'>
-        <div className='Login_componentcontainer'>
 
-            <div className='box_of_login'>
-            <div className='page_img_Login' > <img src={Loginposter} alt=""  /> </div> 
-            </div>
-           
-           <div>
-          
-            <form onSubmit={handleSubmit}>
-                <div className='loginlec'>
-                   
-                  <p className='p_of_welcome'>welcome!</p>
-                   <p className='pp_of_welcome'>log in your account to access the dashboard</p>
-                    <div className='bigboxofLogin'>
-                        <input id="nationalId" onChange={handle} placeholder='Enter ID' type='text' value={data.nationalId} className='box_of_login_page' />
-                    </div>
+    return (
+        <div className='Login_bigcontainer'>
+            <div className='Login_componentcontainer'>
 
-                    <div className='bigboxofLogin'>
-                        <input id="password" onChange={handle} placeholder='Password' type='password' value={data.password} className='box_of_login_page' />
-                    </div>
+                <div className='box_of_login'>
+                    <div className='page_img_Login' > <img src={Loginposter} alt="" /> </div>
                 </div>
 
-                <button type="submit" className='login_button'>Log in</button>
-            </form>
-           
+                <div>
+
+                    <form onSubmit={handleSubmit}>
+                        <div className='loginlec'>
+
+                            <p className='p_of_welcome'>welcome!</p>
+                            <p className='pp_of_welcome'>log in your account to access the dashboard</p>
+                            <div className='bigboxofLogin'>
+                                <input id="nationalId" onChange={handle} placeholder='Enter ID' type='text' value={data.nationalId} className='box_of_login_page' />
+                            </div>
+
+                            <div className='bigboxofLogin'>
+                                <input id="password" onChange={handle} placeholder='Password' type='password' value={data.password} className='box_of_login_page' />
+                            </div>
+                        </div>
+
+                        <button type="submit" className='login_button'>Log in</button>
+                    </form>
+
+                </div>
+                {failedMessage && (
+                    <p className='failed_message'>{failedMessage} </p>)}
+
+
             </div>
-            {failedMessage && (
-                          <p className='failed_message'>{failedMessage} </p>)}
-          
-           
+
         </div>
-       
-    </div>
-  )
+    )
 }
 
 export default Login;

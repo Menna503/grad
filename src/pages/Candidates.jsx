@@ -1,78 +1,87 @@
-import { RiDeleteBinLine } from "react-icons/ri";
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { RiDeleteBinLine } from 'react-icons/ri';
 import Model from '../model/model';
 import { useNavigate } from 'react-router-dom';
 
-
 const Candidates = () => {
+  const [deleteCandidateModel, setDeleteCandidateModel] = useState(false);
+  const [data, setData] = useState([]);
+  const [deleteItemId, setDeleteItemId] = useState(null);
+  const token = localStorage.getItem('token') || '';
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-        navigate('/');
-    }
-}, [navigate]);
-  const [deltecandidateModel,setDeleteCandidateModel]=useState(false)
-  const menue_table=[
-    {
-    img:"/candidate_img.svg",
-    name:"mohmed",
-    id:'9872626266262'
 
-  },
-  {
-    img:"/candidate_img.svg",
-    name:"ali",
-    id:'9872626266262'
+  const fetchData = () => {
+    axios.get('https://graduation-project-273e.onrender.com/api/candidate', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
+    .then(res => {
+      const candidateArray = res.data.data && res.data.data.candidates;
+      if (candidateArray) {
+        setData(candidateArray);
+      } else {
+        console.error('Candidates array not found in API response:', res.data);
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching candidates:', error);
+    });
+  };
 
-  },
-  {
-    img:"/candidate_img.svg",
-    name:"menna",
-    id:'9872626266262'
+  const deleteCandidate = (_id) => {
+    axios.delete(`https://graduation-project-273e.onrender.com/api/controller/${_id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
+    .then(res => {
+      console.log('Candidate deleted successfully:', _id);
+      const newData = data.filter(item => item._id !== _id);
+      setData(newData);
+      setDeleteCandidateModel(false);
+      setDeleteItemId(null);
+    })
+    .catch(error => {
+      console.error('Error deleting candidate:', error);
+    });
+  };
 
-  },
-  
-]
   return (
-   
     <>
-    <Model delete_model={deltecandidateModel}  close_model={() => { setDeleteCandidateModel(false);  } }/>
-     <div className='top'>
-    <div className='continer_table'>
-      <table>
-      
-     {
-       menue_table.map((item) => (
-        <tbody>
-        <tr >
-        <td ><div><img src= {item.img}/></div></td>
-         <td>{item.name} </td>
-         <td>{item.id}</td>
-         <td >  
-         <div>
-          <button className='delete_icon  delete_edit_ic'onClick={()=>setDeleteCandidateModel(true)}><RiDeleteBinLine /></button>
-          </div>
-         </td>
-       </tr>
-           
-       
-       
-       </tbody>
-        
-    ))
-     }
-     
-     
-      </table>
-    </div>
-        
+      <Model
+        delete_model={deleteCandidateModel}
+        close_model={() => setDeleteCandidateModel(false)}
+        item={data.find(item => item._id === deleteItemId)} // Pass the selected item to the model
+        onDelete={() => deleteCandidate(deleteItemId)}
+      />
+      <div className='top'>
+        <div className='continer_table'>
+          <table>
+            <tbody>
+              {data.map((item) => (
+                 item.status === 'approved' &&(
+                <tr key={item._id}>
+                  <td><div><img src={item.img} alt='Candidate' /></div></td>
+                  <td>{item.name}</td>
+                  <td>{item.id}</td>
+                  <td>
+                    <div>
+                      <button className='delete_icon  delete_edit_ic' onClick={() => { setDeleteItemId(item._id); setDeleteCandidateModel(true); }}>
+                        <RiDeleteBinLine />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              )))}
+            </tbody>
+          </table>
+        </div>
       </div>
-    
-   </>
-   
-   )
+    </>
+  );
 }
 
 export default Candidates;

@@ -10,7 +10,7 @@
     /* justify-content: space-between; */
     /* height: auto; */
 }
-main{
+.en_main{
     width: 93.7%;
     height: 100%;
      
@@ -21,6 +21,12 @@ main{
     /* margin-left: 5%; */
     /* padding-top: 20px; */
     /* margin-top: 20px; */
+}
+.ar_main{
+    margin-right: 6.37% !important;
+    width: 93.7%;
+    height: 100%;
+    /* transform: rotate(360deg); */
 }
 .sidebar{
     background: #065C61;
@@ -36,6 +42,17 @@ main{
     transition: all 0.5s;
     position: absolute;
     z-index: 1000;
+}
+
+
+.arsidebar{
+        border-radius: 20px 0px 0px 20px;
+        position: fixed; 
+        right: 0;
+        top: 0; 
+        z-index: 1000;
+    
+    
 }
 .top_section{
     display: flex;
@@ -62,9 +79,14 @@ main{
     font-weight:600;
     text-transform: capitalize;
     position: absolute;
-    left: 30%;
-    padding-top: 17px;
+    left: 20%;
+    margin-top: 5px;
     margin-bottom: 49px;
+    padding-left: 20px;
+    
+    
+    
+    
 }
 hr{
    
@@ -320,3 +342,15 @@ text-transform: capitalize;
    color: #055b60 !important;
 }
 /*End Candidate Data page*/
+
+
+/*request page*/
+
+.candidate_img img{
+    width: 130px;
+    height: auto;
+    border-radius: 50%;
+    /* border-radius: 0.5px; */
+    /* font-size:35px; */
+
+}

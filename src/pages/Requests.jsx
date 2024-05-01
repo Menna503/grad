@@ -1,86 +1,76 @@
-import React ,{useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Model from '../model/model';
-import Sidebar from '../components/Sidebar';
-import Header from'../components/header';
-
+import { useNavigate } from 'react-router-dom';
 
 function Requests() {
-    
-  //   const [data , setData] = useState([])
-  // useEffect(()=>{
-  //    axios.get('https://reqres.in/api/users?page=2')
-  //    .then(res => res.data.data)
-  //    .catch(err => console.log(err));
+  const [data, setData] = useState([]);
+  const navigate = useNavigate();
+  const [selectedCandidate, setSelectedCandidate] = useState(null);
+  const token = localStorage.getItem('token') || '';
 
+  useEffect(() => {
+    fetchData();
+  }, [token]);
 
+  const fetchData = () => {
+    if (token) {
+      axios.get('https://graduation-project-273e.onrender.com/api/candidate', {
+          headers: {
+              Authorization: `Bearer ${token}`,
+          }
+      })
+      .then(res => {
+          const candidateArray = res.data.data && res.data.data.candidates;
+          if (candidateArray) {
+              console.log(candidateArray);
+              setData(candidateArray);
+          } else {
+              console.error('Candidates array not found in API response:', res.data);
+          }
+      })
+      .catch(error => {
+          console.error('Error fetching candidates:', error);
+      });
+    } else {
+      console.error('Token is not available.');
+    }
+  };
 
-  // }, [])
-  const menue_table=[
-    {
-    img:"/candidate_request.svg",
-    name:"mohmed ali mohmed ahmed",
-    id:'9872626266262'
+  // Requests.jsx
 
-  },
-  {
-    img:"/candidate_request.svg",
-    name:"mohmed ali mohmed ahmed",
-    id:'9872626266262'
+const handleClick = (item) => {
+  setSelectedCandidate(item);
+  navigate(`/CandidateData/${item._id}`);
+};
 
-  },
-  {
-    img:"/candidate_request.svg",
-    name:"mohmed ali mohmed ahmed",
-    id:'9872626266262'
-
-  },
   
-]
-
-
   return (
-  
     <>
-       
-     <div className='top'>
-    <div className='continer_table'>
-      <table>
-      
-     {
-       menue_table.map((item) => (
-        <tbody>
-        <tr >
-        <td ><div><img src= {item.img}/></div></td>
-         <td>{item.name} </td>
-         <td>{item.id}</td>
-         <td >  
-         <div>
-          <button className='submit_button btn_show' > show data</button>
-          </div>
-         </td>
-       </tr>
-           
-       
-       
-       </tbody>
-        
-    ))
-     }
-     
-     
-      </table>
-    </div>
-        
+      <div className='top'>
+        <div className='continer_table'>
+          <table>
+            <tbody>
+              {data.map((item) => (
+                item.status === 'notyet' && (
+                  <tr key={item._id}>
+                    <td><div className='candidate_img'><img src='/candidate_img.svg' alt='candidate' /></div></td>
+                    <td>{item.name}</td>
+                    <td>{item.nationalId}</td>
+                    <td>
+                      <div>
+                        <button className='submit_button btn_show' onClick={()=>handleClick(item)} >Show Data</button>
+                       
+                      </div>
+                    </td>
+                  </tr>
+                )
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-    
-   </>
-  
-   )
+    </>
+  );
 }
 
-    
-  
-  
-
-export default Requests
+export default Requests;

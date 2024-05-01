@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import imgprofile from '../images/imgprofile.svg';
 import Admin_sidebar from '../images/Admin_sidebar.svg';
 import * as MdIcons from "react-icons/md";
@@ -9,13 +10,15 @@ import * as IoIcons5 from "react-icons/io5";
 import * as CgIcons from "react-icons/cg";
 import { RiLockPasswordLine } from "react-icons/ri";
 import '../Styles/profilecss.css';
-import { NavLink ,useNavigate } from 'react-router-dom';
+import { useLocation, NavLink ,useNavigate } from 'react-router-dom';
 import { UserContext } from '../UserContext';
 import Header from '../components/header';
 
 
 
 const Sidebar = ({ children }) => {
+    const [ t ,i18n] = useTranslation();
+
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
     const { logout, user} = useContext(UserContext);
@@ -27,103 +30,105 @@ const Sidebar = ({ children }) => {
 
     const navigate = useNavigate();
    
-
+    // Use useLocation hook to get current path
+    const location = useLocation();
+    const currentPath = location.pathname;
     const AdminMenuItem = [
         {
-            path: "/Dashboard",
-            name: "Dashboard",
+            path: "/",
+            name: t('1'),
             icon: <MdIcons.MdOutlineDashboard />
 
         },
         {
             path: "/Events",
-            name: "Events",
+            name: t('3'),
             icon: <RiIcons.RiCalendarCheckLine />
 
         },
         {
             path: "/Candidates",
-            name: "Candidates",
+            name: t('5'),
             icon: <IoIcons.IoMdPerson />
 
         },
         {
             path: "/News",
-            name: "News",
+            name: t('6'),
             icon: <IoIcons5.IoNewspaper />
 
         },
         {
             path: "/Profile",
-            name: "Profile",
+            name: t('7'),
             icon: <CgIcons.CgProfile />
 
         },
         {
             path: "/Questions",
-            name: "Questions",
+            name: t('8'),
             icon: <IoIcons5.IoHelpCircleOutline />
 
         },
         {
             path: "/Reset",
-            name: "Reset",
+            name: t('9'),
             icon: <RiLockPasswordLine />
         }
     ];
 
     const MangerMenuItem = [
         {
-            path: "/Dashboard",
-            name: "Dashboard",
+            path: "/",
+            name: t('1'),
             icon: <MdIcons.MdOutlineDashboard />
 
         },
         {
             path: "/Admin",
-            name: "Admin",
+            name: t('2'),
             icon: <MdIcons.MdOutlineManageAccounts />
 
         },
         {
             path: "/Events",
-            name: "Events",
+            name: t('3'),
             icon: <RiIcons.RiCalendarCheckLine />
 
         },
         {
             path: "/Requests",
-            name: "Requests",
+            name: t('4'),
             icon: <FaIcons.FaPen />
 
         },
         {
             path: "/Candidates",
-            name: "Candidates",
+            name: t('5'),
             icon: <IoIcons.IoMdPerson />
 
         },
         {
             path: "/News",
-            name: "News",
+            name: t('6'),
             icon: <IoIcons5.IoNewspaper />
 
         },
         {
             path: "/Profile",
-            name: "Profile",
+            name: t('7'),
             icon: <CgIcons.CgProfile />
 
         },
         {
             path: "/Questions",
-            name: "Questions",
+            name: t('8'),
             icon: <IoIcons5.IoHelpCircleOutline />
 
         },
         {
             path: "/Reset",
-            name: "Reset",
+            name: t('9'),
             icon: <RiLockPasswordLine />
 
         }
@@ -132,7 +137,7 @@ const Sidebar = ({ children }) => {
     const image_user = user.role === "ADMIN" ? Admin_sidebar : imgprofile;
 
     const sidebarStyle = {
-        width: isOpen ? "304px" : "100px",
+        width: isOpen ? "304px" : "97px",
     };
     const bar = {
         marginLeft: isOpen ? "0px" : "48px",
@@ -142,7 +147,8 @@ const Sidebar = ({ children }) => {
 
     return (
         <div className="container">
-            <div className="sidebar" style={sidebarStyle}>
+         <div className={i18n.language === 'ar' ? ' sidebar arsidebar' : 'sidebar'} style={sidebarStyle}>
+
 
                 <div className="top_section" style={{ width: isOpen ? "254px" : "90px" }}>
                     <div style={{ display: isOpen ? "block" : "none" }} className="info-admin">
@@ -163,7 +169,7 @@ const Sidebar = ({ children }) => {
                     menuItem.map((item) => (
                         <div key={item.path}>
                             <NavLink to={item.path} className="link" >
-                                <div activeClassName="active"></div>
+                               <div activeClassName="active"></div>
                                 <div className="icon">{item.icon}</div>
                                 <div style={{ display: isOpen ? "block" : "none" }} className="link_text">{item.name}</div>
                             </NavLink>
@@ -174,17 +180,16 @@ const Sidebar = ({ children }) => {
 
                  <div style={{ display: isOpen ? "block" : "none" }}>
                     <button onClick={handleLogout} className='logOut_button' >
-                        {/* <div className='logoutIcon' > <MdIcons.MdLogout /> </div> */}
-                        <div className='logout_Title' >Logout</div>
+                        <div className='logout_Title' >{t('10')}</div>
                     </button>
                 </div>
 
             </div>
-            <main>
+            <main className={i18n.language === 'ar' ? 'ar_main' : ' en_main'}>
                 <Header />
                 {children}</main>
         </div>
     );
 };
 
-export default Sidebar;
+export default Sidebar;
