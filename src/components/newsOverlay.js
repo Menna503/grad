@@ -92,7 +92,6 @@ function handle(e) {
     let fieldValue = e.target.value;
 
     if (type === 'file') {
-        // Handle file input differently
         fieldValue = e.target.files[0];
     }
 

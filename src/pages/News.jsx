@@ -127,7 +127,7 @@ const getImage = (path) => {
                         </div>
                           <div className='Edit_and_Delete_News'>
                                 <button className='delete_icon  delete_edit_ic'onClick={() => deleteNews(news._id)} ><RiDeleteBin6Fill />  </button>
-                                <button className='edit_icon delete_edit_ic' ><FaRegEdit /> </button>
+                                <button className='edit_icon delete_edit_ic'  onClick={() => editNews(news)} ><FaRegEdit /> </button>
                             </div>
                     </div>                     
                  ))}  
