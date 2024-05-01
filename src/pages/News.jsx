@@ -147,3 +147,4 @@ const getImage = (path) => {
 }
 
 export default News;
+
