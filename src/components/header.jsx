@@ -10,7 +10,7 @@ const Header = () => {
     const { t, i18n } = useTranslation();
 
     const pageNames = {
-        Dashboard: {
+        "": {
             en: 'Dashboard',
             ar: 'الرئيسية',
         },
