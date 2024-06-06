@@ -628,7 +628,7 @@ color: #4b4949;
 }
 /* **********************************************************LOG IN ***********************************************************/
 
-.Login_bigcontainer{
+ .Login_bigcontainer{
 display: flex;
 align-items: center;
 justify-content: center;
@@ -677,7 +677,6 @@ margin-bottom: 50px;
 
 }
 
-
 .loginlec{
 display: flex;
 flex-direction: column;
@@ -690,10 +689,7 @@ margin-right: 20px;
 .bigboxofLogin{
 margin-left: 40px;
 margin-bottom: 20px;
-/* margin-top: 20px; */
-
 }
-
 
 .box_of_login_page{
 background-color: #ffffff;
@@ -730,9 +726,64 @@ cursor: pointer;
 font-size: 27px;
 color:red;
 font-family: "Inter-Regular", Helvetica;
-/* font-weight: 600; */
 padding-top: 430px;
 margin-left:-490px;
+} 
+
+@media (max-width: 1366px) {
+  .Login_bigcontainer{
+    margin-top: 60px; 
+    }
+
+  .Login_componentcontainer{
+      height: 541px;
+      width: 1056px;
+    }
+
+    .box_of_login{
+      height: 541px;
+      width: 489px;
+      }
+    .loginlec{
+      padding-top: 65px;
+      margin-right: 20px;
+      margin-left: 5px;
+      }  
+
+     .box_of_login_page{
+        height: 60px;
+        font-size: 25px;
+        padding-left: 40px;
+        padding-right: 40px;
+        margin-top: -6px;
+      }  
+
+      .login_button{
+        height: 60px;
+        width:398px;
+        margin-left: 80px;
+        margin-top: 50px; 
+        }
+
+        .failed_message{
+          font-size: 20px;
+          color:red;
+          font-family: "Inter-Regular", Helvetica;
+          padding-top: 342px;
+          margin-left:-490px;
+          }  
+          .p_of_welcome{
+            font-size: 35px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            }
+            .pp_of_welcome{
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 50px;
+            
+            }   
+           
 }
 
 /* ************************************************************** HELP ************************************************************* */
