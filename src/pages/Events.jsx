@@ -1,30 +1,28 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import AddEvents from '../components/EventsOverlay';
 import "../Styles/profilecss.css";
 import { IoMdAdd } from "react-icons/io";
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../UserContext';
 
-function Manageevents() {
-
+function Events() {
+     
+    
+    const { user} = useContext(UserContext);
+    
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
     const [events, setEvents] = useState([]);
     const [eventToEdit, setEventToEdit] = useState(null);
     const token = localStorage.getItem('token') || '';
-   
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (!token) {
-            navigate('/');
-        }
-    }, [navigate]);
+    
 
 
     useEffect(() => {
         if (token) {
-            Axios.get('https://graduation-project-273e.onrender.com/api/event', {
+            Axios.get('event', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -100,7 +98,12 @@ const updateEvent = (updatedEvent) => {
                     {showModal && (
                         <AddEvents close={closeAddEventsModal} addEvent={addEvent} eventToEdit={eventToEdit} updateEvent={updateEvent} />
                     )}
-                    <button className='add_button' onClick={() => setShowModal(true)}><IoMdAdd /></button>
+                   {user.role === "MANAGER" && (
+                        <button className='add_button' onClick={() => setShowModal(true)}>
+                            <IoMdAdd />
+                        </button>
+                    )}
+                    
                 </div>
             </div>
         </div>
@@ -108,4 +111,4 @@ const updateEvent = (updatedEvent) => {
     );
 }
 
-export default Manageevents;
+export default Events;

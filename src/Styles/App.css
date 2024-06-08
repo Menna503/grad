@@ -10,7 +10,7 @@
     /* justify-content: space-between; */
     /* height: auto; */
 }
-main{
+.en_main{
     width: 93.7%;
     height: 100%;
      
@@ -22,9 +22,15 @@ main{
     /* padding-top: 20px; */
     /* margin-top: 20px; */
 }
+.ar_main{
+    margin-right: 6.37% !important;
+    width: 93.7%;
+    height: 100%;
+    /* transform: rotate(360deg); */
+}
 .sidebar{
     background: #065C61;
-    color: #fff;
+    color: white;
     height: 1024px;
     /* max-height: 100%; */
     /* height: auto; */
@@ -38,19 +44,13 @@ main{
     z-index: 1000;
 }
 .arsidebar{
-    
-        background: #065C61;
-        color: #fff;
-        height: 100%; /* املأ الارتفاع ليصل إلى نهاية الصفحة */
-        width: 304px;
-        border-radius: 0px 20px 20px 0px;
-        transition: all 0.5s;
-        position: fixed; /* أو استخدم position: absolute; حسب الحاجة */
-        right: 0; /* جعل العنصر يظهر على اليمين من الصفحة */
-        top: 0; /* قم بضبط الارتفاع إلى الأعلى ليملأ الشاشة */
-        z-index: 1000;
+    border-radius: 20px 0px 0px 20px;
+    position: fixed; 
+    right: 0;
+    top: 0; 
+    z-index: 1000;
 
-    
+
 }
 .top_section{
     display: flex;
@@ -74,15 +74,12 @@ main{
  
     
 }.name{
-    font-weight:600;/*semi bold*/
+    font-weight:600;
     text-transform: capitalize;
     position: absolute;
-    left: 20%;
-    margin-top: 5px;
+    left: 30%;
+    padding-top: 17px;
     margin-bottom: 49px;
-    
-    
-    
 }
 hr{
    
@@ -115,29 +112,32 @@ hr{
     color: white;
     /* padding-left: 9px;
     padding-right: 60px; */
-    margin-left: 20px;
+    /* margin-left: 80px; */
+    
     margin-bottom: 16px;
+    text-decoration: none;
      padding:10px;
-     gap: 22px;
+     gap: 30px;
     /* align-items:flex-start;
     justify-content: center; */
     /* justify-content:center; */
     /* text-align: center; */
      /* justify-content: center;   */
-   transition: all 0.5s;
+   /* transition: 0.5s; */
 
 }
 
-.link:hover{
+/* .link:hover{
     background:#D5E5DE;
     color: #065C61;
     transition: all 0.5s;
-}
+} */
 .active{
     background:white;
-    color: #065C61;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    /* color: white; */
+    border-radius: 0px 15px 15px 0px;
+     width: 1px;
+     /* height: 24px; */
 }
 
 
@@ -145,13 +145,14 @@ hr{
 
 
 .icon{
-    font-size: 24px;
+    font-size: 26px;
     /* display: flex; */
     /* flex-direction: column; */
     /* justify-content: end; */
 }
 .link_text{
-font-size: 20px;
+font-size: 23px;
+
 }
 /* .info-admin{
     display:flex;
@@ -190,9 +191,11 @@ font-size: 20px;
 }
 .header_icon{
     font-size: 36px;
+    
     border: none;
     background-color: #fff;
     color: #4B4A4A;
+
 }
 #title{
     color: #055b60!important;
@@ -209,14 +212,21 @@ font-size: 20px;
     background-color: white;
     border: 1px solid #C7C7C7;
     border-radius: 10px;
-    width: 1226px;
+    width: 90%;
     height: 780px;
     max-width: 100%;
-    margin: 43px 70px 65px  47px  ;
+    /* margin: 43px 70px 65px  47px  ; */
+    margin-top:31px !important;
+    margin: 0 auto;
     border-collapse: collapse;
     padding:20x;
     position: relative;
     overflow: auto;
+    
+    /* transform: rotatey(180deg); */
+}
+.rotate_y{
+    transform: rotatey(180deg); 
 }
 table{
 width: 100%;
@@ -233,9 +243,14 @@ padding:5%;
     font-family: "Inter-Regular", Helvetica;
     font-size: 25px;
     font-weight: 400;
+    /* transform: rotatey(180deg); */
     
+   
 }
 
+.rotate_y{
+      transform: rotatey(180deg); 
+}
 .continer_table div {
     display: block;
     max-width: 100%;
@@ -254,8 +269,12 @@ padding:5%;
     font-size: 35px;
     font-weight: 400;
     position:absolute;
-    right: 51px;
-    bottom: 25px;
+    right: 9%;
+    bottom: 2%;
+}
+.ar_add{
+    position: absolute!important;
+    right: 206px!important;
 }
 .delete_icon{
     background-color: #ff4265;
@@ -301,23 +320,48 @@ font-weight: 400;
 line-height: normal;
 text-transform: capitalize;
 }
-.candidateData_table{
+.candidateData_continer_table{
     border-color: #027146;
   border-radius: 10px;
   height: 615px;
   overflow: hidden!important;
+  margin-top: 2% !important;
+  margin-bottom: 2% !important;
+  
+}
+ .candidateData_table{
+padding: 0%;
 }
 .header_candidateData_table{
     color: #055b60;
     font-family: "Inter-Regular", Helvetica;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 400;
+    border-bottom: 1px solid #027146 !important;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 11%;
+    text-align:start;
+}
+
+.candidate_data_td{
+    text-align: start !important;
+    padding-left: 4% !important;
 }
 .file{
     background-color: #33af7f14;
     border-radius: 10px;
    padding: 14px;
+   width: 260px;
+   font-size: 21px;
+  border: none;
+  display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    text-align: start;
 }
+
 .candidateData_button{
     margin-left: 0px !important;
 }
@@ -326,8 +370,8 @@ text-transform: capitalize;
     flex-direction: row;
     justify-content: end;
      gap: 10px;
-     margin-right: 70px;
-     margin-bottom: 20px;
+     margin-right: 9%;
+
     
 }
 .Reject_button {

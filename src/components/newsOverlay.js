@@ -102,36 +102,33 @@ function Addnewscomponent({ close , addNews , newsToEdit , updateNews}) {
 
   return (
       <div className="newsModal"  onClick={handleClose}>
-     <div className="newsModalContainer">
-     <form  onSubmit={Submit}>
+            <div className="newsModalContainer">
+                <form  onSubmit={Submit}>
 
-       <div className='Addnewslec'>
+                    <div className='Addnewslec'>
+                        <div className='closee_button' onClick={close}> <IoIosClose /> </div>
+                            <div className='Addnewwslec'>
+                                <div className='page_img_addnews' ><img src={Addnewsposter} alt=""  /> </div> 
+                                      <div className='bigboxofAddnews' >
+                                         <input  id="header" onChange={handle} placeholder='Add Title Of The News' type='text' value={data.header} className='box_of_Addnews'></input>
+                                      </div>
 
-       <div className='closee_button' onClick={close}> <IoIosClose /> </div>
+                                        <div className='bigboxofAddnewsupload' >
+                                           <input  id="image"  onChange={handle} placeholder='Add Image Of The News' type='file' value={data.image}  className='box_of_upload'></input>
+                                        </div>
+                                        
 
-       <div className='Addnewwslec'>
+                                        <div className='bigboxofAddnewarea' >
+                                          <textarea   id="description" onChange={handle} placeholder='News......' type='text' value={data.description}  className='box_of_Addnewsarea'></textarea>
+                                        </div> 
+                            
+                                </div>
+                            <button className='add_button_news' type="submit">{newsToEdit ? "Edit" : "Add"}</button>
+                    </div>
 
-      <div className='page_img_addnews' ><img src={Addnewsposter} alt=""  /> </div> 
-      <div className='bigboxofAddnews' >
-          <input  id="header" onChange={handle} placeholder='Add Title Of The News' type='text' value={data.header} className='box_of_Addnews'></input>
-          </div>
-
-            <div className='bigboxofAddnewsupload' >
-          <input  id="image"  onChange={handle} placeholder='Add Image Of The News' type='file' value={data.image}  className='box_of_upload'></input>
-         </div>
-        
-
-         <div className='bigboxofAddnewarea' >
-          <textarea   id="description" onChange={handle} placeholder='News......' type='text' value={data.description}  className='box_of_Addnewsarea'></textarea>
-         </div> 
-  
-        </div>
-        <button className='addd_button' type="submit">{newsToEdit ? "Edit" : "Add"}</button>
-      </div>
-
-      
-     </form>
-     </div>
+                
+                </form>
+            </div>
   </div>
   );
 }

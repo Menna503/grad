@@ -1,4 +1,5 @@
-{
+
+ {
     "1":"Dashboard",
     "2":"admin",
     "3":"events",
@@ -6,6 +7,19 @@
     "5":"candidates",
     "6":"news",
     "7":"profile",
-    "8":"help",
-    "9":"log out"
+    "8":"Question",
+    "9":"Reset",
+    "10":"log out",
+    "Add Admin":"Add Admin",
+    "Add":"Add"  ,
+    "please enter admin name": "please enter admin name" ,
+    "please enter nathional id":"please enter nathional id",
+    "please enter password":"please enter password",
+    "edit data":"edit name",
+    "edit":"edit",
+    "are you sure you want to delete ?":"are you sure you want to delete",
+    "yes":"yes",
+    "Show Data":"Show Data"
+
+
 }

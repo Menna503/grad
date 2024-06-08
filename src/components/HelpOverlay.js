@@ -48,6 +48,7 @@ function HelpOverlay({ close , addQuestion , questionToEdit , updateQuestion  })
                         updateQuestion(res.data);
                         close();
                     })
+                    
                     .catch(error => {
                         console.error('Error editing event:', error);
                     });
