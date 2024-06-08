@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FaFile } from "react-icons/fa6";
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -6,6 +7,7 @@ import axios from 'axios';
 
 
 function CandidateData() {
+  const {t,i18n} = useTranslation();
   const { id: candidateId } = useParams();
   const [candidateData, setCandidateData] = useState(null);
   const token = localStorage.getItem('token') || '';
@@ -41,26 +43,30 @@ function CandidateData() {
   if (!candidateData) {
     return <div>Loading...</div>;
   }
+  const getImage = (path) => {
+    return process.env.REACT_APP_API_URL + '/api/uploads/' + path
+}
 
   return (
     <>
       <div className='img_name'>
-        <div><img src="/candidate_request.svg" /></div>
+        <div className='candidate_img'><img   src={getImage(candidateData.image)} /></div>
         {candidateData.name && <p className='name_candidate '>{candidateData.name}</p>}
       </div>
       <div className='continer_table  candidateData_continer_table'>
         <table className='candidateData_table'>
-          <thead>
+          <thead className={i18n.language === 'ar' ? 'rotate_y' :''}>
             <tr>
-              <th className='header_candidateData_table'>Question</th>
+              <th  className={i18n.language === 'ar' ? ' header_candidateData_table  rotate_y' : 'header_candidateData_table'}>{t('Question')}</th>
               
-              <th className='header_candidateData_table'>candidate files</th>
+              <th  className={i18n.language === 'ar' ? ' header_candidateData_table rotate_y' : 'header_candidateData_table'} >{t('candidate files')}</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td className='candidate_data_td'>Are your parents Egyptian?</td>
-            
+              
+                
               <td  className='candidate_data_td'><button className='file'><FaFile/> Family registration</button></td>
             </tr>
             <tr>

@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { useTranslation } from 'react-i18next'; // Import useTranslation
-
+import { useTranslation } from 'react-i18next';
 import imgprofile from '../images/imgprofile.svg';
 import Admin_sidebar from '../images/Admin_sidebar.svg';
 import * as MdIcons from "react-icons/md";
@@ -11,7 +10,7 @@ import * as IoIcons5 from "react-icons/io5";
 import * as CgIcons from "react-icons/cg";
 import { RiLockPasswordLine } from "react-icons/ri";
 import '../Styles/profilecss.css';
-import { NavLink ,useNavigate } from 'react-router-dom';
+import { useLocation, NavLink ,useNavigate } from 'react-router-dom';
 import { UserContext } from '../UserContext';
 import Header from '../components/header';
 
@@ -31,10 +30,12 @@ const Sidebar = ({ children }) => {
 
     const navigate = useNavigate();
    
-
+    // Use useLocation hook to get current path
+    const location = useLocation();
+    const currentPath = location.pathname;
     const AdminMenuItem = [
         {
-            path: "/Dashboard",
+            path: "/",
             name: t('1'),
             icon: <MdIcons.MdOutlineDashboard />
 
@@ -78,7 +79,7 @@ const Sidebar = ({ children }) => {
 
     const MangerMenuItem = [
         {
-            path: "/Dashboard",
+            path: "/",
             name: t('1'),
             icon: <MdIcons.MdOutlineDashboard />
 
@@ -167,8 +168,8 @@ const Sidebar = ({ children }) => {
                 {
                     menuItem.map((item) => (
                         <div key={item.path}>
-                            <NavLink to={item.path} className="link" activeClassName="active">
-                                <div></div>
+                            <NavLink to={item.path} className="link" >
+                               <div activeClassName="active"></div>
                                 <div className="icon">{item.icon}</div>
                                 <div style={{ display: isOpen ? "block" : "none" }} className="link_text">{item.name}</div>
                             </NavLink>
@@ -179,8 +180,6 @@ const Sidebar = ({ children }) => {
 
                  <div style={{ display: isOpen ? "block" : "none" }}>
                     <button onClick={handleLogout} className='logOut_button' >
-                        {/* <div className='logoutIcon' > <MdIcons.MdLogout /> </div> */}
-                       
                         <div className='logout_Title' >{t('10')}</div>
                     </button>
                 </div>

@@ -191,10 +191,18 @@ font-size: 23px;
 }
 .header_icon{
     font-size: 36px;
-    
     border: none;
     background-color: #fff;
     color: #4B4A4A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:12px;
+    cursor: pointer;
+}
+.lang{
+    font-size: 26px;
+    font-weight: 500;
 
 }
 #title{

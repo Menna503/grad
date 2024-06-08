@@ -3,9 +3,11 @@ import React, { useState, useEffect,useContext } from 'react';
 import AddEvents from '../components/EventsOverlay';
 import "../Styles/profilecss.css";
 import { IoMdAdd } from "react-icons/io";
+import { IoCalendarClearOutline } from "react-icons/io5";
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../UserContext';
+import { useLocation } from 'react-router-dom';
 
 function Events() {
      
@@ -17,6 +19,7 @@ function Events() {
     const [events, setEvents] = useState([]);
     const [eventToEdit, setEventToEdit] = useState(null);
     const token = localStorage.getItem('token') || '';
+    const location = useLocation();
     
 
 
@@ -40,7 +43,7 @@ function Events() {
                 console.error('Error fetching events:', error);
             });
         }
-    }, [token]);
+    }, [location.pathname]);
 
     const closeAddEventsModal = () => {
         setShowModal(false);
@@ -85,12 +88,12 @@ const updateEvent = (updatedEvent) => {
 
                             <div className='startevent' >
                                 <p className='PofmanageEvents'>Start</p>
-                                <div className='boxof_start'> <p>{event.start} </p>   </div>
+                                <div className='boxof_start'> <p className='start_date'>{new Date(event.start).toLocaleDateString()} </p> <span className='calender_date'><IoCalendarClearOutline /></span>  </div>
                             </div>
 
                             <div className='startevent' >
                                 <p className='PofmanageEvents'>End</p>
-                                <div className='boxof_start'> <p >{event.end}</p>    </div>
+                                <div className='boxof_start'> <p className='start_date'>{new Date(event.end).toLocaleDateString()}</p> <span className='calender_date'><IoCalendarClearOutline /></span>   </div>
                             </div>
 
                         </div>

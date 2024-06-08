@@ -25,9 +25,10 @@ function Profile() {
       const token = localStorage.getItem('token');
 
       if (token) {
-        axios.patch(`${'controller'}/${user._id}`, data, {
+        axios.patch(`${'controller'}/${'controller._id'}`, data, {
             headers: {
                 Authorization: `Bearer ${token}`
+
             }
         })
             .then(res => {
@@ -109,4 +110,4 @@ function Profile() {
 
 
 
-export default Profile;
+export default Profile;

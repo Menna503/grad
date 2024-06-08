@@ -12,7 +12,7 @@ function Addnewscomponent({ close , addNews , newsToEdit , updateNews}) {
  
   const [data, setData] = useState({
           header: "",
-          image: "",
+          image: null,
           description: ""
   });
 
@@ -32,21 +32,30 @@ function Addnewscomponent({ close , addNews , newsToEdit , updateNews}) {
     e.preventDefault();
     const token = localStorage.getItem('token');
 
-    if (token) {
+    if (!token) {
+        console.error('Token not found, redirecting to login');
+        navigate('/');
+        return;
+    }
+       
+
+        const formData = new FormData();
+        formData.append('header', data.header);
+        formData.append('description', data.description);
+        if (data.image) {
+            formData.append('image', data.image);
+        }
+        
         const config = {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'multipart/form-data'  
             }
         };
-
         
         if (newsToEdit) {
             if (token) {
-            axios.patch(`${'news'}/${newsToEdit._id}`, data, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
+            axios.patch(`${'news'}/${newsToEdit._id}`, formData, config)
                 .then(res => {
                     console.log(res.data);
                     updateNews(res.data);
@@ -63,7 +72,7 @@ function Addnewscomponent({ close , addNews , newsToEdit , updateNews}) {
                     console.log('eventToEdit is undefined or null');
                 }
         }} else {
-            axios.post('question', data, config)
+            axios.post('news', formData, config)
                 .then(res => {
                     addNews(res.data);
                     console.log(res.data);
@@ -75,22 +84,22 @@ function Addnewscomponent({ close , addNews , newsToEdit , updateNews}) {
                     console.error('Response error data:', error.response?.data);
                 });
         }
-    } else {
-        console.error('Token not found, redirecting to login');
-        navigate('/');
-    }
+    
 }
 
+function handle(e) {
+    const { id, type } = e.target;
+    let fieldValue = e.target.value;
 
-  function handle(e) {
-      const { id, value } = e.target;
-      setData(prevData => ({
-          ...prevData,
-          [id]: value
-      }));
+    if (type === 'file') {
+        fieldValue = e.target.files[0];
+    }
 
-      
-  }
+    setData(prevData => ({
+        ...prevData,
+        [id]: fieldValue,
+    }));
+} 
 
   function handleClose(e) {
       if (e.target.classList.contains('newsModal')) {
@@ -114,7 +123,7 @@ function Addnewscomponent({ close , addNews , newsToEdit , updateNews}) {
                                       </div>
 
                                         <div className='bigboxofAddnewsupload' >
-                                           <input  id="image"  onChange={handle} placeholder='Add Image Of The News' type='file' value={data.image}  className='box_of_upload'></input>
+                                           <input  id="image"  onChange={handle} placeholder='Add Image Of The News' type='file' className='box_of_upload'></input>
                                         </div>
                                         
 

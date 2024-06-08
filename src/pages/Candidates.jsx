@@ -119,6 +119,9 @@ const Candidates = () => {
     axios.get('candidate', {
       headers: {
         Authorization: `Bearer ${token}`,
+      },
+      params: {
+        status: 'approved' // Add this parameter to filter only approved candidates
       }
     })
     .then(res => {
@@ -152,7 +155,9 @@ const Candidates = () => {
       console.error('Error deleting candidate:', error);
     });
   };
-
+  const getImage = (path) => {
+    return process.env.REACT_APP_API_URL + '/api/uploads/' + path
+}
   return (
     <>
       <Model
@@ -167,10 +172,10 @@ const Candidates = () => {
           <table className={i18n.language === 'ar' ? 'rotate_y' : ''}>
             <tbody>
               {data.map((item) => (
-                 item.status === 'approved' &&(
+                (
                 <tr key={item._id}>
                   {/* Add class based on language */}
-                  <td className={i18n.language === 'ar' ? 'rotate_y' : ''}><div><img src={item.image} alt='Candidate' /></div></td>
+                  <td className={i18n.language === 'ar' ? 'rotate_y' : ''}><div  className='candidate_img'><img src={getImage(item.image)} alt='Candidate' /></div></td>
                   <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{item.name}</td>
                   <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{item.id}</td>
                   <td>

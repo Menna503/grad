@@ -1,39 +1,3 @@
-
-
-
-// import React from 'react';
-// import { useLocation } from 'react-router-dom';
-// import * as GoIcons from 'react-icons/go';
-// import * as RiIcons from 'react-icons/ri';
-// import { useTranslation } from 'react-i18next'; // Import useTranslation
-
-// const Header = () => {
-//     const location = useLocation();
-//     const currentPage = location.pathname.substring(1);
-//     const { t, i18n } = useTranslation();
-
-//     return (
-//         <div id='header'> 
-//             <h1 id="title">{currentPage}</h1>
-           
-//             <div id="iconsH">
-//                 <button className='header_icon'><GoIcons.GoMoon/></button>
-
-//                 {i18n.language === 'en' ? (
-//                     <button className='header_icon' onClick={() => { i18n.changeLanguage('ar') }}>
-//                        <div > <RiIcons.RiGlobalLine/> <p>اللغة العربية</p> </div>  
-//                     </button>
-//                 ) : (
-//                     <button className='header_icon' onClick={() => { i18n.changeLanguage('en') }}>
-//                                  <RiIcons.RiGlobalLine/> <p>English</p> 
-//                     </button>
-//                 )}
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default Header;
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import * as GoIcons from 'react-icons/go';
@@ -46,7 +10,7 @@ const Header = () => {
     const { t, i18n } = useTranslation();
 
     const pageNames = {
-        Dashboard: {
+        "": {
             en: 'Dashboard',
             ar: 'الرئيسية',
         },
@@ -100,15 +64,15 @@ const Header = () => {
         <div id='header'>
             <h1 id="title">{currentPageName}</h1>
             <div id="iconsH">
-                {/* <button className='header_icon'><GoIcons.GoMoon/></button> */}
+                <button className='header_icon'><GoIcons.GoMoon/></button>
 
                 {i18n.language === 'en' ? (
                     <button className='header_icon' onClick={() => i18n.changeLanguage('ar')}>
-                        <p>اللغة العربية</p> <RiIcons.RiGlobalLine/>
+                     <RiIcons.RiGlobalLine/>  <p className='lang'>English</p>
                     </button>
                 ) : (
                     <button className='header_icon' onClick={() => i18n.changeLanguage('en')}>
-                        <p>English</p> <RiIcons.RiGlobalLine/>
+                    <RiIcons.RiGlobalLine/>  <p className='lang'>اللغة العربية</p>
                     </button>
                 )}
             </div>

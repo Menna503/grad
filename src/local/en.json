@@ -1,5 +1,5 @@
 
- {
+{
     "1":"Dashboard",
     "2":"admin",
     "3":"events",
@@ -19,7 +19,9 @@
     "edit":"edit",
     "are you sure you want to delete ?":"are you sure you want to delete",
     "yes":"yes",
-    "Show Data":"Show Data"
-
+    "Show Data":"Show Data",
+    "Question":"Question",
+    "candidate files":"candidate files"
+     
 
 }

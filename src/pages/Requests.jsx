@@ -95,6 +95,9 @@ function Requests() {
       axios.get('candidate', {
           headers: {
               Authorization: `Bearer ${token}`,
+          },
+          params: {
+            status: 'approved' // Add this parameter to filter only approved candidates
           }
       })
       .then(res => {
@@ -118,7 +121,9 @@ function Requests() {
     setSelectedCandidate(item);
     navigate(`/CandidateData/${item._id}`);
   };
-  
+  const getImage = (path) => {
+    return process.env.REACT_APP_API_URL + '/api/uploads/' + path
+}
   return (
     <>
       <div className='top'>
@@ -130,7 +135,7 @@ function Requests() {
                 (
                   <tr key={item._id}>
                     {/* Add class based on language */}
-                    <td className={i18n.language === 'ar' ? 'rotate_y' : ''}><div className='candidate_img'><img src='/candidate_img.svg' alt='candidate' /></div></td>
+                    <td className={i18n.language === 'ar' ? 'rotate_y' : ''}><div className='candidate_img'><img src={getImage(item.image)} alt='candidate' /></div></td>
                     <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{item.name}</td>
                     <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{item.nationalId}</td>
                     <td>
