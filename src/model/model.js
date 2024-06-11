@@ -172,59 +172,60 @@ const OverlayerDeleteAdmin = ({ close, onDelete }) => {
   );
 };
 
-const OverlayerAddEvent = () => {
-  const url = "";
-  const [data, setData] = useState({
-    header: '',
-    description: ''
-  });
+// const OverlayerAddEvent = () => {
+//   const url = "";
+//   const [data, setData] = useState({
+//     header: '',
+//     description: ''
+//   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios.post(url, {
-      header: data.header,
-      description: data.description
-    })
-    .then(res => {
-      console.log(res.data);
-    })
-    .catch(err => {
-      console.error(err);
-    });
-  };
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     axios.post(url, {
+//       header: data.header,
+//       description: data.description
+//     })
+//     .then(res => {
+//       console.log(res.data);
+//     })
+//     .catch(err => {
+//       console.error(err);
+//     });
+//   };
 
-  const handleInputChange = (e) => {
-    setData({
-      ...data,
-      [e.target.id]: e.target.value
-    });
-  };
+//   const handleInputChange = (e) => {
+//     setData({
+//       ...data,
+//       [e.target.id]: e.target.value
+//     });
+//   };
 
-  return (
-    <div className="overlay overlayer_event">
-      <form onSubmit={handleSubmit}>
-        <div className='Addnelec'>
-          <div className='bigboxofAddevents'>
-            <input onChange={handleInputChange} id="header" placeholder='Title' type='text' className='box_of_Adde' />
-          </div>
-          <div className='Addeventslec'>  
-            <div className='bigboxofAddevents'>
-              <p className='PofmanageEvents'>Start</p>
-              <input onChange={handleInputChange} id="startDate" placeholder='' type='date' className='box_of_Addevents' />
-            </div>
-            <div className='bigboxofAddevents'>
-              <p className='PofmanageEvents'>End</p>
-              <input onChange={handleInputChange} id="endDate" placeholder='' type='date' className='box_of_Addevents' />
-            </div>
-          </div>
-          <button className='addd_button' type='submit'>Add</button> 
-        </div>
-      </form>
-    </div>
-  );
-};
+//   return (
+//     <div className="overlay overlayer_event">
+//       <form onSubmit={handleSubmit}>
+//         <div className='Addnelec'>
+//           <div className='bigboxofAddevents'>
+//             <input onChange={handleInputChange} id="header" placeholder='Title' type='text' className='box_of_Adde' />
+//           </div>
+//           <div className='Addeventslec'>  
+//             <div className='bigboxofAddevents'>
+//               <p className='PofmanageEvents'>Start</p>
+//               <input onChange={handleInputChange} id="startDate" placeholder='' type='date' className='box_of_Addevents' />
+//             </div>
+//             <div className='bigboxofAddevents'>
+//               <p className='PofmanageEvents'>End</p>
+//               <input onChange={handleInputChange} id="endDate" placeholder='' type='date' className='box_of_Addevents' />
+//             </div>
+//           </div>
+//           <button className='addd_button' type='submit'>Add</button> 
+//         </div>
+//       </form>
+//     </div>
+//   );
+// };
 
-function Model({ edit_model, add_model, delete_model, add_event, close_model, onDelete, update, item, data, setData, AdminToEdit,addNewAdmin}) {
+
+function Model({ edit_model, add_model, delete_model, close_model, onDelete, update, item, data, setData, AdminToEdit,addNewAdmin}) {
   return (
     (edit_model||add_model||delete_model)&& (
     <>

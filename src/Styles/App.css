@@ -259,13 +259,13 @@ padding:5%;
 .rotate_y{
       transform: rotatey(180deg); 
 }
-.continer_table div {
+/* .continer_table div {
     display: block;
     max-width: 100%;
     height: auto;
     margin: 0 auto;
     
-}
+} */
     /* width: 70px; */
 
 .add{
@@ -399,3 +399,95 @@ padding: 0%;
     /* font-size:35px; */
 
 }
+/* *********************************************** Dashboard *********************************/
+
+.for_dashboard{
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    height: 199px !important;
+    width:  300px ;
+    align-items: center;
+    justify-content: center;
+    background-color: #33af7f14 !important;
+    margin-bottom: 0px !important;
+  }
+
+  .dashboard{
+    flex-wrap:nowrap !important; 
+    padding-left: 0px !important;
+    
+  }
+
+  .dash{
+    margin-top: 78px !important;
+    /* padding-left: 5px !important; */
+    margin-left: 28px;
+
+  }
+
+  .card_title{
+    font-size: 23px !important;
+  }
+  .number_of_candidates{
+   gap:16px !important;
+   padding-top: 0px !important;
+   display: flex;
+  flex-direction: row;
+   
+  }
+  .icon_of_can{
+    font-size: 26px;
+    color: #055b60;
+}
+/* .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(79, 77, 77, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .overlay-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 90%;
+    max-height: 90%;
+    overflow: auto;
+  }
+  
+  .overlay img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+   */
+   .p_dashboard{
+    color: #000000;
+   font-family: "Inter-SemiBold", Helvetica;
+   font-size: 20px;
+   font-weight: 600;
+   left: 0;
+   letter-spacing: 0;
+   line-height: normal;
+   margin-top: 34px;
+   }
+   .continer_table_dashboard{
+    height: 489px;
+    margin: 0px!important;
+    border-color: #055b60;
+    border-radius: 10px;
+    width: 97%;
+    margin-top: 30px !important;
+   }
+   .th_dashboard{
+    color: #064145;
+    font-family: "Inter-Regular", Helvetica;
+    font-size: 22px;
+    font-weight: 400;
+   }

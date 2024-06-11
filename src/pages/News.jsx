@@ -72,6 +72,11 @@ const updateNews = (updatedNews) => {
     fetchQuestions();
 };
 
+const openReadMoreModal = (news) => {
+    setNewsToEdit(news);
+    setShowReadModal(true);
+};
+
 const deleteNews = (iid) => {
     console.log('Deleting question with ID:', iid);
   
@@ -122,7 +127,7 @@ const getImage = (path) => {
                        
                               <div className='boxof_image'>  <img className ="news_image" src={getImage(news.image)}  alt="" />  </div>
                               <div className='boxof_header'> <span className='the_header' >{news.header} ....</span>  </div>
-                              <div className='boxof_description'> <button className='the_description' onClick={() => setShowReadModal(true)} >Read more</button>    </div>
+                              <div className='boxof_description'> <button className='the_description' onClick={() => openReadMoreModal(news)} >Read more</button>    </div>
                           
                         </div>
                           <div className='Edit_and_Delete_News'>
@@ -136,7 +141,7 @@ const getImage = (path) => {
                       <Addnewscomponent close={closeAddNewssModal} addNews={addNews} newsToEdit={newsToEdit} updateNews={updateNews} />
                   )}
                   {showReadModal && (
-                      <NewsReadMore_Overlay close={ closeReadModal}  />
+                      <NewsReadMore_Overlay close={ closeReadModal} newsToEdit={newsToEdit}  />
                   )}
                   <button className='add_button' onClick={() => setShowModal(true)}><IoMdAdd /></button>
               </div>

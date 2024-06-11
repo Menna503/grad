@@ -97,7 +97,7 @@ function Requests() {
               Authorization: `Bearer ${token}`,
           },
           params: {
-            status: 'approved' // Add this parameter to filter only approved candidates
+            status: 'not yet' // Add this parameter to filter only approved candidates
           }
       })
       .then(res => {
