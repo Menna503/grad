@@ -28,6 +28,7 @@
     height: 100%;
     /* transform: rotate(360deg); */
 }
+                                                 /* side bar */
 .sidebar{
     background: #065C61;
     color: white;
@@ -104,6 +105,14 @@ hr{
     right: 22px;
 
 }
+.bars_ar{
+display: flex;
+position: absolute;
+font-size: 24px;
+top:21px ;
+left: 22px ;
+
+}
 
 
 
@@ -169,7 +178,8 @@ font-size: 23px;
     display: block;
 
 }
- #header{
+                                                            /*end side bar */
+ .header{
     background-color:#fff;
     border-radius: 0px 0px 10px 10px;
     box-shadow: 0px 4px 4px #00000040;
@@ -180,7 +190,7 @@ font-size: 23px;
     /* width: 1367px; */
     position: relative;
 } 
-#iconsH{
+.iconsH{
     position: absolute;
     right: 5%;
     display: flex;
@@ -205,7 +215,7 @@ font-size: 23px;
     font-weight: 500;
 
 }
-#title{
+.title{
     color: #055b60!important;
     font-family: "Inter-Bold", Helvetica;
     font-size: 32px !important;
@@ -239,7 +249,7 @@ font-size: 23px;
 table{
 width: 100%;
 height: 86%;
-padding:5%;
+padding:3%;
 
 /* margin: 0 auto; */
 }
@@ -247,18 +257,16 @@ padding:5%;
     border-bottom: 1px solid #C7C7C7;
     color: #4B4A4A;
     text-align: center;
-    padding: 10px;
+    padding: 20px;
     font-family: "Inter-Regular", Helvetica;
     font-size: 25px;
     font-weight: 400;
-    /* transform: rotatey(180deg); */
+
     
    
 }
 
-.rotate_y{
-      transform: rotatey(180deg); 
-}
+
 /* .continer_table div {
     display: block;
     max-width: 100%;
@@ -351,10 +359,21 @@ padding: 0%;
     padding-left: 11%;
     text-align:start;
 }
+.header_candidateData_table_ar{
+    text-align: end !important;
+    padding-right: 11% !important;
+}
+.padding_left{
+    padding-left: 18% !important;
+}
 
 .candidate_data_td{
     text-align: start !important;
     padding-left: 4% !important;
+}
+.candidate_data_td_ar{
+    text-align: end !important ;
+    padding-right: 7% !important;
 }
 .file{
     background-color: #33af7f14;
@@ -386,18 +405,27 @@ padding: 0%;
    background-color: #fff !important;
    color: #055b60 !important;
 }
+.flex{
+    display: flex;
+    gap:5px;
+}
 /*End Candidate Data page*/
 
 
 /*request page*/
 
-.candidate_img img{
-    width: 130px;
-    height: auto;
+.candidate_img {
+    width: 7rem;
+    height: 7rem;
     border-radius: 50%;
     /* border-radius: 0.5px; */
     /* font-size:35px; */
 
+}
+.img_dashboard{
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
 }
 /* *********************************************** Dashboard *********************************/
 
@@ -472,11 +500,15 @@ padding: 0%;
    font-family: "Inter-SemiBold", Helvetica;
    font-size: 20px;
    font-weight: 600;
-   left: 0;
    letter-spacing: 0;
    line-height: normal;
    margin-top: 34px;
    }
+   .p_dashboard_ar{
+    position: relative;
+    right: 6.37%;
+   }
+   
    .continer_table_dashboard{
     height: 489px;
     margin: 0px!important;
@@ -490,4 +522,5 @@ padding: 0%;
     font-family: "Inter-Regular", Helvetica;
     font-size: 22px;
     font-weight: 400;
+    padding-bottom: 1.6rem;
    }

@@ -8,7 +8,7 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 import  axios  from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-
+import { useTranslation } from 'react-i18next';
 
 function News() {
 
@@ -19,7 +19,7 @@ function News() {
   const [newsToEdit, setNewsToEdit] = useState(null);
   const token = localStorage.getItem('token') || '';
   const location = useLocation();
- 
+  const { t, i18n } = useTranslation();
 
 
  
@@ -117,23 +117,23 @@ const getImage = (path) => {
 
      
       <div className='manageevents_maincontainer'>
-          <p className='paragraph_in_manage_events newsparagraph'>Please press the below button to add News</p>
+          <p  className={i18n.language === 'ar' ? 'paragraph_in_manage_events align' : 'paragraph_in_manage_events'}>{t('Please press the below button to add News')}</p>
           <div className='manageevents_container'>
-              <div className='manageevents_component'>
+              <div className={i18n.language === 'ar' ? 'manageevents_component_arabic' : 'manageevents_component '} >
                    {newss.map(news => (
                       
-                            <div  className="news">
+                            <div className="news">
                        <div className='newsBoxContainer' >
                        
                               <div className='boxof_image'>  <img className ="news_image" src={getImage(news.image)}  alt="" />  </div>
-                              <div className='boxof_header'> <span className='the_header' >{news.header} ....</span>  </div>
-                              <div className='boxof_description'> <button className='the_description' onClick={() => openReadMoreModal(news)} >Read more</button>    </div>
+                              <div className='boxof_header'> <span className='the_header' >{news.header} </span>  </div>
+                              <div className='boxof_description'> <button className='the_description' onClick={() => openReadMoreModal(news)} >قراءة المزيد</button>    </div>
                           
                         </div>
                           <div className='Edit_and_Delete_News'>
                                 <button className='delete_icon  delete_edit_ic'onClick={() => deleteNews(news._id)} ><RiDeleteBin6Fill />  </button>
                                 <button className='edit_icon delete_edit_ic'  onClick={() => editNews(news)} ><FaRegEdit /> </button>
-                            </div>
+                          </div>
                     </div>                     
                  ))}  
                   
@@ -143,9 +143,10 @@ const getImage = (path) => {
                   {showReadModal && (
                       <NewsReadMore_Overlay close={ closeReadModal} newsToEdit={newsToEdit}  />
                   )}
-                  <button className='add_button' onClick={() => setShowModal(true)}><IoMdAdd /></button>
+                  
               </div>
           </div>
+          <button className={i18n.language === 'ar' ? 'add_button left' : 'add_button'} onClick={() => setShowModal(true)}><IoMdAdd /></button>
       </div>
       
   );

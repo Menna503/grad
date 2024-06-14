@@ -7,10 +7,11 @@ import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { saveToken } from '../utils/authentication';
 import { UserContext } from '../UserContext';
-
+import { useTranslation } from 'react-i18next';
 
 const Login = () => {
     const navigate = useNavigate();
+    const { t, i18n } = useTranslation();
     const { user, setUser } = useContext(UserContext);
 
     const [data, setData] = useState({
@@ -76,8 +77,8 @@ const Login = () => {
                     <form onSubmit={handleSubmit}>
                         <div className='loginlec'>
 
-                            <p className='p_of_welcome'>welcome!</p>
-                            <p className='pp_of_welcome'>log in your account to access the dashboard</p>
+                            <p className='p_of_welcome'>{t('welcome!')}</p>
+                            <p className='pp_of_welcome'>{t('log in your account to access the dashboard')}</p>
                             <div className='bigboxofLogin'>
                                 <input id="nationalId" onChange={handle} placeholder='Enter ID' type='text' value={data.nationalId} className='box_of_login_page' />
                             </div>

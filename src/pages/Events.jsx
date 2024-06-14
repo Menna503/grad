@@ -2,6 +2,7 @@
 import React, { useState, useEffect,useContext } from 'react';
 import AddEvents from '../components/EventsOverlay';
 import "../Styles/profilecss.css";
+import { useTranslation } from 'react-i18next';
 import { IoMdAdd } from "react-icons/io";
 import { IoCalendarClearOutline } from "react-icons/io5";
 import Axios from 'axios';
@@ -13,7 +14,7 @@ function Events() {
      
     
     const { user} = useContext(UserContext);
-    
+    const { t, i18n } = useTranslation();
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
     const [events, setEvents] = useState([]);
@@ -78,22 +79,22 @@ const updateEvent = (updatedEvent) => {
     return (
 
        
-        <div className='manageevents_maincontainer'>
-            <p className='paragraph_in_manage_events'>Please press the below button to add an event</p>
+        <div className='manageevents_maincontainer' >
+            <p className={i18n.language === 'ar' ? 'paragraph_in_manage_events align' : 'paragraph_in_manage_events'}>{t('Please press the below button to add event')}</p>
             <div className='manageevents_container'>
-                <div className='manageevents_component'>
+                <div  className='manageevents_component'>
                     {events.map(event => (
-                        <div key={event.id} className="event">
-                            <div className='theTitleOfEvent'> <p className='titleofevent'>{event.type}</p> </div>
+                        <div key={event.id} className={i18n.language === 'ar' ? 'event rotate_y' : 'event'} >
+                            <div className={i18n.language === 'ar' ? 'theTitleOfEvent rotate_y' : 'theTitleOfEvent'}> <p className="titleofevent">{t(event.type)}</p> </div>
 
                             <div className='startevent' >
-                                <p className='PofmanageEvents'>Start</p>
-                                <div className='boxof_start'> <p className='start_date'>{new Date(event.start).toLocaleDateString()} </p> <span className='calender_date'><IoCalendarClearOutline /></span>  </div>
+                                <p className={i18n.language === 'ar' ? 'PofmanageEvents rotate_y' : 'PofmanageEvents'} >{t('start')}</p>
+                                <div className='boxof_start'> <p className={i18n.language === 'ar' ? 'start_date rotate_y' : 'start_date'}>{new Date(event.start).toLocaleDateString()} </p> <span  className={i18n.language === 'ar' ? 'calender_date rotate_y' : 'calender_date'}><IoCalendarClearOutline /></span>  </div>
                             </div>
 
                             <div className='startevent' >
-                                <p className='PofmanageEvents'>End</p>
-                                <div className='boxof_start'> <p className='start_date'>{new Date(event.end).toLocaleDateString()}</p> <span className='calender_date'><IoCalendarClearOutline /></span>   </div>
+                                <p className={i18n.language === 'ar' ? 'PofmanageEvents rotate_y' : 'PofmanageEvents'} >{t('end')}</p>
+                                <div className='boxof_start'> <p className={i18n.language === 'ar' ? 'start_date rotate_y' : 'start_date'}>{new Date(event.end).toLocaleDateString()}</p> <span className={i18n.language === 'ar' ? 'calender_date rotate_y' : 'calender_date'} ><IoCalendarClearOutline /></span>   </div>
                             </div>
 
                         </div>
@@ -101,14 +102,13 @@ const updateEvent = (updatedEvent) => {
                     {showModal && (
                         <AddEvents close={closeAddEventsModal} addEvent={addEvent} eventToEdit={eventToEdit} updateEvent={updateEvent} />
                     )}
-                   {user.role === "MANAGER" && (
-                        <button className='add_button' onClick={() => setShowModal(true)}>
+                </div>
+            </div>
+            {user.role === "MANAGER" && (
+                        <button className={i18n.language === 'ar' ? 'add_button left' : 'add_button'} onClick={() => setShowModal(true)}>
                             <IoMdAdd />
                         </button>
                     )}
-                    
-                </div>
-            </div>
         </div>
         
     );

@@ -4,6 +4,7 @@ import "../Styles/profilecss.css";
 import { IoMdAdd } from "react-icons/io";
 import {FaRegEdit}from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
+import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 
 
@@ -14,6 +15,7 @@ function Help() {
     const [questions, setQuestions] = useState([]);
     const [questionToEdit, setQuestionToEdit] = useState(null);
     const token = localStorage.getItem('token') || '';
+    const { t, i18n } = useTranslation();
    
 
     const fetchQuestions = () => {
@@ -65,7 +67,7 @@ function Help() {
 const deleteQuestion = (iid) => {
     console.log('Deleting question with ID:', iid);
   
-    const confirmDelete = window.confirm("Are you sure you want to delete this question?");
+    const confirmDelete = window.confirm(t("Are you sure you want to delete this question?"));
     if (confirmDelete) {
         const token = localStorage.getItem('token'); 
 
@@ -100,7 +102,7 @@ const deleteQuestion = (iid) => {
 
        
         <div className='manageevents_maincontainer'>
-            <p className='paragraph_in_manage_events'>Please press the below button to add Qestion</p>
+            <p className={i18n.language === 'ar' ? 'paragraph_in_manage_events align' : 'paragraph_in_manage_events'}>{t('Please press the below button to add Qestion')}</p>
             <div className='manageevents_container'>
                 <div className='managequestions_component'>
                     {questions.map(question => (
@@ -123,9 +125,10 @@ const deleteQuestion = (iid) => {
                     {showModal && (
                         <HelpOverlay close={closeAddQuestionsModal} addQuestion={addQuestion} questionToEdit={questionToEdit} updateQuestion={updateQuestion} />
                     )}
-                    <button className='add_button' onClick={() => setShowModal(true)}><IoMdAdd /></button>
+                    
                 </div>
             </div>
+            <button className={i18n.language === 'ar' ? 'add_button left' : 'add_button'} onClick={() => setShowModal(true)}><IoMdAdd /></button>
         </div>
         
     );

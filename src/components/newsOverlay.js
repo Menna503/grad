@@ -3,12 +3,12 @@ import axios from 'axios';
 import Addnewsposter from '../images/Addnewsposter.svg';
 import { IoIosClose } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
-
+import { useTranslation } from 'react-i18next';
 
 function Addnewscomponent({ close , addNews , newsToEdit , updateNews}) {
 
   const navigate = useNavigate();
- 
+  const { t, i18n } = useTranslation();
  
   const [data, setData] = useState({
           header: "",
@@ -16,7 +16,7 @@ function Addnewscomponent({ close , addNews , newsToEdit , updateNews}) {
           description: ""
   });
 
-
+  const [fileName, setFileName] = useState('ادخل صورة');
 
   useEffect(() => {
       if (newsToEdit) {
@@ -93,13 +93,14 @@ function handle(e) {
 
     if (type === 'file') {
         fieldValue = e.target.files[0];
+        setFileName(e.target.files[0]?.name || 'ادخل صورة');
     }
 
     setData(prevData => ({
         ...prevData,
         [id]: fieldValue,
     }));
-} 
+  }
 
   function handleClose(e) {
       if (e.target.classList.contains('newsModal')) {
@@ -119,20 +120,20 @@ function handle(e) {
                             <div className='Addnewwslec'>
                                 <div className='page_img_addnews' ><img src={Addnewsposter} alt=""  /> </div> 
                                       <div className='bigboxofAddnews' >
-                                         <input  id="header" onChange={handle} placeholder='Add Title Of The News' type='text' value={data.header} className='box_of_Addnews'></input>
+                                         <input  id="header" onChange={handle} placeholder={t('Add The Title Of The News')} type='text' value={data.header} className={i18n.language === 'ar' ? 'box_of_Addnews align_right' : 'box_of_Addnews'}></input>
                                       </div>
 
-                                        <div className='bigboxofAddnewsupload' >
-                                           <input  id="image"  onChange={handle} placeholder='Add Image Of The News' type='file' className='box_of_upload'></input>
-                                        </div>
+                                      <div className='bigboxofAddnewsupload'>
+                                           <input id="image" onChange={handle} type='file' className={i18n.language === 'ar' ? 'box_of_upload align_right ' : 'box_of_upload'}  />
+                                      </div>
                                         
 
                                         <div className='bigboxofAddnewarea' >
-                                          <textarea   id="description" onChange={handle} placeholder='News......' type='text' value={data.description}  className='box_of_Addnewsarea'></textarea>
+                                          <textarea   id="description" onChange={handle} placeholder={t('News....')} type='text' value={data.description}  className={i18n.language === 'ar' ? 'box_of_Addnewsarea align_right' : 'box_of_Addnewsarea'}></textarea>
                                         </div> 
                             
                                 </div>
-                            <button className='add_button_news' type="submit">{newsToEdit ? "Edit" : "Add"}</button>
+                            <button className='add_button_news' type="submit">{newsToEdit ? t('edit') : t('add')}</button>
                     </div>
 
                 

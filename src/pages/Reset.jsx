@@ -2,8 +2,11 @@ import React,{useState} from 'react';
 import axios from 'axios';
 import reset from '../images/reset.svg';
 import "../Styles/profilecss.css";
+import { useTranslation } from 'react-i18next';
 
 const Reset = () => {
+
+  const { t, i18n } = useTranslation();
 
   const [data, setData] = useState({
     nationalId: "",
@@ -48,7 +51,7 @@ const Reset = () => {
 
   return (
     <>
-    <p className='p3_of_profile resetParagraph'> please enter the national ID for user to change his password at the application</p>
+    <p className={i18n.language === 'ar' ? ' resetParagraph_arabic paragraph_in_manage_events align' : ' resetParagraph paragraph_in_manage_events'}> {t('please enter the national ID for user to change his password at the application')}</p>
       <div className='reset_container'>
        
     <div className='page_img_reset' ><img src={reset} alt=""  /> </div> 
@@ -59,15 +62,15 @@ const Reset = () => {
               <div className='profilec'>
 
                     <div className='bigboxofprofile reset' >
-                      <p className='p1_of_profile'>national ID</p>
-                        <input id="nationalId" onChange={handle}  value={data.nationalId}  type='text'  className='box_of_profile'></input>
+                      <p className={i18n.language === 'ar' ? 'p1_of_profile reset_arabic' : 'p1_of_profile'}>{t('national ID')}</p>
+                        <input id="nationalId" onChange={handle}  value={data.nationalId}  type='text' className={i18n.language === 'ar' ? 'box_of_profile for_reset' : 'box_of_profile'} ></input>
                   </div>
                  
                   <div className='bigboxofprofile reset' >
-                      <p className='p1_of_profile password' >user new password :   {data.password} </p>
+                      <p className={i18n.language === 'ar' ? 'p1_of_profile reset_arabicc password' : 'p1_of_profile password'} >{t('user new password :')}    {data.password} </p>
                   </div>
 
-                  <button className='submit_button_reset'  type="submit">reset</button> 
+                  <button className='submit_button_reset'  type="submit">{t('reset')}</button> 
               </div>
             
         </form>

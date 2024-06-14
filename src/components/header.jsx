@@ -61,9 +61,9 @@ const Header = () => {
     }
 
     return (
-        <div id='header'>
-            <h1 id="title">{currentPageName}</h1>
-            <div id="iconsH">
+        <div className={i18n.language==='ar'?'rotate_y header':'header'}  >
+            <h1 className={i18n.language==='ar'?'title rotate_y':'title'}>{currentPageName}</h1>
+            <div className="iconsH">
                 <button className='header_icon'><GoIcons.GoMoon/></button>
 
                 {i18n.language === 'en' ? (
@@ -72,7 +72,7 @@ const Header = () => {
                     </button>
                 ) : (
                     <button className='header_icon' onClick={() => i18n.changeLanguage('en')}>
-                    <RiIcons.RiGlobalLine/>  <p className='lang'>اللغة العربية</p>
+                    <RiIcons.RiGlobalLine/>  <p className={i18n.language==='ar'?'lang rotate_y':'lang'}>اللغة العربية</p>
                     </button>
                 )}
             </div>

@@ -2,16 +2,19 @@ import React,{ useState, useContext} from 'react';
 import Page_profile from '../images/page_profile.svg';
 import Admin_page_profile from '../images/Admin_page_profile.svg';
 import '../Styles/profilecss.css';
+import '../Styles/App.css';
 import * as IoIcons from "react-icons/io";
 import * as FaIcons from "react-icons/fa";
 import { UserContext } from '../UserContext';
+import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 
 function Profile() {
 
     const { user} = useContext(UserContext);
     const profile = user.role ==="ADMIN" ?  Admin_page_profile : Page_profile;
-    
+    const { t, i18n } = useTranslation();
+
     const [data, setData] = useState({
       password:"",
       newPassword:"",
@@ -60,20 +63,20 @@ function Profile() {
   }
 
   return (
-  <div className='profile_container'>
-    <div className='page_img_profile' ><img src={profile} alt=""  /> </div> 
+  <div className={i18n.language === 'ar' ? 'profile_container arabic_candidates ' : 'profile_container'}>
+    <div className={i18n.language === 'ar' ? 'page_img_profile arabic_image  ' : 'page_img_profile'} > {i18n.language === 'ar' ? (<img src="/manager.svg" alt="" /> ) : ( <img src="/manager_english.svg" alt="" /> )} </div>                                             
     <div className='prof_component'>
         <div className='bigboxofprofile' >
-                <p className='p1_of_profile'>name</p>
-                  <div className='box_of_profile'>
+                <p className={i18n.language === 'ar' ? 'p1_of_profile reset_arabic arabic_name ' : 'p1_of_profile'}>{t('name')}</p>
+                  <div  className={i18n.language === 'ar' ? 'box_of_profile profile_reverse' : 'box_of_profile '}>
                       <IoIcons.IoMdPerson className='prof_icon'/>
                       <p className='p2_of_profile'>{user.name}</p>
                   </div>
             </div>
 
           <div className='bigboxofprofile' >
-            <p className='p1_of_profile'>national ID</p>
-              <div className='box_of_profile'>
+            <p className={i18n.language === 'ar' ? 'p1_of_profile reset_arabic' : 'p1_of_profile'}>{t('national ID')}</p>
+              <div  className={i18n.language === 'ar' ? 'box_of_profile profile_reverse' : 'box_of_profile '}>
                   <FaIcons.FaIdCard className='prof_icon'/>
                   <p className='p2_of_profile'>{user.nationalId}</p>
               </div>
@@ -82,19 +85,19 @@ function Profile() {
 
               <div className='profilec'>
 
-                <p className='p3_of_profile'>change your password</p>
+                <p className='p3_of_profile'>{t('change your password')}</p>
                     <div className='bigboxofprofile' >
-                      <p className='p1_of_profile'>old password</p>
+                      <p className={i18n.language === 'ar' ? 'p1_of_profile reset_arabic' : 'p1_of_profile'}>{t('old password')}</p>
                         <input id="password" onChange={handle}  value={data.password}  type='password'  className='box_of_profile'></input>
                   </div>
                     
 
                   <div className='bigboxofprofile' >
-                      <p className='p1_of_profile'>new password</p>
+                      <p className={i18n.language === 'ar' ? 'p1_of_profile reset_arabic' : 'p1_of_profile'}>{t('new password')}</p>
                       <input  id="newPassword" onChange={handle} value={data.newPassword}  type='password'  className='box_of_profile'></input>
                   </div>
 
-                  <button className='submit_button'  type="submit">update</button> 
+                  <button className={i18n.language === 'ar' ? 'submit_button' : 'submit_button'}  type="submit">{t('update')}</button> 
               </div>
             
         </form>

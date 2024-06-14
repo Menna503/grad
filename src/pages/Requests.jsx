@@ -97,7 +97,7 @@ function Requests() {
               Authorization: `Bearer ${token}`,
           },
           params: {
-            status: 'not yet' // Add this parameter to filter only approved candidates
+            status: 'notyet' // Add this parameter to filter only approved candidates
           }
       })
       .then(res => {
@@ -135,7 +135,7 @@ function Requests() {
                 (
                   <tr key={item._id}>
                     {/* Add class based on language */}
-                    <td className={i18n.language === 'ar' ? 'rotate_y' : ''}><div className='candidate_img'><img src={getImage(item.image)} alt='candidate' /></div></td>
+                    <td className={i18n.language === 'ar' ? 'rotate_y' : ''}><div ><img  className='candidate_img'src={getImage(item.image)} alt='candidate' /></div></td>
                     <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{item.name}</td>
                     <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{item.nationalId}</td>
                     <td>

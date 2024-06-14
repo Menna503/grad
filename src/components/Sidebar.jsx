@@ -140,7 +140,9 @@ const Sidebar = ({ children }) => {
         width: isOpen ? "304px" : "97px",
     };
     const bar = {
-        marginLeft: isOpen ? "0px" : "48px",
+        // marginLeft: isOpen ? "0px" : "20px"
+       marginLeft : isOpen ? "0px" : (i18n.language==='ar'? "3px" : "46px")
+             ,
         transform: isOpen ? "rotate(180deg)" : "rotate(0deg)"
 
     }
@@ -157,8 +159,8 @@ const Sidebar = ({ children }) => {
                         <p className=" icon name">{user.name}</p>
                     </div>
 
-                    <div style={bar} className="bars">
-                        <MdIcons.MdOutlineKeyboardDoubleArrowRight onClick={toggle} />
+                    <div style={bar} className={i18n.language==='ar'?'bars_ar  ':'bars'} >
+                        <MdIcons.MdOutlineKeyboardDoubleArrowRight onClick={toggle} className={i18n.language === 'ar' ? 'rotate_y ' : ''} />
 
                     </div>
 
@@ -167,11 +169,11 @@ const Sidebar = ({ children }) => {
               
                 {
                     menuItem.map((item) => (
-                        <div key={item.path}>
+                        <div key={item.path} className={i18n.language === 'ar' ? 'rotate_y' : ''}>
                             <NavLink to={item.path} className="link" >
-                               <div activeClassName="active"></div>
-                                <div className="icon">{item.icon}</div>
-                                <div style={{ display: isOpen ? "block" : "none" }} className="link_text">{item.name}</div>
+                               <div activeClassName="active"  ></div>
+                                <div className="icon" >{item.icon}</div>
+                                <div style={{ display: isOpen ? "block" : "none" }} className={i18n.language === 'ar' ? 'rotate_y link_text ' : 'link_text'}> {item.name}</div>
                             </NavLink>
                             
                         </div>

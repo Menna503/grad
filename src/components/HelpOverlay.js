@@ -4,11 +4,13 @@ import "../Styles/profilecss.css";
 import { IoIosClose } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
 import Helpposter from '../images/helpposter.svg';
-
+import { useTranslation } from 'react-i18next';
 
 
 function HelpOverlay({ close , addQuestion , questionToEdit , updateQuestion  }) {
     const navigate = useNavigate();
+    const { t, i18n } = useTranslation();
+
     const [data, setData] = useState({
         question: "",
         answer: ""
@@ -105,14 +107,14 @@ function HelpOverlay({ close , addQuestion , questionToEdit , updateQuestion  })
                 <div className='Addnewwslec'>
                     <div className='page_img_addnews' ><img src={Helpposter} alt=""  /> </div> 
                             <div className='bigboxofAddnews' >
-                                 <input  id="question" onChange={handle} placeholder='Add Question' type='text' value={data.question} className='box_of_Addnews'></input>
+                                 <input  id="question" onChange={handle} placeholder={t('Please Add Qestion')} type='text' value={data.question}  className={i18n.language === 'ar' ? 'box_of_Addnews align_right' : 'box_of_Addnews'} ></input>
                             </div>
 
                             <div className='bigboxofAddnewarea' >
-                                <textarea   id="answer" onChange={handle} placeholder='Answer......' type='text' value={data.answer}  className='box_of_Addnewsarea'></textarea>
+                                <textarea   id="answer" onChange={handle} placeholder={t('Answer.....')} type='text' value={data.answer}  className={i18n.language === 'ar' ? 'box_of_Addnewsarea align_right' : 'box_of_Addnewsarea'}></textarea>
                             </div> 
                 </div>
-                        <button className='addd_button_for_help' type="submit">{questionToEdit ? "Edit" : "Add"}</button>
+                        <button className='addd_button_for_help' type="submit">{questionToEdit ? t('edit') : t('add')}</button>
             </div>
 
         

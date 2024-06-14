@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Dashboard = () => {
-  const {i18n } = useTranslation();
+  const {i18n,t } = useTranslation();
   const [data, setData] = useState([]);
   const token = localStorage.getItem('token') || '';
   const navigate = useNavigate();
@@ -52,12 +52,12 @@ const Dashboard = () => {
 }
 
   return (
-  <div className='manageevents_maincontainer dash'>
+  <div className='manageevents_maincontainer dash' >
       <div className='manageevents_component dashboard'>
           <div  className="event for_dashboard">
 
-              <p className='PofmanageEvents card_title'>candidates</p>
-              <div className='number_of_candidates'>
+              <p className='PofmanageEvents card_title'>{t('Candidates')}</p>
+              <div className={i18n.language === 'ar' ? 'number_of_candidates arabic_candidates' : 'number_of_candidates'}>
                 <IoIcons.IoMdPerson  className='icon_of_can'/>
                 <p className='PofmanageEvents card_title'>14</p>
             </div>
@@ -65,8 +65,8 @@ const Dashboard = () => {
           </div>
           <div  className="event for_dashboard">
             
-          <p className='PofmanageEvents card_title'>votes</p>
-              <div className='number_of_candidates'>
+          <p className='PofmanageEvents card_title'>{t('Votes')}</p>
+          <div className={i18n.language === 'ar' ? 'number_of_candidates arabic_candidates' : 'number_of_candidates'}>
                 <FaVoteYea className='icon_of_can'/>
                 <p className='PofmanageEvents card_title'>1440</p>
             </div>
@@ -74,8 +74,8 @@ const Dashboard = () => {
              </div>
           <div  className="event for_dashboard"> 
               
-              <p className='PofmanageEvents card_title'>candidate requests</p>
-                  <div className='number_of_candidates'>
+              <p className='PofmanageEvents card_title'>{t('Candidate requests')}</p>
+              <div className={i18n.language === 'ar' ? 'number_of_candidates arabic_candidates' : 'number_of_candidates'}>
                     <FaIcons.FaPen className='icon_of_can'/>
                     <p className='PofmanageEvents card_title'>02</p>
                 </div>
@@ -83,43 +83,50 @@ const Dashboard = () => {
 
           <div  className="event for_dashboard">
             
-            <p className='PofmanageEvents card_title'>total users</p>
-                <div className='number_of_candidates'>
+            <p className='PofmanageEvents card_title'>{t('total users')}</p>
+            <div className={i18n.language === 'ar' ? 'number_of_candidates arabic_candidates' : 'number_of_candidates'}>
                 <BsFillPeopleFill  className='icon_of_can'/>
                   <p className='PofmanageEvents card_title'>14440</p>
               </div>
           </div>
       </div>
-  <p className='p_dashboard'>Candidate Resualts</p>
+  <p className='p_dashboard '>Candidate Resualts</p>
+  {/* < p className={i18n.language === 'ar' ? ' p_dashboard p_dashboard_ar' : 'p_dashboard'}>{t('Candidate Results')}</p> */}
   <div className='continer_table continer_table_dashboard'>
+  
+  <table className={i18n.language === 'ar' ? 'rotate_y' : ''}>
+    <thead>
+      <tr>
+      <th className={`th_dashboard ${i18n.language === 'ar' ? 'rotate_y' : ''}`}>{t('Candidate')}</th>
+        <th className={`th_dashboard ${i18n.language === 'ar' ? 'rotate_y' : ''}`}>{t('Name')}</th>
+        <th className={`th_dashboard ${i18n.language === 'ar' ? 'rotate_y' : ''}`}>{t('ID Number')}</th>
+        <th className={`th_dashboard ${i18n.language === 'ar' ? 'rotate_y' : ''}`}>{t('Votes')}</th>
+        <th className={`th_dashboard ${i18n.language === 'ar' ? 'rotate_y' : ''}`}>{t('Standing')}</th>
+        <th className={`th_dashboard ${i18n.language === 'ar' ? 'rotate_y' : ''}`}>{t('Percentage Reslt')}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {data.map((item) => (
+        <tr key={item._id}>
           {/* Add class based on language */}
-          <table className={i18n.language === 'ar' ? 'rotate_y' : ''}>
-            <thead>
-              <th className="th_dashboard">Candidate</th>
-              <th className="th_dashboard">Name</th>
-              <th className="th_dashboard">ID Number</th>
-              <th className="th_dashboard">votes</th>
-              <th className="th_dashboard">Standing</th>
-              <th className="th_dashboard">percentage Reslt</th>
-            </thead>
-            <tbody>
-              {data.map((item) => (
-                (
-                <tr key={item._id}>
-                  {/* Add class based on language */}
-                  <td className={i18n.language === 'ar' ? 'rotate_y' : ''}><div  className='candidate_img'><img src={getImage(item.image)} alt='Candidate' /></div></td>
-                  <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{item.name}</td>
-                  <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{item.id}</td>
-                  <td>
-                    <p>9000</p>
-                  </td>
-                  <td>1</td>
-                  <td>40%</td>
-                </tr>
-              )))}
-            </tbody>
-          </table>
-        </div>
+          <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>
+            <div >
+              <img className="img_dashboard" src={getImage(item.image)} alt='Candidate' />
+            </div>
+          </td>
+          <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{item.name}</td>
+          <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{item.id}</td>
+          <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>
+            <p>9000</p>
+          </td>
+          <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>1</td>
+          <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>40%</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
    </div>
   )
 }

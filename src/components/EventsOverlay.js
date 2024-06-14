@@ -3,14 +3,15 @@ import Axios from 'axios';
 import "../Styles/profilecss.css";
 import { IoIosClose } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
-// import { format } from 'date-fns';
+import { useTranslation } from 'react-i18next';
+
 
 function AddEvents({ close, addEvent, eventToEdit, updateEvent }) {
-    const url = "https://graduation-project-273e.onrender.com/api/event";
+    const url = "event";
 
 
     const navigate = useNavigate();
-   
+    const { t, i18n } = useTranslation();
    
     const [data, setData] = useState({
         type: "",
@@ -99,32 +100,32 @@ function AddEvents({ close, addEvent, eventToEdit, updateEvent }) {
                     <div className='Addnelec'>
 
                         <div className='close_button' onClick={close}> <IoIosClose /> </div>
-                        <div className='Addeventslec'>
+                        <div className={i18n.language === 'ar' ? 'Addeventslec rotate_y' : 'Addeventslec'}>
 
                          <div className='bigboxofAddevents' >
-                                <p className='PofmanageEvents'>title</p>
-                                <select value={data.type} id="type" onChange={handle} className='dropdownlist'>
-                                   <option value="" hidden>Select title</option>
-                                    <option value="nomination">nomination</option>
-                                    <option value="candidates"> candidates</option>
-                                    <option value="elections" >elections</option>
+                                <p className={i18n.language === 'ar' ? 'PofmanageEvents rotate_y' : 'PofmanageEvents'}>{t('title')}</p>
+                                <select value={data.type} id="type" onChange={handle} className={i18n.language === 'ar' ? 'dropdownlist rotate_y' : 'dropdownlist'}>
+                                   <option value="" hidden>{t('select title')}</option>
+                                   <option value="nomination">{t('nomination')}</option>
+                                   <option value="candidates">{t('candidates')}</option>
+                                   <option value="elections">{t('elections')}</option>
                                 </select>
                                 
                             </div>  
 
 
-                            <div className='bigboxofAddevents' >
-                                <p className='PofmanageEvents'>Start</p>
-                                <input onChange={handle} id="start" placeholder='' type='date' className='box_of_Addevents' value={data.start}></input>
+                            <div className="bigboxofAddevents" >
+                                <p className={i18n.language === 'ar' ? 'PofmanageEvents rotate_y' : 'PofmanageEvents'}>{t('start')}</p>
+                                <input onChange={handle} id="start" placeholder='' type='date' className={i18n.language === 'ar' ? 'box_of_Addevents rotate_y' : 'box_of_Addevents'} value={data.start}></input>
                             </div>
 
-                            <div className='bigboxofAddevents' >
-                                <p className='PofmanageEvents'>End</p>
-                                <input onChange={handle} id="end" placeholder='' type='date' className='box_of_Addevents' value={data.end}></input>
+                            <div className="bigboxofAddevents" >
+                                <p className={i18n.language === 'ar' ? 'PofmanageEvents rotate_y' : 'PofmanageEvents'}>{t('end')}</p>
+                                <input onChange={handle} id="end" placeholder='' type='date' className={i18n.language === 'ar' ? 'box_of_Addevents rotate_y' : 'box_of_Addevents'}  value={data.end}></input>
                             </div>
 
                         </div>
-                        <button className='addd_button' type="submit">{eventToEdit ? "Edit" : "Add"}</button>
+                         <button className='addd_button' type="submit">{t('add')}</button>
                     </div>
                     
                 </form>

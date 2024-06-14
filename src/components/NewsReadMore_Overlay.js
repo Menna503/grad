@@ -31,6 +31,7 @@ function NewsReadMore_Overlay({ close ,newsToEdit }) {
   const getImage = (path) => {
     return process.env.REACT_APP_API_URL + '/api/uploads/' + path
 }
+
   return (
       <div className="newsModal"  onClick={handleClose}>
             <div className="newsModalContainer read_more_container">
@@ -55,3 +56,4 @@ function NewsReadMore_Overlay({ close ,newsToEdit }) {
 }
 
 export default NewsReadMore_Overlay;
+

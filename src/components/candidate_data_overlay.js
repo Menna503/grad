@@ -1,7 +1,7 @@
 import React from 'react';
 import { IoIosClose } from "react-icons/io";
 
-function NewsReadMore_Overlay({ close, image }) {
+function CandidateDataOverlay({ close, image }) {
   const handleClose = (e) => {
     if (e.target.classList.contains('newsModal')) {
       close();
@@ -18,7 +18,11 @@ function NewsReadMore_Overlay({ close, image }) {
             <IoIosClose />
           </div>
           <div className='Addnewwslec n'>
-            <img className="image_overlay" src={image} alt="Document" />
+            {image ? (
+              <img className="image_overlay" src={image} alt="Document" />
+            ) : (
+              <p>No image available</p>
+            )}
           </div>
         </div>
       </div>
@@ -26,4 +30,4 @@ function NewsReadMore_Overlay({ close, image }) {
   );
 }
 
-export default NewsReadMore_Overlay;
+export default CandidateDataOverlay;
