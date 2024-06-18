@@ -114,7 +114,7 @@ function HelpOverlay({ close , addQuestion , questionToEdit , updateQuestion  })
                                 <textarea   id="answer" onChange={handle} placeholder={t('Answer.....')} type='text' value={data.answer}  className={i18n.language === 'ar' ? 'box_of_Addnewsarea align_right' : 'box_of_Addnewsarea'}></textarea>
                             </div> 
                 </div>
-                        <button className='addd_button_for_help' type="submit">{questionToEdit ? t('edit') : t('add')}</button>
+                        <button className={i18n.language === 'ar' ? 'addd_button_for_help button_font_size' : 'addd_button_for_help '} type="submit">{questionToEdit ? t('edit') : t('add')}</button>
             </div>
 
         

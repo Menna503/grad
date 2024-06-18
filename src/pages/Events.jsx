@@ -85,15 +85,15 @@ const updateEvent = (updatedEvent) => {
                 <div  className='manageevents_component'>
                     {events.map(event => (
                         <div key={event.id} className={i18n.language === 'ar' ? 'event rotate_y' : 'event'} >
-                            <div className={i18n.language === 'ar' ? 'theTitleOfEvent rotate_y' : 'theTitleOfEvent'}> <p className="titleofevent">{t(event.type)}</p> </div>
+                            <div className={i18n.language === 'ar' ? 'theTitleOfEvent rotate_y ' : 'theTitleOfEvent'}> <p className={i18n.language === 'ar' ? 'titleofevent font_size' : 'titleofevent'}>{t(event.type)}</p> </div>
 
-                            <div className='startevent' >
-                                <p className={i18n.language === 'ar' ? 'PofmanageEvents rotate_y' : 'PofmanageEvents'} >{t('start')}</p>
+                            <div className={i18n.language === 'ar' ? 'startevent font_size' : 'startevent'} >
+                                <p className={i18n.language === 'ar' ? 'PofmanageEvents rotate_y font_size' : 'PofmanageEvents'} >{t('start')}</p>
                                 <div className='boxof_start'> <p className={i18n.language === 'ar' ? 'start_date rotate_y' : 'start_date'}>{new Date(event.start).toLocaleDateString()} </p> <span  className={i18n.language === 'ar' ? 'calender_date rotate_y' : 'calender_date'}><IoCalendarClearOutline /></span>  </div>
                             </div>
 
                             <div className='startevent' >
-                                <p className={i18n.language === 'ar' ? 'PofmanageEvents rotate_y' : 'PofmanageEvents'} >{t('end')}</p>
+                                <p className={i18n.language === 'ar' ? 'PofmanageEvents rotate_y font_size_end' : 'PofmanageEvents'} >{t('end')}</p>
                                 <div className='boxof_start'> <p className={i18n.language === 'ar' ? 'start_date rotate_y' : 'start_date'}>{new Date(event.end).toLocaleDateString()}</p> <span className={i18n.language === 'ar' ? 'calender_date rotate_y' : 'calender_date'} ><IoCalendarClearOutline /></span>   </div>
                             </div>
 

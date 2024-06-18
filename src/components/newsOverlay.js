@@ -16,7 +16,9 @@ function Addnewscomponent({ close , addNews , newsToEdit , updateNews}) {
           description: ""
   });
 
-  const [fileName, setFileName] = useState('ادخل صورة');
+  const [fileName, setFileName] = useState(
+    i18n.language === 'ar' ? 'اختر صوره' : 'Choose Image'
+  );
 
   useEffect(() => {
       if (newsToEdit) {
@@ -93,7 +95,7 @@ function handle(e) {
 
     if (type === 'file') {
         fieldValue = e.target.files[0];
-        setFileName(e.target.files[0]?.name || 'ادخل صورة');
+        setFileName(e.target.files[0]?.name || (i18n.language === 'ar' ? 'اختر صوره' : 'Choose Image'));
     }
 
     setData(prevData => ({
@@ -123,8 +125,9 @@ function handle(e) {
                                          <input  id="header" onChange={handle} placeholder={t('Add The Title Of The News')} type='text' value={data.header} className={i18n.language === 'ar' ? 'box_of_Addnews align_right' : 'box_of_Addnews'}></input>
                                       </div>
 
-                                      <div className='bigboxofAddnewsupload'>
-                                           <input id="image" onChange={handle} type='file' className={i18n.language === 'ar' ? 'box_of_upload align_right ' : 'box_of_upload'}  />
+                                      <div className={i18n.language === 'ar' ? 'bigboxofAddnewsupload addnews_arabic ' : 'bigboxofAddnewsupload'}>
+                                         <input id="image" onChange={handle} type='file' className="file-input"/>
+                                         <label htmlFor="image" className={i18n.language === 'ar' ? 'custom-file-upload button_font_size ' : 'custom-file-upload'}>{fileName}  </label>    
                                       </div>
                                         
 
@@ -133,7 +136,7 @@ function handle(e) {
                                         </div> 
                             
                                 </div>
-                            <button className='add_button_news' type="submit">{newsToEdit ? t('edit') : t('add')}</button>
+                            <button className={i18n.language === 'ar' ? 'add_button_news button_font_size' : 'add_button_news'} type="submit">{newsToEdit ? t('edit') : t('add')}</button>
                     </div>
 
                 

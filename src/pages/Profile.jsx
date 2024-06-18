@@ -67,7 +67,7 @@ function Profile() {
     <div className={i18n.language === 'ar' ? 'page_img_profile arabic_image  ' : 'page_img_profile'} > {i18n.language === 'ar' ? (<img src="/manager.svg" alt="" /> ) : ( <img src="/manager_english.svg" alt="" /> )} </div>                                             
     <div className='prof_component'>
         <div className='bigboxofprofile' >
-                <p className={i18n.language === 'ar' ? 'p1_of_profile reset_arabic arabic_name ' : 'p1_of_profile'}>{t('name')}</p>
+                <p className={i18n.language === 'ar' ? 'p1_of_profile reset_arabic  ' : 'p1_of_profile'}>{t('name')}</p>
                   <div  className={i18n.language === 'ar' ? 'box_of_profile profile_reverse' : 'box_of_profile '}>
                       <IoIcons.IoMdPerson className='prof_icon'/>
                       <p className='p2_of_profile'>{user.name}</p>
@@ -85,19 +85,19 @@ function Profile() {
 
               <div className='profilec'>
 
-                <p className='p3_of_profile'>{t('change your password')}</p>
+                <p className={i18n.language === 'ar' ? 'p3_of_profile arabic_of_profile' : 'p3_of_profile'}>{t('change your password')}</p>
                     <div className='bigboxofprofile' >
                       <p className={i18n.language === 'ar' ? 'p1_of_profile reset_arabic' : 'p1_of_profile'}>{t('old password')}</p>
-                        <input id="password" onChange={handle}  value={data.password}  type='password'  className='box_of_profile'></input>
+                        <input id="password" onChange={handle}  value={data.password}  type='password' className={i18n.language === 'ar' ? 'box_of_profile rtl row_reverse' : 'box_of_profile'}></input>
                   </div>
                     
 
                   <div className='bigboxofprofile' >
-                      <p className={i18n.language === 'ar' ? 'p1_of_profile reset_arabic' : 'p1_of_profile'}>{t('new password')}</p>
-                      <input  id="newPassword" onChange={handle} value={data.newPassword}  type='password'  className='box_of_profile'></input>
+                      <p className={i18n.language === 'ar' ? 'p1_of_profile reset_arabic ' : 'p1_of_profile'}>{t('new password')}</p>
+                      <input  id="newPassword" onChange={handle} value={data.newPassword}  type='password'  className={i18n.language === 'ar' ? 'box_of_profile rtl row_reverse' : 'box_of_profile'}></input>
                   </div>
 
-                  <button className={i18n.language === 'ar' ? 'submit_button' : 'submit_button'}  type="submit">{t('update')}</button> 
+                  <button className={i18n.language === 'ar' ? 'submit_button button_font_size' : 'submit_button'}  type="submit">{t('update')}</button> 
               </div>
             
         </form>

@@ -44,7 +44,7 @@ const Login = () => {
             })
             .catch(error => {
                 console.error('Error during login:', error.message);
-                setFailedMessage("Login failed ! Try again !");
+                setFailedMessage(t("Login failed ! Try again !"));
                 setData({
                     nationalId: "",
                     password: ""
@@ -78,22 +78,22 @@ const Login = () => {
                         <div className='loginlec'>
 
                             <p className='p_of_welcome'>{t('welcome!')}</p>
-                            <p className='pp_of_welcome'>{t('log in your account to access the dashboard')}</p>
+                            <p className={i18n.language === 'ar' ? 'pp_of_welcome text_font_size' : 'pp_of_welcome'}>{t('log in your account to access the dashboard')}</p>
                             <div className='bigboxofLogin'>
-                                <input id="nationalId" onChange={handle} placeholder='Enter ID' type='text' value={data.nationalId} className='box_of_login_page' />
+                                <input id="nationalId" onChange={handle} placeholder={t('Enter ID')} type='text' value={data.nationalId} className={i18n.language === 'ar' ? 'box_of_login_page rtl row_reverse' : 'box_of_login_page'} />
                             </div>
 
                             <div className='bigboxofLogin'>
-                                <input id="password" onChange={handle} placeholder='Password' type='password' value={data.password} className='box_of_login_page' />
+                                <input id="password" onChange={handle} placeholder={t('Password')} type='password' value={data.password} className={i18n.language === 'ar' ? 'box_of_login_page rtl row_reverse' : 'box_of_login_page'} />
                             </div>
                         </div>
 
-                        <button type="submit" className='login_button'>Log in</button>
+                        <button type="submit" className="login_button">{t("Log in")}</button>
                     </form>
 
                 </div>
                 {failedMessage && (
-                    <p className='failed_message'>{failedMessage} </p>)}
+                    <p className={i18n.language === 'ar' ? 'failed_message failed_align' : 'failed_message'}>{failedMessage} </p>)}
 
 
             </div>
@@ -102,4 +102,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default Login;

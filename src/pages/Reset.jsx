@@ -59,10 +59,10 @@ const Reset = () => {
         
         <form onSubmit={(e)=> Submit(e)}>
 
-              <div className='profilec'>
+              <div className='resetlec'>
 
                     <div className='bigboxofprofile reset' >
-                      <p className={i18n.language === 'ar' ? 'p1_of_profile reset_arabic' : 'p1_of_profile'}>{t('national ID')}</p>
+                      <p className={i18n.language === 'ar' ? 'p1_of_profile  rtl_reset button_font_size ' : 'p1_of_profile'}>{t('national ID')}</p>
                         <input id="nationalId" onChange={handle}  value={data.nationalId}  type='text' className={i18n.language === 'ar' ? 'box_of_profile for_reset' : 'box_of_profile'} ></input>
                   </div>
                  
@@ -70,7 +70,7 @@ const Reset = () => {
                       <p className={i18n.language === 'ar' ? 'p1_of_profile reset_arabicc password' : 'p1_of_profile password'} >{t('user new password :')}    {data.password} </p>
                   </div>
 
-                  <button className='submit_button_reset'  type="submit">{t('reset')}</button> 
+                  <button className='submit_button_reset button_font_size'  type="submit">{t('reset')}</button> 
               </div>
             
         </form>

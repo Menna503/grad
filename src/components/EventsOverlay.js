@@ -102,7 +102,7 @@ function AddEvents({ close, addEvent, eventToEdit, updateEvent }) {
                         <div className='close_button' onClick={close}> <IoIosClose /> </div>
                         <div className={i18n.language === 'ar' ? 'Addeventslec rotate_y' : 'Addeventslec'}>
 
-                         <div className='bigboxofAddevents' >
+                         <div className="bigboxofAddevents" >
                                 <p className={i18n.language === 'ar' ? 'PofmanageEvents rotate_y' : 'PofmanageEvents'}>{t('title')}</p>
                                 <select value={data.type} id="type" onChange={handle} className={i18n.language === 'ar' ? 'dropdownlist rotate_y' : 'dropdownlist'}>
                                    <option value="" hidden>{t('select title')}</option>
@@ -114,7 +114,7 @@ function AddEvents({ close, addEvent, eventToEdit, updateEvent }) {
                             </div>  
 
 
-                            <div className="bigboxofAddevents" >
+                            <div className={i18n.language === 'ar' ? 'bigboxofAddevents  dropdown_padding' : 'bigboxofAddevents'} >
                                 <p className={i18n.language === 'ar' ? 'PofmanageEvents rotate_y' : 'PofmanageEvents'}>{t('start')}</p>
                                 <input onChange={handle} id="start" placeholder='' type='date' className={i18n.language === 'ar' ? 'box_of_Addevents rotate_y' : 'box_of_Addevents'} value={data.start}></input>
                             </div>
@@ -125,7 +125,7 @@ function AddEvents({ close, addEvent, eventToEdit, updateEvent }) {
                             </div>
 
                         </div>
-                         <button className='addd_button' type="submit">{t('add')}</button>
+                         <button className={i18n.language === 'ar' ? 'addd_button button_font_size' : 'addd_button'} type="submit">{t('add')}</button>
                     </div>
                     
                 </form>
