@@ -263,7 +263,7 @@ const Admin = () => {
                         </tbody>
                     </table>
                 </div>
-                <button className={i18n.language === 'ar' ? 'add ar_add' : 'add'} onClick={() => setAddModel(true)}> <IoMdAdd /></button>
+                <button className={i18n.language === 'ar' ? 'add_button ' : 'add_button'} onClick={() => setAddModel(true)}> <IoMdAdd /></button>
             </div>
         </>
     );

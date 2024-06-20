@@ -104,10 +104,10 @@ function Help() {
                         <div key={question._id} className="question">
                             
 
-                            <div className='questionBoxContainer' >
+                           
                                 <div className='boxof_qestion'> <span className='the_qestion'>{question.question} </span>   </div>
                                 <div className='boxof_answer'> <span className='the_answer' >{question.answer}</span>    </div>
-                            </div>
+                         
                             
                             <div className='EditAndDeleteforHelp'>
                                 <button className='delete_icon  delete_edit_ic' onClick={() => confirmDeleteQuestion(question)}><RiDeleteBin6Fill />  </button>
