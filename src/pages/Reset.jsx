@@ -1,7 +1,6 @@
 import React,{useState} from 'react';
 import axios from 'axios';
 import reset from '../images/reset.svg';
-import "../Styles/profilecss.css";
 import { useTranslation } from 'react-i18next';
 
 const Reset = () => {
@@ -70,7 +69,7 @@ const Reset = () => {
                       <p className={i18n.language === 'ar' ? 'p1_of_profile reset_arabicc password' : 'p1_of_profile password'} >{t('user new password :')}    {data.password} </p>
                   </div>
 
-                  <button className='submit_button_reset button_font_size'  type="submit">{t('reset')}</button> 
+                  <button className={i18n.language === 'ar' ? 'submit_button_reset button_font_size' : 'submit_button_reset'}  type="submit">{t('reset')}</button>
               </div>
             
         </form>

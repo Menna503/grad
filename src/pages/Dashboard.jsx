@@ -3,8 +3,6 @@ import * as IoIcons from "react-icons/io";
 import * as FaIcons from "react-icons/fa6";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { FaVoteYea } from "react-icons/fa";
-import "../Styles/profilecss.css";
-import "../Styles/App.css";
 import { useTranslation } from 'react-i18next';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';

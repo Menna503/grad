@@ -1,5 +1,4 @@
-import React from 'react'
-import '../Styles/profilecss.css';
+import React from 'react';
 import Loginposter from '../images/forlogin.svg';
 import { useState } from 'react';
 import axios from 'axios';

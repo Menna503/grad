@@ -9,7 +9,6 @@ import * as IoIcons from "react-icons/io";
 import * as IoIcons5 from "react-icons/io5";
 import * as CgIcons from "react-icons/cg";
 import { RiLockPasswordLine } from "react-icons/ri";
-import '../Styles/profilecss.css';
 import { useLocation, NavLink ,useNavigate } from 'react-router-dom';
 import { UserContext } from '../UserContext';
 import Header from '../components/header';

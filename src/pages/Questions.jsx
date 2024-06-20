@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import HelpOverlay from '../components/HelpOverlay';
-import "../Styles/profilecss.css";
 import { IoMdAdd } from "react-icons/io";
 import Model from '../model/model';
 import {FaRegEdit}from "react-icons/fa";

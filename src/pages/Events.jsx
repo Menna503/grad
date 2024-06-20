@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect,useContext } from 'react';
 import AddEvents from '../components/EventsOverlay';
-import "../Styles/profilecss.css";
 import { useTranslation } from 'react-i18next';
 import { IoMdAdd } from "react-icons/io";
 import { IoCalendarClearOutline } from "react-icons/io5";

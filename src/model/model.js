@@ -6,7 +6,6 @@ import { createPortal } from 'react-dom';
 import { IoIosClose } from "react-icons/io";
 import axios from 'axios';
 import React, { useState,useEffect } from 'react';
-import'../Styles/profilecss.css';
 import { useNavigate } from 'react-router-dom';
 import { CgPassword } from 'react-icons/cg';
 

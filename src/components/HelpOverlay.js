@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import "../Styles/profilecss.css";
 import { IoIosClose } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
 import Helpposter from '../images/helpposter.svg';

@@ -1,8 +1,6 @@
 import React,{ useState, useContext} from 'react';
 import Page_profile from '../images/page_profile.svg';
 import Admin_page_profile from '../images/Admin_page_profile.svg';
-import '../Styles/profilecss.css';
-import '../Styles/App.css';
 import * as IoIcons from "react-icons/io";
 import * as FaIcons from "react-icons/fa";
 import { UserContext } from '../UserContext';

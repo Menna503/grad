@@ -206,8 +206,8 @@ function CandidateData() {
         </table>
       </div>
       <div className='container_button'>
-        <button className='submit_button candidateData_button' onClick={() => updateCandidateStatus('approved')}>{t('Accept')}</button>
-        <button className='submit_button candidateData_button Reject_button' onClick={() => updateCandidateStatus('rejected')}>{t('Reject')}</button>
+        <button className='candidateData_button' onClick={() => updateCandidateStatus('approved')}>{t('Accept')}</button>
+        <button className='candidateData_button Reject_button' onClick={() => updateCandidateStatus('rejected')}>{t('Reject')}</button>
       </div>
       {showReadModal && <CandidateDataOverlay close={closeReadModal} image={currentImage} />}
 

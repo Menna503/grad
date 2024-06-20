@@ -1,5 +1,4 @@
 import React,{useState, useEffect} from 'react';
-import '../Styles/profilecss.css';
 import Addnewscomponent from '../components/newsOverlay';
 import NewsReadMore_Overlay from '../components/NewsReadMore_Overlay';
 import { IoMdAdd } from "react-icons/io";
