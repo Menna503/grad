@@ -235,7 +235,7 @@ const Admin = () => {
                                         <td className={getClassName('')}>{item.name}</td>
                                         <td className={getClassName('')}>{item.nationalId}</td>
                                         <td>
-                                            <div>
+                                            <div className='continer_button_admin'>
                                                 <button className='edit_icon delete_edit_ic' onClick={() => editAdmin(item)}><FaRegEdit /></button>
                                                 <button className='delete_icon delete_edit_ic' onClick={() => { setDeleteItemId(item._id); setDeleteAdminModel(true); }}><RiDeleteBinLine /></button>
                                             </div>

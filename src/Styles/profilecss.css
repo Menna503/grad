@@ -912,7 +912,7 @@ padding-top: 430px;
 margin-left:-490px;
 } 
 
-@media (max-width: 1366px) {
+@media (max-width ) {
   .Login_bigcontainer{
     margin-top: 110px; 
     }
@@ -1060,7 +1060,7 @@ border-radius: 10px;
 border-color:#ffffff ;
 width: 50px;
 height: 50px;
-font-size: 25px;
+font-size: 1.6rem;
 color: #ffffff;
 font-weight: 600;
 margin-left: 5px;

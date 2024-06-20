@@ -3,6 +3,7 @@ import '../Styles/profilecss.css';
 import Addnewscomponent from '../components/newsOverlay';
 import NewsReadMore_Overlay from '../components/NewsReadMore_Overlay';
 import { IoMdAdd } from "react-icons/io";
+import Model from '../model/model';
 import {FaRegEdit}from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import  axios  from 'axios';
@@ -16,6 +17,8 @@ function News() {
   const [showModal, setShowModal] = useState(false);
   const [showReadModal, setShowReadModal] = useState(false);
   const [newss, setNewss] = useState([]);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [newsToDelete, setNewsToDelete] = useState(null);
   const [newsToEdit, setNewsToEdit] = useState(null);
   const token = localStorage.getItem('token') || '';
   const location = useLocation();
@@ -77,38 +80,37 @@ const openReadMoreModal = (news) => {
     setShowReadModal(true);
 };
 
-const deleteNews = (iid) => {
-    console.log('Deleting question with ID:', iid);
-  
-    const confirmDelete = window.confirm("Are you sure you want to delete this question?");
-    if (confirmDelete) {
-        const token = localStorage.getItem('token'); 
+const confirmDeleteNews = (news) => {
+    setNewsToDelete(news);
+    setShowDeleteModal(true);
+  };
 
-        if (token) {
-            
-            const url = `news/${iid}`;
 
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            };
-           
-            axios.delete(url, config)
-                .then(() => {
-                   
-                    const updatedNews = newss.filter(news => news._id !== iid);
-                    setNewss(updatedNews);
-                })
-                .catch(error => {
-                    console.error('Error deleting question:', error);
-                });
-        } else {
-            console.error('Authorization token is missing. Deletion cannot proceed.');
-        }
+const deleteNews = () => {
+    if (newsToDelete) {
+      const token = localStorage.getItem('token');
+      if (token) {
+        const url = `news/${newsToDelete._id}`;
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        };
+        axios.delete(url, config)
+          .then(() => {
+            const updatedNews = newss.filter(news => news._id !== newsToDelete._id);
+            setNewss(updatedNews);
+            setShowDeleteModal(false);
+            setNewsToDelete(null);
+          })
+          .catch(error => {
+            console.error('Error deleting news:', error);
+          });
+      } else {
+        console.error('Authorization token is missing. Deletion cannot proceed.');
+      }
     }
-};
-
+  };
 const getImage = (path) => {
     return process.env.REACT_APP_API_URL + '/api/uploads/' + path
 }
@@ -131,7 +133,7 @@ const getImage = (path) => {
                           
                         </div>
                           <div className='Edit_and_Delete_News'>
-                                <button className='delete_icon  delete_edit_ic'onClick={() => deleteNews(news._id)} ><RiDeleteBin6Fill />  </button>
+                                <button className='delete_icon  delete_edit_ic'onClick={() => confirmDeleteNews(news)} ><RiDeleteBin6Fill />  </button>
                                 <button className='edit_icon delete_edit_ic'  onClick={() => editNews(news)} ><FaRegEdit /> </button>
                           </div>
                     </div>                     
@@ -142,6 +144,9 @@ const getImage = (path) => {
                   )}
                   {showReadModal && (
                       <NewsReadMore_Overlay close={ closeReadModal} newsToEdit={newsToEdit}  />
+                  )}
+                  {showDeleteModal && (
+                    <Model delete_model={true} close_model={() => setShowDeleteModal(false)} onDelete={deleteNews} />
                   )}
                   
               </div>

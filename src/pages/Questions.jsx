@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import HelpOverlay from '../components/HelpOverlay';
 import "../Styles/profilecss.css";
 import { IoMdAdd } from "react-icons/io";
+import Model from '../model/model';
 import {FaRegEdit}from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { useTranslation } from 'react-i18next';
@@ -13,6 +14,8 @@ function Help() {
     
     const [showModal, setShowModal] = useState(false);
     const [questions, setQuestions] = useState([]);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [questionToDelete, setQuestionToDelete] = useState(null);
     const [questionToEdit, setQuestionToEdit] = useState(null);
     const token = localStorage.getItem('token') || '';
     const { t, i18n } = useTranslation();
@@ -63,39 +66,32 @@ function Help() {
         fetchQuestions(); 
     };
    
+    const confirmDeleteQuestion = (question) => {
+        setQuestionToDelete(question);
+        setShowDeleteModal(true);
+    };
 
-const deleteQuestion = (iid) => {
-    console.log('Deleting question with ID:', iid);
-  
-    const confirmDelete = window.confirm(t("Are you sure you want to delete this question?"));
-    if (confirmDelete) {
-        const token = localStorage.getItem('token'); 
-
-        if (token) {
-            
-            const url = `question/${iid}`;
-
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            };
-           
-            axios.delete(url, config)
+    const deleteQuestion = () => {
+        if (questionToDelete) {
+            if (token) {
+                const url = `question/${questionToDelete._id}`;
+                axios.delete(url, {
+                    headers: { Authorization: `Bearer ${token}` }
+                })
                 .then(() => {
-                   
-                    const updatedQuestions = questions.filter(question => question._id !== iid);
+                    const updatedQuestions = questions.filter(q => q._id !== questionToDelete._id);
                     setQuestions(updatedQuestions);
+                    setShowDeleteModal(false);
+                    setQuestionToDelete(null);
                 })
                 .catch(error => {
                     console.error('Error deleting question:', error);
                 });
-        } else {
-            console.error('Authorization token is missing. Deletion cannot proceed.');
+            } else {
+                console.error('Authorization token is missing. Deletion cannot proceed.');
+            }
         }
-    }
-};
-
+    };
 
  
     return (
@@ -115,7 +111,7 @@ const deleteQuestion = (iid) => {
                             </div>
                             
                             <div className='EditAndDeleteforHelp'>
-                                <button className='delete_icon  delete_edit_ic' onClick={() => deleteQuestion(question._id)}><RiDeleteBin6Fill />  </button>
+                                <button className='delete_icon  delete_edit_ic' onClick={() => confirmDeleteQuestion(question)}><RiDeleteBin6Fill />  </button>
                                 <button className='edit_icon delete_edit_ic' onClick={() => editQuestion(question)}><FaRegEdit /> </button>
                             </div>
 
@@ -125,6 +121,9 @@ const deleteQuestion = (iid) => {
                     {showModal && (
                         <HelpOverlay close={closeAddQuestionsModal} addQuestion={addQuestion} questionToEdit={questionToEdit} updateQuestion={updateQuestion} />
                     )}
+                       {showDeleteModal && (
+                        <Model delete_model={true} close_model={() => setShowDeleteModal(false)} onDelete={deleteQuestion}/>
+                         )}
                     
                 </div>
             </div>

@@ -90,7 +90,7 @@ const Dashboard = () => {
               </div>
           </div>
       </div>
-  <p className='p_dashboard '>Candidate Resualts</p>
+  <p  className={i18n.language==='ar'?'p_dashboard p_dashboard_ar':'p_dashboard'} >{t('Candidate Resualts')}</p>
   {/* < p className={i18n.language === 'ar' ? ' p_dashboard p_dashboard_ar' : 'p_dashboard'}>{t('Candidate Results')}</p> */}
   <div className='continer_table continer_table_dashboard'>
   

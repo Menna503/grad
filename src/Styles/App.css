@@ -4,6 +4,8 @@
     padding:0;
     text-decoration: none;
 }
+
+  
 .container{
     display:flex;
     /* position: relative; */
@@ -28,6 +30,7 @@
     height: 100%;
     /* transform: rotate(360deg); */
 }
+
                                                  /* side bar */
 .sidebar{
     background: #065C61;
@@ -238,10 +241,12 @@ font-size: 23px;
     margin: 0 auto;
     border-collapse: collapse;
     padding:20x;
-    position: relative;
+    position:relative;
     overflow: auto;
+
+  
     
-    /* transform: rotatey(180deg); */
+  
 }
 .rotate_y{
     transform: rotatey(180deg); 
@@ -251,15 +256,14 @@ width: 100%;
 height: 86%;
 padding:3%;
 
-/* margin: 0 auto; */
 }
 .continer_table td {
     border-bottom: 1px solid #C7C7C7;
     color: #4B4A4A;
     text-align: center;
-    padding: 20px;
+    padding: 1.25rem;/*20px*/
     font-family: "Inter-Regular", Helvetica;
-    font-size: 25px;
+    font-size:1.6rem ;/*25px*/
     font-weight: 400;
 
     
@@ -291,6 +295,11 @@ padding:3%;
 .ar_add{
     position: absolute!important;
     right: 206px!important;
+}
+.continer_button_admin{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
 }
 .delete_icon{
     background-color: #ff4265;
@@ -340,7 +349,6 @@ text-transform: capitalize;
     border-color: #027146;
   border-radius: 10px;
   height: 615px;
-  overflow: hidden!important;
   margin-top: 2% !important;
   margin-bottom: 2% !important;
   
@@ -505,12 +513,12 @@ padding: 0%;
    margin-top: 34px;
    }
    .p_dashboard_ar{
-    position: relative;
-    right: 6.37%;
+   text-align: end;
+   margin-right: 2.7rem;
    }
    
    .continer_table_dashboard{
-    height: 489px;
+    height: 467px;
     margin: 0px!important;
     border-color: #055b60;
     border-radius: 10px;
@@ -523,4 +531,21 @@ padding: 0%;
     font-size: 22px;
     font-weight: 400;
     padding-bottom: 1.6rem;
+   }
+   @media (min-width: 600px) and (max-width: 768px) {
+    html{
+        font-size: 10px;
+    }
+    .en_main{
+     margin-left: 12.37%;
+     background-color: #ff4265;
+    }
+    .delete_edit_ic {
+        width: 44px !important ;
+        height: 44px !important;
+
+    }
+    .add{
+        /* bottom: -36%; */
+    }
    }
