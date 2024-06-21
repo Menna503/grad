@@ -17,60 +17,58 @@
     width: 93.7%;
     height: 100%;
 }
-
-                                                 /* side bar */
 .sidebar{
-    background: #065C61;
-    color: white;
-    height: 100vh;
-    width: 304px;
-    border-radius: 0px 20px 20px 0px;
-    transition: all 0.5s;
-    position: absolute;
-    z-index: 1000;
+  background: #065C61;
+  color: white;
+  height: 100%;/*1024px*/
+  width: 304px;
+  border-radius: 0px 20px 20px 0px;
+  transition: all 0.5s;
+  position: absolute;
+  z-index: 1000;
 }
 .arsidebar{
-    border-radius: 20px 0px 0px 20px;
-    position: fixed; 
-    right: 0;
-    top: 0; 
-    z-index: 1000;
+  border-radius: 20px 0px 0px 20px;
+  position: fixed; 
+  right: 0;
+  top: 0; 
+  z-index: 1000;
 }
 .top_section{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    justify-content: center;
-    
-    width: 254px;
-    height: 207px;
-    margin-top: 14px;
-    margin-right: 5px;
-    margin-left: 5px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  justify-content: center;
+  
+  width: 254px;
+  height: 207px;
+  margin-top: 14px;
+  margin-right: 5px;
+  margin-left: 5px; 
 }.name{
-    font-weight:600;
-    text-transform: capitalize;
-    position: absolute;
-    left: 30%;
-    padding-top: 17px;
-    margin-bottom: 49px;
+  font-weight:600;
+  text-transform: capitalize;
+  position: absolute;
+  left: 30%;
+  padding-top: 17px;
+  margin-bottom: 49px;
 }
 hr{
-   border:1px solid #fff;
-   margin: 0 auto;
-   width: 80%;
-   margin-bottom: 49px;
+ border:1px solid #fff;
+ margin: 0 auto;
+ width: 80%;
+ margin-bottom: 49px;
 }
 .logo{
-    font-size: 30px;
+  font-size: 30px;
 }
 .bars{
-    display: flex;
-   font-size: 24px;
-    position: absolute;
-    top: 21px;
-    right: 22px;
+  display: flex;
+ font-size: 24px;
+  position: absolute;
+  top: 21px;
+  right: 22px;
 }
 .bars_ar{
 display: flex;
@@ -80,28 +78,29 @@ top:21px ;
 left: 22px ;
 }
 .link{
-    display: flex;
-    color: white; 
-    margin-bottom: 16px;
-    text-decoration: none;
-     padding:10px;
-     gap: 30px;
+  display: flex;
+  color: white; 
+  margin-bottom: 16px;
+  text-decoration: none;
+   padding:10px;
+   gap: 30px;
 }
 .active{
-    background:white;
-    border-radius: 0px 15px 15px 0px;
-     width: 1px;
+  background:white;
+  border-radius: 0px 15px 15px 0px;
+   width: 1px;
 }
 .icon{
-    font-size: 26px;
+  font-size: 26px;
 }
 .link_text{
 font-size: 23px;
 
 }
 .iconOfSide{
-    display: block;
+  display: block;
 }
+
                                                             /*end side bar */
  .header{
     background-color:#fff;
@@ -150,7 +149,7 @@ font-size: 23px;
     border: 1px solid #C7C7C7;
     border-radius: 10px;
     width: 90%;
-    height: 80%;
+    height: 55rem;
     /* max-width: 100%; */
     /* margin: 43px 70px 65px  47px  ; */
     margin-top:31px !important;
@@ -940,6 +939,7 @@ padding: 0%;
   font-weight: 400;
   margin-left: 75%;
   cursor: pointer;
+  /* margin-top: 2%; */
   }
   .left{
     margin-left: 50px;
@@ -1648,69 +1648,178 @@ padding: 0%;
   
 
 }
-/* @media (min-height: 601px) and (max-height: 800px) {
-   
-  .top_section{
-      width: 200px;
-      height: 200px;
-      margin-top: 14px;
-      margin-right: 5px;
-      margin-left: 5px; 
-  }.name{
-      left: 30%;
-      padding-top: 12px;
-      margin-bottom: 10px;
-  }
-  hr{
-     border:0.25px solid #fff;
-     margin: 0 auto;
-     width: 80%;
-     margin-bottom: 49px;
-  }
-  .logo{
-      font-size: 30px;
-  }
-  .bars{
-     font-size: 16px;
-      top: 21px;
-      right: 22px;
-  }
-  .bars_ar{
-  font-size: 24px;
-  top:21px ;
-  left: 22px ;
-  }
-  .link{
-      margin-bottom: 5px;
-       padding:3px;
-       gap: 18px;
-  }
-  .active{
-       width: 2px;
-  }
-  .icon{
-      font-size: 15px;
-  }
-  .link_text{
-  font-size: 15px;
-  
-  }
-  .image_user{
-    height: 60px;
-    width: 60px;
-  }
+@media (max-width: 1920px)  {
+  .Login_bigcontainer{
+    margin-top: 110px; 
+    }
 
-  .logOut_button{
-  
-    border-radius: 6px;
-    gap:20px;
-    height: 30px;
-    width: 150px;
-   margin-left: 30px;
-   margin-top: 30px;
-  
-  }
-  
-  .logout_Title{
-  font-size: 13px;}
-} */
+  .Login_componentcontainer{
+      height: 450px;
+      width: 957px;
+    }
+
+    .box_of_login{
+      height: 450px;
+      width: 443px;
+      }
+
+    .loginlec{
+      padding-top: 40px;
+      margin-right: 20px;
+      margin-left: 20px;
+      }  
+
+     .box_of_login_page{
+        height: 60px;
+        font-size: 21px;
+        padding-left: 40px;
+        padding-right: 40px;
+        margin-top: -10px;
+        height: 58px;
+        width: 330px;
+        /* margin-bottom: -50px; */
+      }  
+
+      .login_button{
+        height: 58px;
+        width:250px;
+        margin-left: 140px;
+        margin-top: 35px;
+        font-size: 24px; 
+        }
+
+        .failed_message{
+          font-size: 16px;
+          color:red;
+          font-family: "Inter-Regular", Helvetica;
+          padding-top: 290px;
+          margin-left:-425px;
+          }  
+          .p_of_welcome{
+            font-size: 35px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            margin-left: 30px;
+            }
+            .pp_of_welcome{
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 50px;
+            margin-left: 30px;
+            
+            } 
+          
+            .sidebar{
+              background: #065C61;
+              color: white;
+              height: 1050px;/*1024px*/
+              height: 1050px;
+              width: 304px;
+              border-radius: 0px 20px 20px 0px;
+              transition: all 0.5s;
+              position: absolute;
+              z-index: 1000;
+            }
+            .arsidebar{
+              border-radius: 20px 0px 0px 20px;
+              position: fixed; 
+              right: 0;
+              top: 0; 
+              z-index: 1000;
+            }
+            .top_section{
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              position: relative;
+              justify-content: center;
+              
+              width: 100px;
+              height: 207px;
+              margin-top: 1px;
+              margin-right: 4px;
+              margin-left: 5px; 
+            }.name{
+              font-weight:600;
+              text-transform: capitalize;
+              position: absolute;
+              left:30%;
+              padding-top: 10px;
+              margin-bottom: 10px;
+            }
+            hr{
+             border:1px solid #fff;
+             margin: 0 auto;
+             width: 80%;
+             margin-bottom: 10px;
+            }
+            .logo{
+              font-size: 20px;
+            }
+            .bars{
+              display: flex;
+             font-size: 2rem;
+              position: absolute;
+              top: 21px;
+              right: 22px;
+            }
+            .bars_ar{
+            display: flex;
+            position: absolute;
+            font-size: 24px;
+            top: 10px; ;
+            left: 10px ;
+            }
+            .link{
+              display: flex;
+              color: white; 
+              margin-bottom: 16px;
+              text-decoration: none;
+               padding:5px;
+               gap: 20px;
+            }
+            .active{
+              background:white;
+              border-radius: 0px 15px 15px 0px;
+               width: 1px;
+            }
+            .icon{
+              font-size: 26px;
+            }
+            .link_text{
+            font-size: 23px;
+            
+            }
+            .iconOfSide{
+              display: block;
+            }
+            .logOut_button{
+              
+              background: white;
+              border: 1px solid ;
+              border-color: #065c61;
+              border-radius: 10px;
+              box-shadow: 0px 4px 4px #00000040;
+              position: sticky;
+              bottom: 1rem;
+              height: 52px;
+              width: 229px;
+              align-items: center;
+              justify-content: center;
+              
+            
+            }
+            
+            .logout_Title{
+            font-size: 20px;
+            color: #065c61;
+            font-weight: 600;
+            text-transform: capitalize;
+            
+            
+            }
+          
+          }
+
+         
+          

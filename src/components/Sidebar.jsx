@@ -154,7 +154,7 @@ const Sidebar = ({ children }) => {
                 <div className="top_section" style={{ width: isOpen ? "254px" : "90px" }}>
                     <div style={{ display: isOpen ? "block" : "none" }} className="info-admin">
 
-                        <div  ><img src={image_user} alt="" /> </div>
+                        <div  ><img src={image_user} alt="" className='image_user'/> </div>
                         <p className=" icon name">{user.name}</p>
                     </div>
 
