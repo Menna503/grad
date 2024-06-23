@@ -1,11 +1,14 @@
+*{
+    text-transform: capitalize;
+}
 .backDrop{
     position: fixed;
     top:0px;
     left: 0px;
     right: 0px;
     bottom: 0px;
-    background-color:gray;
-    opacity: .03;
+    background-color:rgb(16 13 13);
+    opacity: .5;
     z-index: 1500;
 }
 .overlay{
@@ -13,7 +16,7 @@
     position:absolute;
     height: 832px;
     width: 42%;
-    background-color: white;
+    background-color: #f8f8f8;
     top:50%;
     left:50%;
     transform: translate(-50%,-50%);
@@ -27,7 +30,7 @@
 }
 /*overlay candidate*/
 .overlay_delete{
-    width: 411px;
+    width: 439px;
     height: 221px;
     border-radius: 10px;
     border-color: white;
@@ -45,14 +48,14 @@
     background-color: #055b60;
     border-radius: 10px;
     width: 98px;
-    height: 37px;
+    height: 46px;
     color: white;
     font-family: "Inter-Regulr", Helvetica;
     font-size: 24px;
     font-weight: 400;
 }
 .p_delete{
-    color: #777272;
+    color:black;
     font-family: "Inter-Regulr", Helvetica;
     font-weight: 400;
     font-size: 20px;
@@ -81,22 +84,21 @@
 
 
 }
+
 .img_edit_pop{
     width: 235px;
     height: 228px;
     margin: 0 auto;
     margin-top: 33px;
     margin-bottom:67px ;
-    /* position: absolute; */
 }
 .close_pop{
-    font-size: 50px;
+    font-size: 39px;
     position: absolute;
     right: 20px;
     top:20px;
     border: none;
-    background-color: white;
-
+    background-color:#f8f8f8;
 }
 
 .edit_buuton{
@@ -112,9 +114,7 @@
     margin-top: 48px;
     text-transform: capitalize;
     margin-left: auto;
-    margin-right: auto;
-
-    
+    margin-right: auto;    
 }
 /*event*/
 .overlayer_event{
@@ -132,7 +132,6 @@
     gap: 10px;
 }
 .input{
-    /* width: 80%; */
     border: 1px solid #c7c7c7;
     border-radius: 10px;
     height: 74px;
@@ -143,8 +142,6 @@
     line-height: normal;
     color: #4b4949;
     text-transform: capitalize;
-    /* margin-bottom: 1px; */
-    /* padding: 20px; */
     padding-left: 20px;
 }
 .img_candidate_file{
@@ -158,4 +155,32 @@
     object-fit: cover;
     height: 920px;
     max-width: 100%;
+}
+@media (min-width:1441px) and (max-width: 1536px) {
+    .overlay{
+        height: 628px;
+        width: 35%;
+    }
+    .img_edit_pop{
+        margin-top: 2px;
+        margin-bottom: 1px;
+    }
+    .img_add_admin{
+        width: 205px;
+        height: 186px;
+        }
+    .input{
+        height: 60px;
+    }
+    .edit_buuton{
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+    .overlay_delete{
+        /* width: 439px; */
+        height: 220px;
+    }
+    .p_delete{
+        font-size: 25px;
+    }
 }

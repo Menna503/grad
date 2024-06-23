@@ -120,8 +120,9 @@ function handle(e) {
                     <div className='Addnewslec'>
                         <div className='closee_button' onClick={close}> <IoIosClose /> </div>
                             <div className='Addnewwslec'>
-                                <div className='page_img_addnews' ><img src={Addnewsposter} alt=""  /> </div> 
-                                      <div className='bigboxofAddnews' >
+                                <div className='page_img_addnews' ><img  className='img_news_ov'src={Addnewsposter} alt=""  /> </div> 
+                                <div className='box_news'>
+                                      <div  >
                                          <input  id="header" onChange={handle} placeholder={t('Add The Title Of The News')} type='text' value={data.header} className={i18n.language === 'ar' ? 'box_of_Addnews align_right' : 'box_of_Addnews'}></input>
                                       </div>
 
@@ -131,10 +132,10 @@ function handle(e) {
                                       </div>
                                         
 
-                                        <div className='bigboxofAddnewarea' >
+                                        <div  >
                                           <textarea   id="description" onChange={handle} placeholder={t('News....')} type='text' value={data.description}  className={i18n.language === 'ar' ? 'box_of_Addnewsarea align_right' : 'box_of_Addnewsarea'}></textarea>
                                         </div> 
-                            
+                                </div>
                                 </div>
                             <button className={i18n.language === 'ar' ? 'add_button_news button_font_size' : 'add_button_news'} type="submit">{newsToEdit ? t('edit') : t('add')}</button>
                     </div>

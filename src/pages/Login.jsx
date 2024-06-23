@@ -64,6 +64,7 @@ const Login = () => {
 
 
     return (
+        <>
         <div className='Login_bigcontainer'>
             <div className='Login_componentcontainer'>
 
@@ -98,6 +99,7 @@ const Login = () => {
             </div>
 
         </div>
+        </>
     )
 }
 

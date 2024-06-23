@@ -8,7 +8,7 @@ function CandidateDataOverlay({ close, image }) {
     }
   };
 
-  console.log(`Overlay Image Path: ${image}`); // Debug: log overlay image path
+  console.log(`Overlay Image Path: ${image}`); 
 
   return (
     <div className="newsModal" onClick={handleClose}>
@@ -19,7 +19,7 @@ function CandidateDataOverlay({ close, image }) {
           </div>
           <div className='Addnewwslec n'>
             {image ? (
-              <img className="image_overlay" src={image} alt="Document" />
+              <img className="image_overlay " src={image} alt="Document" />
             ) : (
               <p>No image available</p>
             )}

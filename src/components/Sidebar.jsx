@@ -1,7 +1,5 @@
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import imgprofile from '../images/imgprofile.svg';
-import Admin_sidebar from '../images/Admin_sidebar.svg';
 import * as MdIcons from "react-icons/md";
 import * as RiIcons from "react-icons/ri";
 import * as FaIcons from "react-icons/fa6";
@@ -28,8 +26,6 @@ const Sidebar = ({ children }) => {
     };
 
     const navigate = useNavigate();
-   
-    // Use useLocation hook to get current path
     const location = useLocation();
     const currentPath = location.pathname;
     const AdminMenuItem = [
@@ -133,29 +129,27 @@ const Sidebar = ({ children }) => {
         }
     ];
     const menuItem = user.role === "ADMIN" ? AdminMenuItem :MangerMenuItem ;
-    const image_user = user.role === "ADMIN" ? Admin_sidebar : imgprofile;
+    const image_user = (user.role === "ADMIN" && i18n.language === 'en') ? 'Admin_sidebar.svg' :
+    (i18n.language === 'ar' && (user.role === "ADMIN" || user.role === "MANAGER")) ? 'arabic_manager_admin.svg':
+    'imgprofile.svg';
 
-    const sidebarStyle = {
-        width: isOpen ? "304px" : "97px",
-    };
+  
+    const sidebarClassName = isOpen ? "sidebar-expanded" : "sidebar-collapsed";
     const bar = {
-        // marginLeft: isOpen ? "0px" : "20px"
-       marginLeft : isOpen ? "0px" : (i18n.language==='ar'? "3px" : "46px")
-             ,
+        right: isOpen ? (i18n.language === "ar" ? "80%" : "7%") : "50%",
         transform: isOpen ? "rotate(180deg)" : "rotate(0deg)"
-
-    }
-
-    return (
+    };
+    
+    return(
         <div className="container">
-         <div className={i18n.language === 'ar' ? ' sidebar arsidebar' : 'sidebar'} style={sidebarStyle}>
 
+         <div className={`${i18n.language === 'ar' ? 'sidebar arsidebar' : 'sidebar'} ${sidebarClassName}`}>
 
-                <div className="top_section" style={{ width: isOpen ? "254px" : "90px" }}>
+                <div className={`top_section ${isOpen ? "top_section_open" : "top_section_closed"}`}>
                     <div style={{ display: isOpen ? "block" : "none" }} className="info-admin">
 
                         <div  ><img src={image_user} alt="" className='image_user'/> </div>
-                        <p className=" icon name">{user.name}</p>
+                        <div className=" icon name">{user.name}</div>
                     </div>
 
                     <div style={bar} className={i18n.language==='ar'?'bars_ar  ':'bars'} >

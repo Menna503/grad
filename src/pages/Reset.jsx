@@ -51,9 +51,9 @@ const Reset = () => {
   return (
     <>
     <p className={i18n.language === 'ar' ? ' resetParagraph_arabic paragraph_in_manage_events align' : ' resetParagraph paragraph_in_manage_events'}> {t('please enter the national ID for user to change his password at the application')}</p>
-      <div className='reset_container'>
+      <div className= {i18n.language=='ar'?'reset_container reset_container_ar': 'reset_container '}>
        
-    <div className='page_img_reset' ><img src={reset} alt=""  /> </div> 
+    <div className='page_img_reset' ><img className='img_reset' src={reset} alt=""  /> </div> 
     <div className='prof_component'>
         
         <form onSubmit={(e)=> Submit(e)}>

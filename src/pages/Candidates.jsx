@@ -1,10 +1,9 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { RiDeleteBinLine } from 'react-icons/ri';
 import Model from '../model/model';
 import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next'; // Import the useTranslation hook
+import { useTranslation } from 'react-i18next'; 
 
 const Candidates = () => {
   const [deleteCandidateModel, setDeleteCandidateModel] = useState(false);
@@ -12,7 +11,7 @@ const Candidates = () => {
   const [deleteItemId, setDeleteItemId] = useState(null);
   const token = localStorage.getItem('token') || '';
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation(); // Initialize the useTranslation hook
+  const { i18n } = useTranslation(); 
 
   useEffect(() => {
     if (!token) {
@@ -28,7 +27,7 @@ const Candidates = () => {
         Authorization: `Bearer ${token}`,
       },
       params: {
-        status: 'approved' // Add this parameter to filter only approved candidates
+        status: 'approved' 
       }
     })
     .then(res => {
@@ -70,28 +69,22 @@ const Candidates = () => {
       <Model
         delete_model={deleteCandidateModel}
         close_model={() => setDeleteCandidateModel(false)}
-        item={data.find(item => item._id === deleteItemId)} // Pass the selected item to the model
+        item={data.find(item => item._id === deleteItemId)} 
         onDelete={() => deleteCandidate(deleteItemId)}
       />
       <div className='top'>
-        <div className='continer_table'>
-          {/* Add class based on language */}
+        <div className='continer_table candidates_continer'>
+          
           <table className={i18n.language === 'ar' ? 'rotate_y' : ''}>
             <tbody>
               {data.map((item) => (
                 (
                 <tr key={item._id}>
-                  {/* Add class based on language */}
+                
                   <td className={i18n.language === 'ar' ? 'rotate_y' : ''}><div ><img  className='candidate_img' src={getImage(item.image)} alt='Candidate' /></div></td>
                   <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{item.name}</td>
-                  <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{item.id}</td>
-                  <td>
-                    <div>
-                      <button className='rotate_y delete_icon  delete_edit_ic' onClick={() => { setDeleteItemId(item._id); setDeleteCandidateModel(true); }}>
-                        <RiDeleteBinLine />
-                      </button>
-                    </div>
-                  </td>
+                  {/* <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{item.id}</td> */}
+                  <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>30201211303077</td>
                 </tr>
               )))}
             </tbody>

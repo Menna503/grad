@@ -12,6 +12,7 @@ function Profile() {
     const { user} = useContext(UserContext);
     const profile = user.role ==="ADMIN" ?  Admin_page_profile : Page_profile;
     const { t, i18n } = useTranslation();
+    const controllerId = user.id;
 
     const [data, setData] = useState({
       password:"",
@@ -25,12 +26,19 @@ function Profile() {
       e.preventDefault();
       const token = localStorage.getItem('token');
 
+      const config = {
+        headers: {
+            Authorization: `Bearer ${token}`, 
+        }
+    };
+   
       if (token) {
-        axios.patch(`${'controller'}/${'controller._id'}`, data, {
+        axios.patch(`https://graduation-project-yok6.onrender.com/api/controller/${controllerId}`, data, {
             headers: {
                 Authorization: `Bearer ${token}`
 
             }
+       
         })
             .then(res => {
               console.log(res.data);
@@ -59,10 +67,15 @@ function Profile() {
 
 
   }
-
+ 
+  const image_user = (user.role === "ADMIN" && i18n.language === 'en') ? 'Admin_profile_arabic.svg' :
+    (i18n.language === 'ar' && (user.role === "ADMIN" || user.role === "MANAGER")) ? 'manager.svg' :
+  'manager_english.svg';
   return (
   <div className={i18n.language === 'ar' ? 'profile_container arabic_candidates ' : 'profile_container'}>
-    <div className={i18n.language === 'ar' ? 'page_img_profile arabic_image  ' : 'page_img_profile'} > {i18n.language === 'ar' ? (<img src="/manager.svg" alt="" /> ) : ( <img src="/manager_english.svg" alt="" /> )} </div>                                             
+    {/* <div className={i18n.language === 'ar' ? 'page_img_profile arabic_image  ' : 'page_img_profile'} > {i18n.language === 'ar' ? (<img className='manager_image' src="/manager.svg" alt="" /> ) : ( <img className='manager_image' src="/manager_english.svg" alt="" /> )} </div>    
+                                              */}
+    <div className={i18n.language === 'ar' ? ' page_img_profile arabic_image  ' : 'page_img_profile'} > {i18n.language === 'ar' ? (<img className='manager_image' src={image_user} alt="" /> ) : ( <img className='manager_image' src={image_user} alt="" /> )} </div>
     <div className='prof_component'>
         <div className='bigboxofprofile' >
                 <p className={i18n.language === 'ar' ? 'p1_of_profile reset_arabic  ' : 'p1_of_profile'}>{t('name')}</p>

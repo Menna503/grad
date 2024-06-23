@@ -98,22 +98,24 @@ function HelpOverlay({ close , addQuestion , questionToEdit , updateQuestion  })
 
     return (
     <div className="newsModal"  onClick={handleClose}>
-       <div className="helpModalContainer">
+       <div className="newsModalContainer height">
        <form  onSubmit={Submit}>
 
          <div className='Addnewslec'>
-            <div className='closehelp_button' onClick={close}> <IoIosClose /> </div>
+            <div className='closee_button' onClick={close}> <IoIosClose /> </div>
                 <div className='Addnewwslec'>
                     <div className='page_img_addnews' ><img src={Helpposter} alt=""  /> </div> 
-                            <div className='bigboxofAddnews' >
+                    <div className='box_news'>
+                            <div  >
                                  <input  id="question" onChange={handle} placeholder={t('Please Add Qestion')} type='text' value={data.question}  className={i18n.language === 'ar' ? 'box_of_Addnews align_right' : 'box_of_Addnews'} ></input>
                             </div>
 
                             <div className='bigboxofAddnewarea' >
                                 <textarea   id="answer" onChange={handle} placeholder={t('Answer.....')} type='text' value={data.answer}  className={i18n.language === 'ar' ? 'box_of_Addnewsarea align_right' : 'box_of_Addnewsarea'}></textarea>
                             </div> 
+                            </div>
                 </div>
-                        <button className={i18n.language === 'ar' ? 'addd_button_for_help button_font_size' : 'addd_button_for_help '} type="submit">{questionToEdit ? t('edit') : t('add')}</button>
+                        <button className={i18n.language === 'ar' ? 'add_button_news button_font_size' : 'add_button_news'}  type="submit">{questionToEdit ? t('edit') : t('add')}</button>
             </div>
 
         

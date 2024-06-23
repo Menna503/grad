@@ -1,11 +1,11 @@
 {
-   "1": "الصفحة الرئيسية",
+   "1": "الرئيسية",
    "2": "الأدمن",
    "3": "حدث",
   "4":  "الطلبات",
   "5":"المرشحين",
   "6":"الأخبار",
-  "7":"الملف الشخصي",
+  "7":" الحساب",
   "8":"الأسئلة",
   "9":"تعيين كلمة المرور",
   "10":"تسجيل الخروج" ,
@@ -60,7 +60,7 @@
      "update":"تعديل",
      "Please press the below button to add Qestion":"من فضلك اضغط على زر إضافة بالأسفل لإضافة سؤال جديد",
      "please enter the national ID for user to change his password at the application":"من فضلك ادخل الرقم القومى الخاص بالمستخدم لتغيير كلمة المرور الخاصة به فى التطبيق",
-     "user new password :":": كلمة المرور الجديدة",
+     "user new password :":"كلمة المرور الجديدة",
      "reset":"تعيين",
      "Read more":"قراءة المزيد",
      "Are you sure you want to delete this question?":"هل أنت متأكد من حذف هذا السؤال ؟",
@@ -72,7 +72,7 @@
      "Add The Title Of The News":"اضف عنوان الخبر",
      "News....":".......الأخبار",
      "welcome!":"!مرحبا بك",
-     "log in your account to access the dashboard":"من فضلك قم ادخل الرقم القومى وكلمة المرور لتتمكن من الخول"  ,
+     "log in your account to access the dashboard":"من فضلك ادخل الرقم القومى وكلمة المرور  "  ,
      "Candidate Resualts":"نتائج الانتخابات"
  
  }
