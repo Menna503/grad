@@ -1,104 +1,94 @@
 
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IoMdPerson } from 'react-icons/io';
 import { FaVoteYea } from 'react-icons/fa';
 import { BsFillPeopleFill } from 'react-icons/bs';
+import socketIOClient from 'socket.io-client';
+
+const SOCKET_SERVER_URL = 'ws:graduation-project-yok6.onrender.com';
+
 const Dashboard = () => {
-    const { t, i18n } = useTranslation();
-    const token = localStorage.getItem('token') || '';
-    const [results, setResults] = useState([]);
-    const [totalCount, setTotalCount] = useState(0);
-    const [totalVotes, setTotalVotes] = useState(0);
+  const { t, i18n } = useTranslation();
+  const token = localStorage.getItem('token') || '';
+  const [results, setResults] = useState([]);
+  const [totalCount, setTotalCount] = useState(0);
 
-    useEffect(() => {
-        connectToWS();
-    }, [token])
+  useEffect(() => {
+    const socket = socketIOClient(SOCKET_SERVER_URL, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-    function connectToWS() {
-        let sockerUrl = process.env.REACT_APP_API_URL
-        sockerUrl = sockerUrl.replace('https', 'wss')
-        sockerUrl = sockerUrl.replace('http', 'wss')
-        const ws = new WebSocket(sockerUrl + '?token=' + token);
-        ws.onmessage = function (e) {
-            const data = JSON.parse(e.data);
-            const sortedResults = data.results.sort((a, b) => b.count - a.count);
-            setResults(sortedResults);
-            setTotalVotes(sortedResults.reduce((totalVotes, result) => totalVotes + result.count, 0));
-            setTotalCount(data.totalCount);
-        };
+    socket.on('connect', () => {
+      console.log('Connected to socket server');
+    });
 
-        ws.onclose = (e) => {
-            if (e.reason)
-                console.log('close: ', e.reason);
-            else
-                console.log('apsoudf');
-        }
-    }
-    const getImage = (path) => {
-        return process.env.REACT_APP_API_URL + '/api/uploads/' + path
-    }
+    socket.on('dataUpdate', (data) => {
+      setResults(data.results);
+      setTotalCount(data.totalCount || 0);
+    });
 
-    return (
-           
-        <div className='manageevents_maincontainer dash' >
-             <div className='manageevents_component dashboard'>
-          <div  className= {i18n.language=='ar'?'event for_dashboard padding':'event for_dashboard'}>
+    socket.on('disconnect', () => {
+      console.log('Disconnected from socket server');
+    });
 
-              <p className='PofmanageEvents card_title'>{t('Candidates')}</p>
-              <div className={i18n.language === 'ar' ? 'number_of_candidates arabic_candidates margin_left' : 'number_of_candidates'}>
-                <IoMdPerson  className='icon_of_can'/>
-                <p className='PofmanageEvents card_title'>{results.length}</p>
-            </div>
+    return () => {
+      socket.disconnect();
+    };
+  }, [token]);
 
+  return (
+    <div className='manageevents_maincontainer dash'>
+      <div className='manageevents_component dashboard'>
+        <div className='event for_dashboard'>
+          <p className='PofmanageEvents card_title'>{t('Candidates')}</p>
+          <div className={i18n.language === 'ar' ? 'number_of_candidates arabic_candidates' : 'number_of_candidates'}>
+            <IoMdPerson className='icon_of_can' />
+            <p className='PofmanageEvents card_title'>{results.length}</p>
           </div>
-          <div  className= {i18n.language=='ar'?'event for_dashboard padding margin_left':'event for_dashboard'}>
+        </div>
+        <div className='event for_dashboard'>
           <p className='PofmanageEvents card_title'>{t('Votes')}</p>
           <div className={i18n.language === 'ar' ? 'number_of_candidates arabic_candidates' : 'number_of_candidates'}>
-                <FaVoteYea className='icon_of_can'/>
-                <p className='PofmanageEvents card_title'>{results.reduce((totalVotes, result) => totalVotes + result.count, 0)}</p>
-            </div>
-
-             </div>
-         
-             <div  className= {i18n.language=='ar'?'event for_dashboard padding margin_left':'event for_dashboard'}>
-            
-            <p className='PofmanageEvents card_title'>{t('total users')}</p>
-            <div className={i18n.language === 'ar' ? 'number_of_candidates arabic_candidates' : 'number_of_candidates'}>
-                <BsFillPeopleFill  className='icon_of_can'/>
-                  <p className='PofmanageEvents card_title'>{totalCount}</p>
-              </div>
+            <FaVoteYea className='icon_of_can' />
+            <p className='PofmanageEvents card_title'>
+              {results.reduce((totalVotes, result) => totalVotes + result.count, 0)}
+            </p>
           </div>
-      </div>
-            <div className='continer_table continer_table_dashboard'>
-                <table className={i18n.language === 'ar' ? 'rotate_y' : ''}>
-                    <thead>
-                        <tr>
-                            <th className={`th_dashboard ${i18n.language === 'ar' ? 'rotate_y' : ''}`}>{t('Candidate')}</th>
-                            <th className={`th_dashboard ${i18n.language === 'ar' ? 'rotate_y' : ''}`}>{t('Name')}</th>
-                            <th className={`th_dashboard ${i18n.language === 'ar' ? 'rotate_y' : ''}`}>{t('ID Number')}</th>
-                            <th className={`th_dashboard ${i18n.language === 'ar' ? 'rotate_y' : ''}`}>{t('Votes')}</th>
-                            <th className={`th_dashboard ${i18n.language === 'ar' ? 'rotate_y' : ''}`}>{t('Standing')}</th>
-                            <th className={`th_dashboard ${i18n.language === 'ar' ? 'rotate_y' : ''}`}>{t('Percentage Result')}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {results.map((result, index) => (
-                            <tr key={result.candidate._id}>
-                                  <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>
-                                  <div ><img className="img_dashboard" src={getImage(result.candidate.image)} alt='Candidate' /> </div> </td>
-                                  <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{result.candidate.name}</td>
-                                  <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{result.candidate.nationalId}</td>
-                                  <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{result.count}</td>
-                                  <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{index + 1}</td>
-                                  <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{totalVotes > 0 ? ((result.count / totalVotes) * 100).toFixed(2) : 0}%</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
         </div>
-    );
+        
+        <div className='event for_dashboard'>
+          <p className='PofmanageEvents card_title'>{t('Total users')}</p>
+          <div className={i18n.language === 'ar' ? 'number_of_candidates arabic_candidates' : 'number_of_candidates'}>
+            <BsFillPeopleFill className='icon_of_can' />
+            <p className='PofmanageEvents card_title'>{totalCount}</p>
+          </div>
+        </div>
+      </div>
+      <p className={i18n.language === 'ar' ? 'p_dashboard p_dashboard_ar' : 'p_dashboard'}>{t('Candidate Results')}</p>
+      <div className='continer_table continer_table_dashboard'>
+        <table className={i18n.language === 'ar' ? 'rotate_y' : ''}>
+          <thead>
+            <tr>
+              <th className={`th_dashboard ${i18n.language === 'ar' ? 'rotate_y' : ''}`}>{t('Candidate')}</th>
+              <th className={`th_dashboard ${i18n.language === 'ar' ? 'rotate_y' : ''}`}>{t('Name')}</th>
+              <th className={`th_dashboard ${i18n.language === 'ar' ? 'rotate_y' : ''}`}>{t('Votes')}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {results.map((result) => (
+              <tr key={result.candidate._id}>
+                <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{result.name}</td>
+                <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{result.count}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 };
 
 export default Dashboard;
