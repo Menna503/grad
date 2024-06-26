@@ -73,7 +73,12 @@
      "News....":".......الأخبار",
      "welcome!":"!مرحبا بك",
      "log in your account to access the dashboard":"من فضلك ادخل الرقم القومى وكلمة المرور  "  ,
-     "Candidate Resualts":"نتائج الانتخابات"
+     "Candidate Resualts":"نتائج الانتخابات",
+     "National ID should be exactly 14 characters":"الرقم القومى يجب أن يكون 14 رقم",
+     "All fields are required":"يجب ملىء جميع الخانات",
+      "Password should be at least 8 characters":"كلمة المرور يجب ألا يكون أقل من 8 حروف أو أرقام",
+      "Password updated successfully":"تم تحديث كلمة المرور بنجاح",
+      "Incorrect old password":"كلمة المرور غير صحيحة"
  
  }
    

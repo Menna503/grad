@@ -10,9 +10,43 @@ function Requests() {
   const [selectedCandidate, setSelectedCandidate] = useState(null);
   const token = localStorage.getItem('token') || '';
   const { t, i18n } = useTranslation(); 
+  const [nominationEvent, setNominationEvent] = useState(null);
+  const [isNominationActive, setIsnominationActive] = useState(false);
+  const [electionMessage, setElectionMessage] = useState('');
+
   useEffect(() => {
-    fetchData();
-  }, [token]);
+    const fetchElectionEvent = async () => {
+        try {
+            const response = await axios.get('event', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            const events = response.data.data.events;
+            const nomination = events.find(event => event.type === 'nomination');
+            setNominationEvent(nomination);
+            const now = new Date();
+            if (nomination) {
+                const start = new Date(nomination.start);
+                const end = new Date(nomination.end);
+                // case in nomination time
+                if (now >= start && now <= end) {
+                  setIsnominationActive(true);
+                  fetchData(); 
+                } else{
+                    setElectionMessage('it is not nomination period.');
+                }
+            }
+        } catch (error) {
+            console.error('Error fetching nomination event:', error);
+        }
+    };
+}, [token]);
+
+
+  // useEffect(() => {
+  //   fetchData();
+  // }, [token]);
 
   const fetchData = () => {
     if (token) {
@@ -50,8 +84,10 @@ function Requests() {
 }
   return (
     <>
+
       <div className='top'>
         <div className='continer_table'>
+        {electionMessage && <p>{electionMessage}</p>}
           <table className={i18n.language === 'ar' ? 'rotate_y' : ''}>
             <tbody>
               {data.map((item) => (

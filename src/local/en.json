@@ -73,7 +73,13 @@
      "News....":"News....",
      "welcome!":"welcome!",
      "log in your account to access the dashboard":"log in your account to access the dashboard",
-     "Candidate Resualts":"Candidate Resualts"
+     "Candidate Resualts":"Candidate Resualts",
+     "National ID should be exactly 14 characters":"National ID should be exactly 14 characters",
+     "All fields are required":"All fields are required",
+     "Password should be at least 8 characters":"Password should be at least 8 characters",
+     "Password updated successfully":"Password updated successfully",
+     "Incorrect old password":"Incorrect old password"
+    
     
      
 
