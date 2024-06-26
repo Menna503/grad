@@ -97,24 +97,24 @@ const Dashboard = () => {
     return (
         <div className='manageevents_maincontainer dash'>
             <div className='manageevents_component dashboard'>
-                <div className='event for_dashboard'>
+            <div  className= {i18n.language=='ar'?'event for_dashboard padding':'event for_dashboard'}>
                     <p className='PofmanageEvents card_title'>{t('Candidates')}</p>
-                    <div className={i18n.language === 'ar' ? 'number_of_candidates arabic_candidates' : 'number_of_candidates'}>
+                    <div className={i18n.language === 'ar' ? 'number_of_candidates arabic_candidates margin_left' : 'number_of_candidates'}>
                         <IoMdPerson className='icon_of_can' />
                         <p className='PofmanageEvents card_title'>{results.length}</p>
                     </div>
                 </div>
-                <div className='event for_dashboard'>
+                <div  className= {i18n.language=='ar'?'event for_dashboard padding':'event for_dashboard'}>
                     <p className='PofmanageEvents card_title'>{t('Votes')}</p>
-                    <div className={i18n.language === 'ar' ? 'number_of_candidates arabic_candidates' : 'number_of_candidates'}>
+                    <div className={i18n.language === 'ar' ? 'number_of_candidates arabic_candidates margin_left' : 'number_of_candidates'}>
                         <FaVoteYea className='icon_of_can' />
                         <p className='PofmanageEvents card_title'>{totalCount}</p>
                     </div>
                 </div>
 
-                <div className='event for_dashboard'>
-                    <p className='PofmanageEvents card_title'>{t('Total users')}</p>
-                    <div className={i18n.language === 'ar' ? 'number_of_candidates arabic_candidates' : 'number_of_candidates'}>
+                <div  className= {i18n.language=='ar'?'event for_dashboard padding':'event for_dashboard'}>
+                    <p className='PofmanageEvents card_title'>{t('total users')}</p>
+                    <div className={i18n.language === 'ar' ? 'number_of_candidates arabic_candidates margin_left' : 'number_of_candidates'}>
                         <BsFillPeopleFill className='icon_of_can' />
                         <p className='PofmanageEvents card_title'>{totalUsers}</p>
                     </div>
