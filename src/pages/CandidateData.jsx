@@ -288,7 +288,7 @@ function CandidateData() {
     .catch(error => {
       console.error(`Error updating candidate status to ${status}:`, error);
     });
-      navigate('/Candidates');
+    navigate('/Candidates', { state: { updatedCandidate: candidateData } });
   };
 
 
@@ -309,25 +309,8 @@ function CandidateData() {
   
   
 
-  const openReadMoreModal = (imagePath) => {
-    if (!imagePath) {
-      console.error('Image path is not available.');
-      return;
-    }
-    const fullPath = getImage(imagePath);
-    if (!fullPath) {
-      console.error('Failed to construct image path.');
-      return;
-    }
-    console.log(`Opening modal with image: ${fullPath}`); // Debug: log modal image path
-    setCurrentImage(fullPath);
-    setShowReadModal(true);
-  };
-
-  const closeReadModal = () => {
-    setShowReadModal(false);
-    setCurrentImage('');
-  };
+  
+ 
   const openImageInNewPage = (imagePath) => {
     if (!imagePath) {
       console.error('Image path is not available.');

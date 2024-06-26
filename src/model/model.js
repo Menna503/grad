@@ -10,6 +10,7 @@ const BackDrop = () => {
   return <div className="backDrop"></div>;
 };
 
+
 const OverlayerEdit = ({ close, AdminToEdit, fetchData }) => {
   const { t, i18n } = useTranslation();
   const [data, setData] = useState({
@@ -37,17 +38,17 @@ const OverlayerEdit = ({ close, AdminToEdit, fetchData }) => {
   function Submit(e) {
     e.preventDefault();
     const token = localStorage.getItem('token');
-
-    if (!data.name || !data.nationalId) {
-      setErrorMessage(t("All fields are required"));
+  
+    if (!data.name && !data.nationalId) {
+      setErrorMessage(t("At least one field must be updated"));
       return;
     }
-
-    if (data.nationalId.length !== 14) {
+  
+    if (data.nationalId && data.nationalId.length !== 14 && data.nationalId !== AdminToEdit.nationalId) {
       setErrorMessage(t("National ID should be exactly 14 characters"));
       return;
     }
-
+  
     if (token) {
       axios.patch(`${'/controller/admin'}/${AdminToEdit._id}`, data, {
         headers: {
@@ -64,14 +65,14 @@ const OverlayerEdit = ({ close, AdminToEdit, fetchData }) => {
         });
     }
   }
-
+  
   function handle(e) {
     const { id, value } = e.target;
     setData(prevData => ({
       ...prevData,
       [id]: value
     }));
-    setErrorMessage("");
+    setErrorMessage(""); // Reset error message whenever input changes
   }
 
   return (
@@ -102,11 +103,13 @@ const OverlayerEdit = ({ close, AdminToEdit, fetchData }) => {
           />
         </div>
         <button className='edit_buuton' type='submit'>{t('edit')}</button>
-        {errorMessage && <div className='error_message' style={{ color: 'red',fontSize:'24px' }}>{errorMessage}</div>}
+        {errorMessage && <div className='error_message' style={{ color: 'red', fontSize: '24px' }}>{errorMessage}</div>}
       </form>
     </div>
   );
 }
+
+
 
 const OverlayerAddAdmin = ({ close, addNewAdmin, fetchData }) => {
   const { t, i18n } = useTranslation();

@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IoMdPerson } from 'react-icons/io';
 import { FaVoteYea } from 'react-icons/fa';
 import { BsFillPeopleFill } from 'react-icons/bs';
-import axios from 'axios'
+import axios from 'axios';
 
 const Dashboard = () => {
     const { t, i18n } = useTranslation();
@@ -14,9 +14,8 @@ const Dashboard = () => {
     const [electionEvent, setElectionEvent] = useState(null);
     const [isElectionActive, setIsElectionActive] = useState(false);
     const [electionMessage, setElectionMessage] = useState('');
-   
 
-      useEffect(() => {
+    useEffect(() => {
         const fetchElectionEvent = async () => {
             try {
                 const response = await axios.get('event', {
@@ -31,25 +30,25 @@ const Dashboard = () => {
                 if (election) {
                     const start = new Date(election.start);
                     const end = new Date(election.end);
-                    // case in election time
                     if (now >= start && now <= end) {
                         setIsElectionActive(true);
                         connectToWS();
                     } else if (now > end) {
+                        setElectionMessage('Election has ended.');
                         fetchFinalResults();
-                        // case not start of election => no results
                     } else if (now < start) {
                         setElectionMessage('Election has not started yet.');
                     }
+                } else {
+                    setElectionMessage('No election event found.');
                 }
             } catch (error) {
                 console.error('Error fetching election event:', error);
+                setElectionMessage('Error fetching election event.');
             }
         };
-        // case end of election => ask api for results.
         fetchElectionEvent();
     }, [token]);
-
 
     const fetchFinalResults = async () => {
         try {
@@ -59,42 +58,45 @@ const Dashboard = () => {
                 }
             });
             const data = response.data.results;
-             setTotalUsers(data.totalUsers);
+            setTotalUsers(data.totalUsers);
         } catch (error) {
             console.error('Error fetching final results:', error);
         }
     };
+
     function connectToWS() {
-        let sockerUrl = process.env.REACT_APP_API_URL
-        sockerUrl = sockerUrl.replace('https', 'wss')
-        sockerUrl = sockerUrl.replace('http', 'wss')
+        let sockerUrl = process.env.REACT_APP_API_URL;
+        sockerUrl = sockerUrl.replace('https', 'wss');
+        sockerUrl = sockerUrl.replace('http', 'wss');
 
         const ws = new WebSocket(sockerUrl + '?token=' + token);
 
         ws.onmessage = function (e) {
-            const data = JSON.parse(e.data)
+            const data = JSON.parse(e.data);
             setResults(data.results);
-            setTotalCount(data.totalCount)
-            setTotalUsers(data.totalUsers)
-        }
+            setTotalCount(data.totalCount);
+            setTotalUsers(data.totalUsers);
+        };
 
         ws.onclose = (e) => {
             if (e.reason)
                 console.log('close: ', e.reason);
             else
-                console.log('apsoudf');
-        }
+                console.log('Connection closed');
+        };
     }
 
-    
     const getImage = (path) => {
-                 return `${process.env.REACT_APP_API_URL}/api/uploads/${path}`;
-             };
+        return `${process.env.REACT_APP_API_URL}/api/uploads/${path}`;
+    };
+
+    if (electionMessage) {
+        return <p>{electionMessage}</p>;
+    }
 
     return (
         <div className='manageevents_maincontainer dash'>
             <div className='manageevents_component dashboard'>
-            {electionMessage && <p>{electionMessage}</p>}
                 <div className='event for_dashboard'>
                     <p className='PofmanageEvents card_title'>{t('Candidates')}</p>
                     <div className={i18n.language === 'ar' ? 'number_of_candidates arabic_candidates' : 'number_of_candidates'}>
@@ -118,7 +120,7 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
-            <p className={i18n.language === 'ar' ? 'p_dashboard p_dashboard_ar' : 'p_dashboard'}>{t('Candidate Results')}</p>
+            {/* <p className={i18n.language === 'ar' ? 'p_dashboard p_dashboard_ar' : 'p_dashboard'}>{t('Candidate Results')}</p> */}
             <div className='continer_table continer_table_dashboard'>
                 <table className={i18n.language === 'ar' ? 'rotate_y' : ''}>
                     <thead>
@@ -139,9 +141,9 @@ const Dashboard = () => {
                                  </td>
                                  <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{result.candidate.name}</td>
                                  <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{result.candidate.nationalId}</td>
-                                 <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{result.totalCount}</td>
+                                 <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{result.count}</td>
                                  <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{index + 1}</td>
-                                 <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{t> 0 ? ((result.count / t) * 100).toFixed(2) : 0}%</td>
+                                 <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{totalCount > 0 ? ((result.count / totalCount) * 100).toFixed(2) : 0}%</td>
                             </tr>
                         ))}
                     </tbody>
