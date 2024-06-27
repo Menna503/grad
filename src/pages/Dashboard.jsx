@@ -14,6 +14,7 @@ const Dashboard = () => {
     const [electionEvent, setElectionEvent] = useState(null);
     const [isElectionActive, setIsElectionActive] = useState(false);
     const [electionMessage, setElectionMessage] = useState('');
+    const [loading, setLoading] = useState(true); 
 
     useEffect(() => {
         const fetchElectionEvent = async () => {
@@ -33,8 +34,9 @@ const Dashboard = () => {
                     if (now >= start && now <= end) {
                         setIsElectionActive(true);
                         connectToWS();
-                    } else if (now > end) {
-                        setElectionMessage('Election has ended.');
+                    }
+                     else if (now>end) {
+                        // setElectionMessage('Election has ended.');
                         fetchFinalResults();
                     } else if (now < start) {
                         setElectionMessage('Election has not started yet.');
@@ -46,19 +48,27 @@ const Dashboard = () => {
                 console.error('Error fetching election event:', error);
                 setElectionMessage('Error fetching election event.');
             }
+         finally {
+            setLoading(false); // Set loading to false after fetching event status
+          }
         };
         fetchElectionEvent();
     }, [token]);
 
     const fetchFinalResults = async () => {
         try {
-            const response = await axios.get('https://graduation-project-yok6.onrender.com/api/election', {
+            const response = await axios.get('election', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             });
-            const data = response.data.results;
+            const data = response.data.data.results;
+            console.log(data);
+            // setTotalUsers(data.totalUsers);
+            setResults(data.results);
+            setTotalCount(data.totalCount);
             setTotalUsers(data.totalUsers);
+
         } catch (error) {
             console.error('Error fetching final results:', error);
         }
@@ -89,9 +99,16 @@ const Dashboard = () => {
     const getImage = (path) => {
         return `${process.env.REACT_APP_API_URL}/api/uploads/${path}`;
     };
+    
+  if (loading) {
+    return <div>Loading...</div>; // Loading indicator while fetching data
+  }
 
     if (electionMessage) {
-        return <p>{electionMessage}</p>;
+        return < div className='continer_massage'>
+                  <div>  <img src='date.svg'/></div>
+                  <p className='p_date'> {electionMessage}</p>
+           </div>;
     }
 
     return (

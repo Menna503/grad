@@ -30,7 +30,7 @@ const OverlayerEdit = ({ close, AdminToEdit, fetchData }) => {
     if (errorMessage) {
       const timer = setTimeout(() => {
         setErrorMessage("");
-      }, 5000); 
+      },5000); 
       return () => clearTimeout(timer);
     }
   }, [errorMessage]);
@@ -167,7 +167,7 @@ const OverlayerAddAdmin = ({ close, addNewAdmin, fetchData }) => {
   };
 
   return (
-    <div className="overlay">
+    <div className="overlay overlay_add">
       <button className='close_pop' onClick={close}><IoIosClose /></button>
       <div className={i18n.language === 'ar' ? 'edit rotate_y' : 'edit'}>
         <BsPersonGear className='edit_i_pop' />

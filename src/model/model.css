@@ -28,6 +28,8 @@
      gap: 13px;
 
 }
+
+
 /*overlay candidate*/
 .overlay_delete{
     width: 439px;
@@ -156,10 +158,19 @@
     height: 920px;
     max-width: 100%;
 }
+.error_message{
+    color: red;
+    font-size: 24px;
+    
+}
 @media (min-width:1441px) and (max-width: 1536px) {
     .overlay{
         height: 628px;
         width: 35%;
+    }
+    .overlay_add{
+        height: 702px
+        !important;
     }
     .img_edit_pop{
         margin-top: 2px;

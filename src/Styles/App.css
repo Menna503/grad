@@ -317,6 +317,7 @@ padding: 0%;
     height: auto;
     margin: 0 auto;
     text-align: start;
+    cursor: pointer;
 }
 
 .candidateData_button{
@@ -410,18 +411,25 @@ padding: 0%;
     font-size: 26px;
     color: #055b60;
 }
-   .p_dashboard{
-    color: #000000;
+   .p_date{
+    color: #5e5757;
    font-family: "Inter-SemiBold", Helvetica;
-   font-size: 20px;
+   font-size: 25px;
    font-weight: 600;
-   letter-spacing: 0;
+   /* letter-spacing: 0;
    line-height: normal;
-   margin-top: 34px;
+   margin-top: 34px; */
    }
-   .p_dashboard_ar{
+   /* .p_dashboard_ar{
    text-align: end;
    margin-right: 2.7rem;
+   } */
+   .continer_massage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    
    }
    
    .continer_table_dashboard{
