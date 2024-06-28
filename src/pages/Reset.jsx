@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import axios from 'axios';
 import reset from '../images/reset.svg';
 import { useTranslation } from 'react-i18next';
+import { getToken } from '../utils/authentication';
 
 const Reset = () => {
 
@@ -14,7 +15,7 @@ const Reset = () => {
 
    function Submit(e){
     e.preventDefault();
-    const token = localStorage.getItem('token');
+    const token = getToken();
 
     if (token) {
       axios.patch(`${'user/reset'}/${data.nationalId}`, data, {

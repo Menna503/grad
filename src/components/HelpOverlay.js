@@ -4,7 +4,7 @@ import { IoIosClose } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
 import Helpposter from '../images/helpposter.svg';
 import { useTranslation } from 'react-i18next';
-
+import { getToken } from '../utils/authentication';
 
 function HelpOverlay({ close , addQuestion , questionToEdit , updateQuestion  }) {
     const navigate = useNavigate();
@@ -27,7 +27,7 @@ function HelpOverlay({ close , addQuestion , questionToEdit , updateQuestion  })
     
     function Submit(e) {
         e.preventDefault();
-        const token = localStorage.getItem('token');
+        const token = getToken();
 
         if (token) {
             const config = {

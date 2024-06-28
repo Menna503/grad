@@ -9,6 +9,7 @@ import  axios  from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { getToken } from '../utils/authentication';
 
 function News() {
 
@@ -19,7 +20,7 @@ function News() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [newsToDelete, setNewsToDelete] = useState(null);
   const [newsToEdit, setNewsToEdit] = useState(null);
-  const token = localStorage.getItem('token') || '';
+  const token = getToken() || '';
   const location = useLocation();
   const { t, i18n } = useTranslation();
 

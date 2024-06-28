@@ -4,6 +4,7 @@ import Addnewsposter from '../images/Addnewsposter.svg';
 import { IoIosClose } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { getToken } from '../utils/authentication';
 
 function Addnewscomponent({ close , addNews , newsToEdit , updateNews}) {
 
@@ -32,7 +33,7 @@ function Addnewscomponent({ close , addNews , newsToEdit , updateNews}) {
 
   function Submit(e) {
     e.preventDefault();
-    const token = localStorage.getItem('token');
+    const token = getToken();
 
     if (!token) {
         console.error('Token not found, redirecting to login');

@@ -79,7 +79,10 @@
      "Password should be at least 8 characters":"Password should be at least 8 characters",
      "Password updated successfully":"Password updated successfully",
      "Incorrect old password":"Incorrect old password",
-     "Percentage Result":"Percentage Result"
+     "Percentage Result":"Percentage Result",
+     "Election dose not started yet":"Election dose not started yet",
+     "Nomintion event dose not start yet":"Nomintion event dose not start yet",
+     "Candidates event dose not started yet":"Candidates event dose not started yet"
     
     
      

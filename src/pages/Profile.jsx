@@ -6,13 +6,14 @@ import * as FaIcons from "react-icons/fa";
 import { UserContext } from '../UserContext';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
+import { getToken ,englishToArabicNumber} from '../utils/authentication';
 
 function Profile() {
     const { user } = useContext(UserContext);
     const profile = user.role === "ADMIN" ? Admin_page_profile : Page_profile;
     const { t, i18n } = useTranslation();
     const controllerId = user.id;
-
+   
     const [data, setData] = useState({
         password: "",
         newPassword: "",
@@ -41,7 +42,7 @@ function Profile() {
 
     function Submit(e) {
         e.preventDefault();
-        const token = localStorage.getItem('token');
+        const token =  getToken();
 
         if (data.password === "" || data.newPassword === "") {
             setErrorMessage(t("Both fields are required"));
@@ -85,6 +86,9 @@ function Profile() {
         }));
         setErrorMessage("");
     }
+    const convertToArabic = (number) => {
+        return i18n.language === 'ar' ? englishToArabicNumber(number.toString()) : number;
+    };
 
     const image_user = (user.role === "ADMIN" && i18n.language === 'en') ? 'Admin_profile_arabic.svg' :
         (i18n.language === 'ar' && (user.role === "ADMIN" || user.role === "MANAGER")) ? 'manager.svg' :
@@ -108,7 +112,7 @@ function Profile() {
                     <p className={i18n.language === 'ar' ? 'p1_of_profile reset_arabic' : 'p1_of_profile'}>{t('national ID')}</p>
                     <div className={i18n.language === 'ar' ? 'box_of_profile profile_reverse' : 'box_of_profile'}>
                         <FaIcons.FaIdCard className='prof_icon' />
-                        <p className='p2_of_profile'>{user.nationalId}</p>
+                        <p className='p2_of_profile'> {convertToArabic(user.nationalId)}</p>
                     </div>
                 </div>
                 <form onSubmit={Submit}>
@@ -124,7 +128,7 @@ function Profile() {
                             <input id="newPassword" onChange={handle} value={data.newPassword} type='password' className={i18n.language === 'ar' ? 'box_of_profile rtl row_reverse' : 'box_of_profile'}></input>
                         </div>
 
-                        <button className={i18n.language === 'ar' ? 'submit_button button_font_size' : 'submit_button'} type="submit">{t('update')}</button>
+                        <button className={i18n.language === 'ar' ? 'submit_button button_font_size' : 'submit_button margin_top'} type="submit">{t('update')}</button>
                     </div>
                 </form>
                 {successMessage && (

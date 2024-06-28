@@ -7,6 +7,7 @@ import { FaRegEdit } from "react-icons/fa";
 import Model from '../model/model';
 import { useNavigate } from 'react-router-dom';
 import { RiDeleteBin6Fill } from "react-icons/ri";
+import { getToken,englishToArabicNumber } from '../utils/authentication';
 
 const Admin = () => {
     const [editModel, setEditModel] = useState(false);
@@ -16,7 +17,7 @@ const Admin = () => {
     const [AdminToEdit, setAdminToEdit] = useState(null);
     const [deleteItemId, setDeleteItemId] = useState(null);
     const [updateTrigger, setUpdateTrigger] = useState(false);
-    const token = localStorage.getItem('token') || '';
+    const token = getToken() || '';
     const navigate = useNavigate();
     const { t, i18n } = useTranslation();
 
@@ -80,6 +81,9 @@ const Admin = () => {
     const getClassName = (baseClass) => {
         return i18n.language === 'ar' ? `${baseClass} rotate_y` : baseClass;
     };
+    const convertToArabic = (number) => {
+        return i18n.language === 'ar' ? englishToArabicNumber(number.toString()) : number;
+    };
 
     return (
         <>
@@ -100,7 +104,7 @@ const Admin = () => {
                                             </div>
                                         </td>
                                         <td className={getClassName('')}>{item.name}</td>
-                                        <td className={getClassName('')}>{item.nationalId}</td>
+                                        <td className={getClassName('')}> {convertToArabic(item.nationalId)}</td>
                                         <td>
                                             <div className='Edit_and_Delete_News'>
                                                 <button className='edit_icon delete_edit_ic' onClick={() => editAdmin(item)}> <FaRegEdit />  </button>

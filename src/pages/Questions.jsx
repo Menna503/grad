@@ -6,7 +6,7 @@ import {FaRegEdit}from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
-
+import { getToken } from '../utils/authentication';
 
 
 function Help() {
@@ -16,7 +16,7 @@ function Help() {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [questionToDelete, setQuestionToDelete] = useState(null);
     const [questionToEdit, setQuestionToEdit] = useState(null);
-    const token = localStorage.getItem('token') || '';
+    const token = getToken() || '';
     const { t, i18n } = useTranslation();
    
 

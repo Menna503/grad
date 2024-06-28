@@ -87,19 +87,19 @@ const OverlayerEdit = ({ close, AdminToEdit, fetchData }) => {
         <div className='inputs_continer'>
           <input
             type='text'
-            className='input'
+            className={i18n.language==='ar'?'input input_ar':'input'}
             id='name'
             value={data.name}
             onChange={handle}
-            placeholder='Enter Admin Name'
+            placeholder={t('please enter admin name')}
           />
           <input
             type='text'
-            className='input'
+            className={i18n.language==='ar'?'input input_ar':'input'}
             id='nationalId'
             value={data.nationalId}
             onChange={handle}
-            placeholder='Enter ID'
+            placeholder={t('please enter nathional id')}
           />
         </div>
         <button className='edit_buuton' type='submit'>{t('edit')}</button>
@@ -179,19 +179,19 @@ const OverlayerAddAdmin = ({ close, addNewAdmin, fetchData }) => {
           <input
             onChange={e => setInputData({ ...inputData, name: e.target.value })}
             type='text'
-            className='input'
+            className={i18n.language==='ar'?'input input_ar':'input'}
             placeholder={t('please enter admin name')}
           />
           <input
             onChange={e => setInputData({ ...inputData, nationalId: e.target.value })}
             type='text'
-            className='input'
-            placeholder={t('please enter national id')}
+            className={i18n.language==='ar'?'input input_ar':'input'}
+            placeholder={t('please enter nathional id')}
           />
           <input
             onChange={e => setInputData({ ...inputData, password: e.target.value })}
             type='password'
-            className='input'
+            className={i18n.language==='ar'?'input input_ar':'input'}
             placeholder={t('please enter password')}
           />
         </div>

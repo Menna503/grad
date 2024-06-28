@@ -41,7 +41,7 @@ function NewsReadMore_Overlay({ close ,newsToEdit }) {
                             <div className='Addnewwslec n'>
                               
                                <p className='description_paragraph'>{data.header}</p> 
-                                <p className=' ne'>{data.description}</p>
+                                <p className='ne'>{data.description}</p>
                                       
                             
                                 </div>
