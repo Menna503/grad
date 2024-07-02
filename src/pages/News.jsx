@@ -124,7 +124,7 @@ const getImage = (path) => {
               <div className={i18n.language === 'ar' ? 'manageevents_component_arabic' : 'manageevents_component '} >
                    {newss.map(news => (
                       
-                            <div className="news">
+                            <div className="news" key={news._id}>
                        <div className='newsBoxContainer' >
                        
                               <div className='boxof_image'>  <img className ="news_image" src={getImage(news.image)}  alt="" />  </div>

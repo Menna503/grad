@@ -128,7 +128,7 @@ function Profile() {
                             <input id="newPassword" onChange={handle} value={data.newPassword} type='password' className={i18n.language === 'ar' ? 'box_of_profile rtl row_reverse' : 'box_of_profile'}></input>
                         </div>
 
-                        <button className={i18n.language === 'ar' ? 'submit_button button_font_size' : 'submit_button margin_top'} type="submit">{t('update')}</button>
+                        <button className={i18n.language === 'ar' ? 'submit_button button_font_size margin_top ' : 'submit_button margin_top'} type="submit">{t('update')}</button>
                     </div>
                 </form>
                 {successMessage && (

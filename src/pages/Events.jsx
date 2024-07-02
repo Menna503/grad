@@ -4,7 +4,7 @@ import AddEvents from '../components/EventsOverlay';
 import { useTranslation } from 'react-i18next';
 import { IoMdAdd } from "react-icons/io";
 import { IoCalendarClearOutline } from "react-icons/io5";
-import Axios from 'axios';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../UserContext';
 import { useLocation } from 'react-router-dom';
@@ -22,29 +22,31 @@ import { getToken, englishToArabicNumber } from '../utils/authentication';
      const token = getToken() || '';
      const location = useLocation();
     
+     const fetchEvents = () => {
+        axios.get('event', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+            .then(res => {
+                const eventsArray = res.data.data.events;
+                if (Array.isArray(eventsArray)) {
+                    setEvents(eventsArray);
+                } else {
+                    console.error('Fetched events data is not an array:', res.data);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching questions:', error);
+            });
+    };
 
 
-     useEffect(() => {
-         if (token) {
-             Axios.get('event', {
-                 headers: {
-                     Authorization: `Bearer ${token}`
-                 }
-             })
-             .then(res => {
-              
-                 const eventsArray = res.data.data.events;
-                 if (Array.isArray(eventsArray)) {
-                     setEvents(eventsArray);
-                 } else {
-                     console.error('Fetched events data is not an array:', res.data);
-                 }
-             })
-             .catch(error => {
-                 console.error('Error fetching events:', error);
-             });
-         }
-     }, [location.pathname]);
+    useEffect(() => {
+        fetchEvents();
+    }, [location.pathname]);
+
+
 
      const closeAddEventsModal = () => {
          setShowModal(false);
@@ -53,7 +55,7 @@ import { getToken, englishToArabicNumber } from '../utils/authentication';
 
 
      const addEvent = (event) => {
-         setEvents([...events, event]);
+        fetchEvents();
      };
 
      const editEvent = (event) => {
@@ -77,17 +79,16 @@ import { getToken, englishToArabicNumber } from '../utils/authentication';
     };
 
 
-
  
-     return (
+        return (
 
        
          <div className='manageevents_maincontainer' >
              <p className={i18n.language === 'ar' ? 'paragraph_in_manage_events align' : 'paragraph_in_manage_events'}>{t('Please press the below button to add event')}</p>
              <div className='manageevents_container'>
                  <div  className='manageevents_component'>
-                     {events.map(event => (
-                         <div key={event.id} className={i18n.language === 'ar' ? 'event rotate_y' : 'event'} >
+                     {events.map( event => (
+                         <div key={event._id} className={i18n.language === 'ar' ? 'event rotate_y' : 'event'} >
                              <div className={i18n.language === 'ar' ? 'theTitleOfEvent rotate_y ' : 'theTitleOfEvent'}> <p className={i18n.language === 'ar' ? 'titleofevent font_size' : 'titleofevent'}>{t(event.type)}</p> </div>
 
                               <div className={i18n.language === 'ar' ? 'startevent font_size' : 'startevent'} >
@@ -117,4 +118,4 @@ import { getToken, englishToArabicNumber } from '../utils/authentication';
      );
  }
 
- export default Events;
+ export default Events;

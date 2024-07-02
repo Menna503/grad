@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Model from '../model/model';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { getToken ,englishToArabicNumber} from '../utils/authentication';
 
 const Candidates = () => {
-  // const [deleteCandidateModel, setDeleteCandidateModel] = useState(false);
   const [data, setData] = useState([]);
   const [deleteItemId, setDeleteItemId] = useState(null);
   const [isCandidatesPeriod, setIsCandidatesPeriod] = useState(false); 
@@ -78,7 +76,7 @@ const Candidates = () => {
       console.error('Error fetching events:', error);
     })
     .finally(() => {
-      setLoading(false); // Set loading to false after fetching events
+      setLoading(false); 
     });
   };
 
@@ -87,7 +85,7 @@ const Candidates = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>; // Loading indicator while fetching data
+    return <div>Loading...</div>; 
   }
   const convertToArabic = (number) => {
     return i18n.language === 'ar' ? englishToArabicNumber(number.toString()) : number;
@@ -95,12 +93,7 @@ const Candidates = () => {
 
   return (
     <>
-      {/* <Model
-        delete_model={deleteCandidateModel}
-        close_model={() => setDeleteCandidateModel(false)}
-        item={data.find(item => item._id === deleteItemId)} 
-        onDelete={() => deleteCandidate(deleteItemId)}
-      /> */}
+    
       {isCandidatesPeriod ? (
         <div className='top'>
           <div className='continer_table candidates_continer'>

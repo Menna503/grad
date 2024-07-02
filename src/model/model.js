@@ -72,7 +72,7 @@ const OverlayerEdit = ({ close, AdminToEdit, fetchData }) => {
       ...prevData,
       [id]: value
     }));
-    setErrorMessage(""); // Reset error message whenever input changes
+    setErrorMessage(""); 
   }
 
   return (

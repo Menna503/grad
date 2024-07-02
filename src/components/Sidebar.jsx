@@ -165,7 +165,7 @@ const Sidebar = ({ children }) => {
                     menuItem.map((item) => (
                         <div key={item.path} className={i18n.language === 'ar' ? 'rotate_y' : ''}>
                             <NavLink to={item.path} className="link" >
-                               <div activeClassName="active"  ></div>
+                               <div activeclassname="active"  ></div>
                                 <div className="icon" >{item.icon}</div>
                                 <div style={{ display: isOpen ? "block" : "none" }} className={i18n.language === 'ar' ? 'rotate_y link_text ' : 'link_text'}> {item.name}</div>
                             </NavLink>

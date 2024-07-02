@@ -45,7 +45,7 @@ function Requests() {
       }
     } catch (error) {
       console.error('Error fetching event status:', error);
-      // setMessage('Error fetching event status.');
+      
     } finally {
       setIsEventStatusFetched(true); 
     }

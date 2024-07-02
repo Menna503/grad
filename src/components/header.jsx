@@ -44,7 +44,7 @@ const Header = () => {
     },
     Reset: {
       en: 'Reset',
-      ar: 'تعيين كلمة المرور',
+      ar: 'تعيين كلمة مرور المستخدم',
     },
     CandidateData: {
       en: 'Candidate Data',

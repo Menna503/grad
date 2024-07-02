@@ -104,7 +104,7 @@ function HelpOverlay({ close , addQuestion , questionToEdit , updateQuestion  })
          <div className='Addnewslec'>
             <div className='closee_button' onClick={close}> <IoIosClose /> </div>
                 <div className='Addnewwslec'>
-                    <div className='page_img_addnews' ><img src={Helpposter} alt=""  /> </div> 
+                    <div className='page_img_addnews' ><img  className='img_qusetion'src={Helpposter} alt=""  /> </div> 
                     <div className='box_news'>
                             <div  >
                                  <input  id="question" onChange={handle} placeholder={t('Please Add Qestion')} type='text' value={data.question}  className={i18n.language === 'ar' ? 'box_of_Addnews align_right' : 'box_of_Addnews'} ></input>

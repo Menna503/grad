@@ -115,7 +115,7 @@ function handle(e) {
 
   return (
       <div className="newsModal"  onClick={handleClose}>
-            <div className="newsModalContainer">
+            <div className="newsModalContainer height_news">
                 <form  onSubmit={Submit}>
 
                     <div className='Addnewslec'>

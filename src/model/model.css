@@ -95,12 +95,14 @@
     margin-bottom:67px ;
 }
 .close_pop{
-    font-size: 39px;
+    font-size: 3rem;
     position: absolute;
     right: 20px;
     top:20px;
     border: none;
     background-color:#f8f8f8;
+    color: #4b4949;
+    font-weight: bold;
 }
 
 .edit_buuton{
@@ -199,5 +201,47 @@
     }
     .p_delete{
         font-size: 25px;
+    }
+}
+@media (min-width:1024px) and (max-width: 1439px) {
+    .overlay{
+        height: 628px;
+        width: 40%;
+    }
+    .overlay_add{
+        height: 580x
+        !important;
+    }
+    .img_edit_pop{
+        margin-top: 2px;
+        margin-bottom: 1px;
+    }
+    .img_add_admin{
+        width: 205px;
+        height: 186px;
+        }
+    .input{
+        height: 60px;
+    
+    
+    }
+    .edit_buuton{
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+    .overlay_delete{
+        /* width: 439px; */
+        height: 220px;
+    }
+    .p_delete{
+        font-size: 22px;
+    }
+    .yes_button {
+        
+        width: 92px;
+        height: 42px;
+        
+        font-size: 22px;
+        
     }
 }

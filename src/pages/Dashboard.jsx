@@ -47,7 +47,7 @@ const Dashboard = () => {
                 }
             } catch (error) {
                 console.error('Error fetching election event:', error);
-                // setElectionMessage('Error fetching election event.');
+               
             } finally {
                 setLoading(false);
             }

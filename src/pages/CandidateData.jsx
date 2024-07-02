@@ -4,7 +4,6 @@ import { FaFile } from "react-icons/fa6";
 import { Navigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import CandidateDataOverlay from '../components/candidate_data_overlay';
 import { getToken } from '../utils/authentication';
 
 
@@ -105,9 +104,6 @@ function CandidateData() {
   return (
     <>
       <div className='img_name'>
-        {/* <div>
-          <img className='candidate_img' src={getImage(candidateData.image)} alt="Candidate" />
-        </div> */}
         {candidateData.name && <p className='name_candidate'>{candidateData.name}</p>}
       </div>
       <div className='continer_table candidateData_continer_table'>
