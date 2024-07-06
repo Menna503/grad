@@ -3,6 +3,7 @@
     margin:0;
     padding:0;
     text-decoration: none;
+    text-transform:inherit;
     
 }
 
@@ -133,6 +134,7 @@ top:21px ;
 }
 .link_text{
 font-size: 23px;
+text-transform: capitalize;
 
 }
 .iconOfSide{
@@ -625,7 +627,7 @@ padding: 0%;
   font-size: 27px;
   color: #055b60;
   font-weight: 600;
-  margin-top: -100px;
+  margin-top: -150px;
   margin-left: 10px;
   }
   
@@ -1903,7 +1905,7 @@ padding: 0%;
           margin-left: 100px;
           }
           .margin_top{
-            margin-top: 3%!important;
+            margin-top: 7%!important;
           }
           
           .success_message{
@@ -2207,7 +2209,7 @@ padding: 0%;
              
              /* ***profile*/
              .profile_container{
-              height: 34.2rem !important;
+              height: 36.2rem !important;
               width: 86.1%;
               gap: 5%;
               margin-top: 1.8%;
@@ -2285,7 +2287,7 @@ padding: 0%;
             .submit_button{
             width:194px;
             font-size: 18px;
-            margin-top: 3px;
+            margin-top: 15px;
             height: 50px;
             margin-left: 100px;
             }

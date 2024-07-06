@@ -39,8 +39,8 @@ const OverlayerEdit = ({ close, AdminToEdit, fetchData }) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
   
-    if (!data.name && !data.nationalId) {
-      setErrorMessage(t("At least one field must be updated"));
+    if (!data.name || !data.nationalId) {
+      setErrorMessage(t("All field must be required"));
       return;
     }
   
@@ -171,7 +171,7 @@ const OverlayerAddAdmin = ({ close, addNewAdmin, fetchData }) => {
       <button className='close_pop' onClick={close}><IoIosClose /></button>
       <div className={i18n.language === 'ar' ? 'edit rotate_y' : 'edit'}>
         <BsPersonGear className='edit_i_pop' />
-        <h1 className={i18n.language === 'ar' ? 'edit_h_pop rotate_y' : 'edit_h_pop'}>{t('Add Admin')}</h1>
+        <h1 className={i18n.language === 'ar' ? 'edit_h_pop rotate_y' : 'edit_h_pop'}>{t('Add admin')}</h1>
       </div>
       <div className='img_edit_pop'><img className='img_add_admin' src='/add_admin.svg' /></div>
       <form onSubmit={handleSubmit} className='form_continer'>

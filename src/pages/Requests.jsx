@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { getToken } from '../utils/authentication';
+import { getToken ,englishToArabicNumber} from '../utils/authentication';
 
 function Requests() {
   const [data, setData] = useState([]);
@@ -85,6 +85,9 @@ function Requests() {
   if (!isEventStatusFetched) {
     return null; 
   }
+  const convertToArabic = (number) => {
+    return i18n.language === 'ar' ? englishToArabicNumber(number.toString()) : number;
+};
 
   return (
     <>
@@ -101,7 +104,7 @@ function Requests() {
                       </div>
                     </td>
                     <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{item.name}</td>
-                    <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{item.user.nationalId}</td>
+                    <td className={i18n.language === 'ar' ? 'rotate_y' : ''}>{convertToArabic(item.user.nationalId)}</td>
                     <td>
                       <div>
                         <button

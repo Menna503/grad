@@ -45,7 +45,7 @@ function Profile() {
         const token =  getToken();
 
         if (data.password === "" || data.newPassword === "") {
-            setErrorMessage(t("Both fields are required"));
+            setErrorMessage(t("All fields are required"));
             return;
         }
 
